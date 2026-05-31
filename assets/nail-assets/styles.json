@@ -1,0 +1,3302 @@
+[
+  {
+    "id": 1,
+    "name": "01 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/87797733466cfd525625a5947767e2ff1794125.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/8491d190aeb8f44e32f6b278535bf2b41075477.png",
+    "preview": "./assets/nail-assets/style-01/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-01/thumb.png",
+        "mask": "./assets/nail-assets/style-01/thumb-mask.png",
+        "bbox": [
+          414,
+          791,
+          496,
+          872
+        ],
+        "confidence": 0.8861,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-01/index.png",
+        "mask": "./assets/nail-assets/style-01/index-mask.png",
+        "bbox": [
+          473,
+          512,
+          554,
+          594
+        ],
+        "confidence": 0.8847,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-01/middle.png",
+        "mask": "./assets/nail-assets/style-01/middle-mask.png",
+        "bbox": [
+          397,
+          458,
+          477,
+          545
+        ],
+        "confidence": 0.8781,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-01/ring.png",
+        "mask": "./assets/nail-assets/style-01/ring-mask.png",
+        "bbox": [
+          544,
+          672,
+          611,
+          756
+        ],
+        "confidence": 0.8717,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-01/pinky.png",
+        "mask": "./assets/nail-assets/style-01/pinky-mask.png",
+        "bbox": [
+          608,
+          510,
+          677,
+          570
+        ],
+        "confidence": 0.8682,
+        "finish": "shimmer",
+        "source": "seg"
+      }
+    },
+    "finish": "shimmer",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.9881,
+      "tipSharpness": 0.375,
+      "rootWidthRatio": 0.5357,
+      "maxWidthPosition": 0.4756,
+      "sideTaper": 0.4643,
+      "coverage": 0.7144,
+      "rootY": 0.9186,
+      "tipY": 0.0233,
+      "rootCenterX": 0.7048,
+      "bedLengthRatio": 0.9398
+    },
+    "shapeConfidence": 0.6912,
+    "rootProfile": {
+      "rootY": 0.9186,
+      "rootWidthRatio": 0.5357,
+      "rootCenterX": 0.7048,
+      "tipY": 0.0233,
+      "bedLengthRatio": 0.9398
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8781,
+      "coverage": 0.6667,
+      "aspectMedian": 1.0116,
+      "aspectStd": 0.1067,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6912,
+      "lengthScale": 1.0,
+      "widthScale": 1.063,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8781
+    },
+    "meanColor": [
+      212,
+      185,
+      169
+    ],
+    "luminance": 0.7444056272506714,
+    "coverage": 0.6666666666666666
+  },
+  {
+    "id": 2,
+    "name": "02 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/162afb52255bd908ba3ec418fd61824a2254875.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/493fc5818746fe45d9be82763034edbe1246574.png",
+    "preview": "./assets/nail-assets/style-02/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-02/thumb.png",
+        "mask": "./assets/nail-assets/style-02/thumb-mask.png",
+        "bbox": [
+          473,
+          205,
+          567,
+          310
+        ],
+        "confidence": 0.9057,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-02/index.png",
+        "mask": "./assets/nail-assets/style-02/index-mask.png",
+        "bbox": [
+          626,
+          219,
+          719,
+          328
+        ],
+        "confidence": 0.9026,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-02/middle.png",
+        "mask": "./assets/nail-assets/style-02/middle-mask.png",
+        "bbox": [
+          646,
+          757,
+          737,
+          867
+        ],
+        "confidence": 0.9008,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-02/ring.png",
+        "mask": "./assets/nail-assets/style-02/ring-mask.png",
+        "bbox": [
+          725,
+          365,
+          817,
+          469
+        ],
+        "confidence": 0.8981,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-02/pinky.png",
+        "mask": "./assets/nail-assets/style-02/pinky-mask.png",
+        "bbox": [
+          273,
+          280,
+          348,
+          366
+        ],
+        "confidence": 0.8814,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.1158,
+      "tipSharpness": 0.4643,
+      "rootWidthRatio": 0.75,
+      "maxWidthPosition": 0.5238,
+      "sideTaper": 0.25,
+      "coverage": 0.6897,
+      "rootY": 0.9725,
+      "tipY": 0.055,
+      "rootCenterX": 0.4255,
+      "bedLengthRatio": 0.9528
+    },
+    "shapeConfidence": 0.7064,
+    "rootProfile": {
+      "rootY": 0.9725,
+      "rootWidthRatio": 0.75,
+      "rootCenterX": 0.4255,
+      "tipY": 0.055,
+      "bedLengthRatio": 0.9528
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.9008,
+      "coverage": 0.6687,
+      "aspectMedian": 1.134,
+      "aspectStd": 0.0263,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.7064,
+      "lengthScale": 1.0,
+      "widthScale": 1.053,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.9008
+    },
+    "meanColor": [
+      224,
+      193,
+      174
+    ],
+    "luminance": 0.7795587182044983,
+    "coverage": 0.66869994994995
+  },
+  {
+    "id": 3,
+    "name": "03 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/7bb5bc0c2c741f9f0aa63787a601d7ad2604877.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/667658abb96c7547791d48360a8e95b61155924.png",
+    "preview": "./assets/nail-assets/style-03/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-03/thumb.png",
+        "mask": "./assets/nail-assets/style-03/thumb-mask.png",
+        "bbox": [
+          494,
+          483,
+          579,
+          566
+        ],
+        "confidence": 0.8881,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-03/index.png",
+        "mask": "./assets/nail-assets/style-03/index-mask.png",
+        "bbox": [
+          445,
+          390,
+          530,
+          483
+        ],
+        "confidence": 0.8852,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-03/middle.png",
+        "mask": "./assets/nail-assets/style-03/middle-mask.png",
+        "bbox": [
+          379,
+          314,
+          451,
+          404
+        ],
+        "confidence": 0.8686,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-03/ring.png",
+        "mask": "./assets/nail-assets/style-03/ring-mask.png",
+        "bbox": [
+          540,
+          566,
+          615,
+          629
+        ],
+        "confidence": 0.8396,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-03/pinky.png",
+        "mask": "./assets/nail-assets/style-03/pinky-mask.png",
+        "bbox": [
+          298,
+          223,
+          384,
+          300
+        ],
+        "confidence": 0.823,
+        "finish": "shimmer",
+        "source": "seg"
+      }
+    },
+    "finish": "shimmer",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.9884,
+      "tipSharpness": 0.4419,
+      "rootWidthRatio": 0.5233,
+      "maxWidthPosition": 0.4405,
+      "sideTaper": 0.4767,
+      "coverage": 0.7234,
+      "rootY": 0.9205,
+      "tipY": 0.0227,
+      "rootCenterX": 0.4824,
+      "bedLengthRatio": 0.9412
+    },
+    "shapeConfidence": 0.6927,
+    "rootProfile": {
+      "rootY": 0.9205,
+      "rootWidthRatio": 0.5233,
+      "rootCenterX": 0.4824,
+      "tipY": 0.0227,
+      "bedLengthRatio": 0.9412
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8686,
+      "coverage": 0.6906,
+      "aspectMedian": 0.9889,
+      "aspectStd": 0.1316,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6927,
+      "lengthScale": 1.0,
+      "widthScale": 1.065,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8686
+    },
+    "meanColor": [
+      129,
+      77,
+      68
+    ],
+    "luminance": 0.3440716862678528,
+    "coverage": 0.6906281281281281
+  },
+  {
+    "id": 4,
+    "name": "04 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/fc8fe60e78341d77a5070fc2f8e520072098070.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/f8539918c55c5c1e4a45ee3996df65f7167977.jpg",
+    "preview": "./assets/nail-assets/style-04/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-04/thumb.png",
+        "mask": "./assets/nail-assets/style-04/thumb-mask.png",
+        "bbox": [
+          588,
+          464,
+          687,
+          527
+        ],
+        "confidence": 0.883,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-04/index.png",
+        "mask": "./assets/nail-assets/style-04/index-mask.png",
+        "bbox": [
+          400,
+          854,
+          477,
+          953
+        ],
+        "confidence": 0.8717,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-04/middle.png",
+        "mask": "./assets/nail-assets/style-04/middle-mask.png",
+        "bbox": [
+          608,
+          573,
+          694,
+          640
+        ],
+        "confidence": 0.8704,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-04/ring.png",
+        "mask": "./assets/nail-assets/style-04/ring-mask.png",
+        "bbox": [
+          411,
+          393,
+          501,
+          450
+        ],
+        "confidence": 0.8681,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-04/pinky.png",
+        "mask": "./assets/nail-assets/style-04/pinky-mask.png",
+        "bbox": [
+          189,
+          379,
+          293,
+          427
+        ],
+        "confidence": 0.8558,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.6337,
+      "tipSharpness": 0.1782,
+      "rootWidthRatio": 0.6683,
+      "maxWidthPosition": 0.2698,
+      "sideTaper": 0.3317,
+      "coverage": 0.8424,
+      "rootY": 0.9552,
+      "tipY": 0.0299,
+      "rootCenterX": 0.455,
+      "bedLengthRatio": 0.9844
+    },
+    "shapeConfidence": 0.6888,
+    "rootProfile": {
+      "rootY": 0.9552,
+      "rootWidthRatio": 0.6683,
+      "rootCenterX": 0.455,
+      "tipY": 0.0299,
+      "bedLengthRatio": 0.9844
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8704,
+      "coverage": 0.8058,
+      "aspectMedian": 0.6495,
+      "aspectStd": 0.272,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6888,
+      "lengthScale": 1.0,
+      "widthScale": 1.08,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8704
+    },
+    "meanColor": [
+      173,
+      166,
+      156
+    ],
+    "luminance": 0.6540790796279907,
+    "coverage": 0.8058370870870871
+  },
+  {
+    "id": 5,
+    "name": "05 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/3c0d090e20f0cb56f70fcb56c54dd6582416974.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/1d448b059cddcc2f0705a4a4fe554e06261514.jpg",
+    "preview": "./assets/nail-assets/style-05/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-05/thumb.png",
+        "mask": "./assets/nail-assets/style-05/thumb-mask.png",
+        "bbox": [
+          350,
+          341,
+          409,
+          437
+        ],
+        "confidence": 0.8709,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-05/index.png",
+        "mask": "./assets/nail-assets/style-05/index-mask.png",
+        "bbox": [
+          451,
+          289,
+          508,
+          373
+        ],
+        "confidence": 0.8543,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-05/middle.png",
+        "mask": "./assets/nail-assets/style-05/middle-mask.png",
+        "bbox": [
+          277,
+          349,
+          329,
+          423
+        ],
+        "confidence": 0.8438,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-05/ring.png",
+        "mask": "./assets/nail-assets/style-05/ring-mask.png",
+        "bbox": [
+          555,
+          265,
+          607,
+          344
+        ],
+        "confidence": 0.7356,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-05/pinky.png",
+        "mask": "./assets/nail-assets/style-05/pinky-mask.png",
+        "bbox": [
+          613,
+          172,
+          629,
+          203
+        ],
+        "confidence": 0.68,
+        "finish": "metallic",
+        "source": "cluster"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.6167,
+      "tipSharpness": 0.15,
+      "rootWidthRatio": 0.8917,
+      "maxWidthPosition": 0.1875,
+      "sideTaper": 0.1083,
+      "coverage": 0.9275,
+      "rootY": 0.98,
+      "tipY": 0.02,
+      "rootCenterX": 0.5932,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.7489,
+    "rootProfile": {
+      "rootY": 0.98,
+      "rootWidthRatio": 0.8917,
+      "rootCenterX": 0.5932,
+      "tipY": 0.02,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "cluster": 1,
+        "seg": 4
+      },
+      "confidence": 0.8438,
+      "coverage": 0.7961,
+      "aspectMedian": 1.4407,
+      "aspectStd": 0.2054,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "squoval",
+      "shapeConfidence": 0.7489,
+      "lengthScale": 1.0,
+      "widthScale": 1.029,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8438
+    },
+    "meanColor": [
+      186,
+      166,
+      156
+    ],
+    "luminance": 0.6667978763580322,
+    "coverage": 0.7961398898898899
+  },
+  {
+    "id": 6,
+    "name": "06 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/6c857edd85a5fa4bcec59698fe9416cb1913981.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/a99d2de6bf0ade20211c0ae46af8e44b1057335.png",
+    "preview": "./assets/nail-assets/style-06/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-06/thumb.png",
+        "mask": "./assets/nail-assets/style-06/thumb-mask.png",
+        "bbox": [
+          244,
+          726,
+          366,
+          817
+        ],
+        "confidence": 0.8883,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-06/index.png",
+        "mask": "./assets/nail-assets/style-06/index-mask.png",
+        "bbox": [
+          288,
+          629,
+          421,
+          761
+        ],
+        "confidence": 0.8451,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-06/middle.png",
+        "mask": "./assets/nail-assets/style-06/middle-mask.png",
+        "bbox": [
+          409,
+          406,
+          507,
+          553
+        ],
+        "confidence": 0.8313,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-06/ring.png",
+        "mask": "./assets/nail-assets/style-06/ring-mask.png",
+        "bbox": [
+          342,
+          530,
+          468,
+          682
+        ],
+        "confidence": 0.7839,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-06/pinky.png",
+        "mask": "./assets/nail-assets/style-06/pinky-mask.png",
+        "bbox": [
+          484,
+          152,
+          588,
+          280
+        ],
+        "confidence": 0.6337,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.7419,
+      "tipSharpness": 0.401,
+      "rootWidthRatio": 0.5,
+      "maxWidthPosition": 0.4176,
+      "sideTaper": 0.5,
+      "coverage": 0.5913,
+      "rootY": 0.9158,
+      "tipY": 0.0211,
+      "rootCenterX": 0.8577,
+      "bedLengthRatio": 0.9348
+    },
+    "shapeConfidence": 0.6929,
+    "rootProfile": {
+      "rootY": 0.9158,
+      "rootWidthRatio": 0.5,
+      "rootCenterX": 0.8577,
+      "tipY": 0.0211,
+      "bedLengthRatio": 0.9348
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8313,
+      "coverage": 0.5434,
+      "aspectMedian": 1.197,
+      "aspectStd": 0.2445,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.6929,
+      "lengthScale": 1.14,
+      "widthScale": 1.048,
+      "tipExtension": 0.081,
+      "rootFade": 0.32,
+      "confidence": 0.8313
+    },
+    "meanColor": [
+      152,
+      106,
+      91
+    ],
+    "luminance": 0.4506836235523224,
+    "coverage": 0.5434184184184184
+  },
+  {
+    "id": 7,
+    "name": "07 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/2ac2d01a9bc78320edbe2b545b485b4a2132292.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/6dedbe1cfe7de834cd8faa4e19179fee1123627.png",
+    "preview": "./assets/nail-assets/style-07/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-07/thumb.png",
+        "mask": "./assets/nail-assets/style-07/thumb-mask.png",
+        "bbox": [
+          435,
+          528,
+          554,
+          697
+        ],
+        "confidence": 0.8065,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-07/index.png",
+        "mask": "./assets/nail-assets/style-07/index-mask.png",
+        "bbox": [
+          371,
+          592,
+          492,
+          745
+        ],
+        "confidence": 0.7028,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-07/middle.png",
+        "mask": "./assets/nail-assets/style-07/middle-mask.png",
+        "bbox": [
+          296,
+          629,
+          422,
+          753
+        ],
+        "confidence": 0.6035,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-07/ring.png",
+        "mask": "./assets/nail-assets/style-07/ring-mask.png",
+        "bbox": [
+          486,
+          421,
+          571,
+          541
+        ],
+        "confidence": 0.4217,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-07/pinky.png",
+        "mask": "./assets/nail-assets/style-07/pinky-mask.png",
+        "bbox": [
+          563,
+          237,
+          631,
+          406
+        ],
+        "confidence": 0.68,
+        "finish": "jelly",
+        "source": "cluster"
+      }
+    },
+    "finish": "jelly",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.4167,
+      "tipSharpness": 0.1083,
+      "rootWidthRatio": 0.3875,
+      "maxWidthPosition": 0.1065,
+      "sideTaper": 0.6125,
+      "coverage": 0.5436,
+      "rootY": 0.8786,
+      "tipY": 0.0116,
+      "rootCenterX": 0.8277,
+      "bedLengthRatio": 0.8882
+    },
+    "shapeConfidence": 0.742,
+    "rootProfile": {
+      "rootY": 0.8786,
+      "rootWidthRatio": 0.3875,
+      "rootCenterX": 0.8277,
+      "tipY": 0.0116,
+      "bedLengthRatio": 0.8882
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "cluster": 1,
+        "seg": 4
+      },
+      "confidence": 0.68,
+      "coverage": 0.4967,
+      "aspectMedian": 1.3956,
+      "aspectStd": 0.5129,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "almond",
+      "shapeConfidence": 0.742,
+      "lengthScale": 1.15,
+      "widthScale": 1.032,
+      "tipExtension": 0.087,
+      "rootFade": 0.32,
+      "confidence": 0.68
+    },
+    "meanColor": [
+      143,
+      122,
+      118
+    ],
+    "luminance": 0.4969783127307892,
+    "coverage": 0.4966841841841842
+  },
+  {
+    "id": 8,
+    "name": "08 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/d15c06e8c2137d4f39f3b60476a90cf92026957.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/7b22fa4e6e1ee4e59a1115a27b125fe0996286.png",
+    "preview": "./assets/nail-assets/style-08/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-08/thumb.png",
+        "mask": "./assets/nail-assets/style-08/thumb-mask.png",
+        "bbox": [
+          354,
+          459,
+          481,
+          602
+        ],
+        "confidence": 0.8208,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-08/index.png",
+        "mask": "./assets/nail-assets/style-08/index-mask.png",
+        "bbox": [
+          339,
+          384,
+          444,
+          519
+        ],
+        "confidence": 0.8198,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-08/middle.png",
+        "mask": "./assets/nail-assets/style-08/middle-mask.png",
+        "bbox": [
+          488,
+          529,
+          600,
+          628
+        ],
+        "confidence": 0.8084,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-08/ring.png",
+        "mask": "./assets/nail-assets/style-08/ring-mask.png",
+        "bbox": [
+          396,
+          525,
+          520,
+          655
+        ],
+        "confidence": 0.7422,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-08/pinky.png",
+        "mask": "./assets/nail-assets/style-08/pinky-mask.png",
+        "bbox": [
+          323,
+          381,
+          446,
+          552
+        ],
+        "confidence": 0.4634,
+        "finish": "shimmer",
+        "source": "seg"
+      }
+    },
+    "finish": "shimmer",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.124,
+      "tipSharpness": 0.3067,
+      "rootWidthRatio": 0.6133,
+      "maxWidthPosition": 0.2778,
+      "sideTaper": 0.3867,
+      "coverage": 0.4436,
+      "rootY": 0.9865,
+      "tipY": 0.0135,
+      "rootCenterX": 0.1094,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.6402,
+    "rootProfile": {
+      "rootY": 0.9865,
+      "rootWidthRatio": 0.6133,
+      "rootCenterX": 0.1094,
+      "tipY": 0.0135,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8084,
+      "coverage": 0.4271,
+      "aspectMedian": 1.1203,
+      "aspectStd": 0.1763,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.6402,
+      "lengthScale": 1.15,
+      "widthScale": 1.054,
+      "tipExtension": 0.087,
+      "rootFade": 0.32,
+      "confidence": 0.8084
+    },
+    "meanColor": [
+      133,
+      119,
+      115
+    ],
+    "luminance": 0.4779042601585388,
+    "coverage": 0.4270833333333333
+  },
+  {
+    "id": 9,
+    "name": "09 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/69614397f0ecb559b98cb46a5a46f3b32642714.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/6b20ca923ac4461aeaab7bf136bfda3c1063942.png",
+    "preview": "./assets/nail-assets/style-09/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-09/thumb.png",
+        "mask": "./assets/nail-assets/style-09/thumb-mask.png",
+        "bbox": [
+          532,
+          624,
+          654,
+          718
+        ],
+        "confidence": 0.8929,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-09/index.png",
+        "mask": "./assets/nail-assets/style-09/index-mask.png",
+        "bbox": [
+          371,
+          319,
+          463,
+          459
+        ],
+        "confidence": 0.8866,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-09/middle.png",
+        "mask": "./assets/nail-assets/style-09/middle-mask.png",
+        "bbox": [
+          475,
+          539,
+          596,
+          668
+        ],
+        "confidence": 0.8779,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-09/ring.png",
+        "mask": "./assets/nail-assets/style-09/ring-mask.png",
+        "bbox": [
+          427,
+          457,
+          535,
+          598
+        ],
+        "confidence": 0.8742,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-09/pinky.png",
+        "mask": "./assets/nail-assets/style-09/pinky-mask.png",
+        "bbox": [
+          249,
+          438,
+          400,
+          505
+        ],
+        "confidence": 0.157,
+        "finish": "jelly",
+        "source": "seg"
+      }
+    },
+    "finish": "jelly",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.7661,
+      "tipSharpness": 0.4167,
+      "rootWidthRatio": 0.6786,
+      "maxWidthPosition": 0.4574,
+      "sideTaper": 0.3214,
+      "coverage": 0.5341,
+      "rootY": 0.9592,
+      "tipY": 0.0204,
+      "rootCenterX": 0.1667,
+      "bedLengthRatio": 0.9789
+    },
+    "shapeConfidence": 0.6964,
+    "rootProfile": {
+      "rootY": 0.9592,
+      "rootWidthRatio": 0.6786,
+      "rootCenterX": 0.1667,
+      "tipY": 0.0204,
+      "bedLengthRatio": 0.9789
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8779,
+      "coverage": 0.5093,
+      "aspectMedian": 1.063,
+      "aspectStd": 0.3592,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.6964,
+      "lengthScale": 1.16,
+      "widthScale": 1.059,
+      "tipExtension": 0.093,
+      "rootFade": 0.32,
+      "confidence": 0.8779
+    },
+    "meanColor": [
+      161,
+      106,
+      95
+    ],
+    "luminance": 0.462166965007782,
+    "coverage": 0.5092905405405406
+  },
+  {
+    "id": 10,
+    "name": "10 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/2277d6f9d82264fa6a3c986373e5e44c2292083.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/a5894d122ca3bd7e1f12401a8c72351e1460094.png",
+    "preview": "./assets/nail-assets/style-10/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-10/thumb.png",
+        "mask": "./assets/nail-assets/style-10/thumb-mask.png",
+        "bbox": [
+          0,
+          0,
+          148,
+          216
+        ],
+        "confidence": 0.46,
+        "finish": "metallic",
+        "source": "heuristic"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-10/index.png",
+        "mask": "./assets/nail-assets/style-10/index-mask.png",
+        "bbox": [
+          0,
+          0,
+          132,
+          248
+        ],
+        "confidence": 0.46,
+        "finish": "metallic",
+        "source": "heuristic"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-10/middle.png",
+        "mask": "./assets/nail-assets/style-10/middle-mask.png",
+        "bbox": [
+          0,
+          0,
+          136,
+          260
+        ],
+        "confidence": 0.46,
+        "finish": "metallic",
+        "source": "heuristic"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-10/ring.png",
+        "mask": "./assets/nail-assets/style-10/ring-mask.png",
+        "bbox": [
+          0,
+          0,
+          130,
+          244
+        ],
+        "confidence": 0.46,
+        "finish": "metallic",
+        "source": "heuristic"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-10/pinky.png",
+        "mask": "./assets/nail-assets/style-10/pinky-mask.png",
+        "bbox": [
+          0,
+          0,
+          116,
+          218
+        ],
+        "confidence": 0.46,
+        "finish": "metallic",
+        "source": "heuristic"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.519,
+      "tipSharpness": 0.0,
+      "rootWidthRatio": 1.0,
+      "maxWidthPosition": 0.0,
+      "sideTaper": 0.0,
+      "coverage": 1.0,
+      "rootY": 1.0,
+      "tipY": 0.0,
+      "rootCenterX": 0.5,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.3956,
+    "rootProfile": {
+      "rootY": 1.0,
+      "rootWidthRatio": 1.0,
+      "rootCenterX": 0.5,
+      "tipY": 0.0,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "heuristic": 5
+      },
+      "confidence": 0.46,
+      "coverage": 0.8457,
+      "aspectMedian": 1.519,
+      "aspectStd": 0.372,
+      "heuristicRatio": 1.0,
+      "complexStyle": true,
+      "needsReview": true,
+      "reasons": [
+        "low_confidence",
+        "heuristic_source",
+        "unstable_aspect",
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "best_available",
+      "needsReview": true,
+      "allowExtension": true,
+      "shape": "squoval",
+      "shapeConfidence": 0.3956,
+      "lengthScale": 1.18,
+      "widthScale": 1.022,
+      "tipExtension": 0.104,
+      "rootFade": 0.32,
+      "confidence": 0.46
+    },
+    "meanColor": [
+      199,
+      140,
+      126
+    ],
+    "luminance": 0.5972440838813782,
+    "coverage": 0.8457207207207207
+  },
+  {
+    "id": 11,
+    "name": "11 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/bc153edf655dd6961dc9f8e95ad8cd1e2561531.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/b6491d47c001ca175fa04e5243f84aa5896438.png",
+    "preview": "./assets/nail-assets/style-11/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-11/thumb.png",
+        "mask": "./assets/nail-assets/style-11/thumb-mask.png",
+        "bbox": [
+          450,
+          455,
+          498,
+          535
+        ],
+        "confidence": 0.5849,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-11/index.png",
+        "mask": "./assets/nail-assets/style-11/index-mask.png",
+        "bbox": [
+          433,
+          299,
+          524,
+          375
+        ],
+        "confidence": 0.5822,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-11/middle.png",
+        "mask": "./assets/nail-assets/style-11/middle-mask.png",
+        "bbox": [
+          414,
+          524,
+          496,
+          633
+        ],
+        "confidence": 0.5562,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-11/ring.png",
+        "mask": "./assets/nail-assets/style-11/ring-mask.png",
+        "bbox": [
+          330,
+          579,
+          410,
+          646
+        ],
+        "confidence": 0.4602,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-11/pinky.png",
+        "mask": "./assets/nail-assets/style-11/pinky-mask.png",
+        "bbox": [
+          379,
+          562,
+          450,
+          649
+        ],
+        "confidence": 0.392,
+        "finish": "shimmer",
+        "source": "seg"
+      }
+    },
+    "finish": "shimmer",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.62,
+      "tipSharpness": 0.18,
+      "rootWidthRatio": 0.58,
+      "maxWidthPosition": 0.275,
+      "sideTaper": 0.42,
+      "coverage": 0.8044,
+      "rootY": 0.9762,
+      "tipY": 0.0238,
+      "rootCenterX": 0.8265,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.5147,
+    "rootProfile": {
+      "rootY": 0.9762,
+      "rootWidthRatio": 0.58,
+      "rootCenterX": 0.8265,
+      "tipY": 0.0238,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.5562,
+      "coverage": 0.6809,
+      "aspectMedian": 1.2078,
+      "aspectStd": 0.2818,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": true,
+      "reasons": [
+        "low_confidence",
+        "unstable_aspect",
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": true,
+      "allowExtension": true,
+      "shape": "oval",
+      "shapeConfidence": 0.5147,
+      "lengthScale": 1.16,
+      "widthScale": 1.047,
+      "tipExtension": 0.093,
+      "rootFade": 0.32,
+      "confidence": 0.5562
+    },
+    "meanColor": [
+      191,
+      151,
+      139
+    ],
+    "luminance": 0.6240299940109253,
+    "coverage": 0.6808996496496497
+  },
+  {
+    "id": 12,
+    "name": "12 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/43cc4ced977a3dd271f60ee2f05607772681747.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/d571f8a5702261542c115c247d210bfd1180529.png",
+    "preview": "./assets/nail-assets/style-12/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-12/thumb.png",
+        "mask": "./assets/nail-assets/style-12/thumb-mask.png",
+        "bbox": [
+          463,
+          590,
+          565,
+          655
+        ],
+        "confidence": 0.6593,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-12/index.png",
+        "mask": "./assets/nail-assets/style-12/index-mask.png",
+        "bbox": [
+          398,
+          347,
+          437,
+          381
+        ],
+        "confidence": 0.68,
+        "finish": "gloss",
+        "source": "cluster"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-12/middle.png",
+        "mask": "./assets/nail-assets/style-12/middle-mask.png",
+        "bbox": [
+          371,
+          363,
+          405,
+          383
+        ],
+        "confidence": 0.68,
+        "finish": "gloss",
+        "source": "cluster"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-12/ring.png",
+        "mask": "./assets/nail-assets/style-12/ring-mask.png",
+        "bbox": [
+          438,
+          438,
+          480,
+          479
+        ],
+        "confidence": 0.68,
+        "finish": "gloss",
+        "source": "cluster"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-12/pinky.png",
+        "mask": "./assets/nail-assets/style-12/pinky-mask.png",
+        "bbox": [
+          287,
+          575,
+          307,
+          595
+        ],
+        "confidence": 0.68,
+        "finish": "gloss",
+        "source": "cluster"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.6346,
+      "tipSharpness": 0.5,
+      "rootWidthRatio": 0.6585,
+      "maxWidthPosition": 0.6,
+      "sideTaper": 0.3415,
+      "coverage": 0.5778,
+      "rootY": 0.9565,
+      "tipY": 0.029,
+      "rootCenterX": 0.1505,
+      "bedLengthRatio": 0.9848
+    },
+    "shapeConfidence": 0.5143,
+    "rootProfile": {
+      "rootY": 0.9565,
+      "rootWidthRatio": 0.6585,
+      "rootCenterX": 0.1505,
+      "tipY": 0.029,
+      "bedLengthRatio": 0.9848
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "cluster": 4,
+        "seg": 1
+      },
+      "confidence": 0.68,
+      "coverage": 0.5182,
+      "aspectMedian": 0.8718,
+      "aspectStd": 0.1689,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "best_available",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.5143,
+      "lengthScale": 1.14,
+      "widthScale": 1.074,
+      "tipExtension": 0.081,
+      "rootFade": 0.32,
+      "confidence": 0.68
+    },
+    "meanColor": [
+      166,
+      136,
+      113
+    ],
+    "luminance": 0.55301833152771,
+    "coverage": 0.518236986986987
+  },
+  {
+    "id": 13,
+    "name": "13 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/682c173ae3a95d0b838655e8337b30d72213857.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/5fa531643ac8f829d8ab574b4c11e0081087649.png",
+    "preview": "./assets/nail-assets/style-13/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-13/thumb.png",
+        "mask": "./assets/nail-assets/style-13/thumb-mask.png",
+        "bbox": [
+          410,
+          570,
+          558,
+          679
+        ],
+        "confidence": 0.9028,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-13/index.png",
+        "mask": "./assets/nail-assets/style-13/index-mask.png",
+        "bbox": [
+          447,
+          815,
+          584,
+          860
+        ],
+        "confidence": 0.8574,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-13/middle.png",
+        "mask": "./assets/nail-assets/style-13/middle-mask.png",
+        "bbox": [
+          438,
+          710,
+          556,
+          784
+        ],
+        "confidence": 0.8009,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-13/ring.png",
+        "mask": "./assets/nail-assets/style-13/ring-mask.png",
+        "bbox": [
+          260,
+          343,
+          388,
+          428
+        ],
+        "confidence": 0.7338,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-13/pinky.png",
+        "mask": "./assets/nail-assets/style-13/pinky-mask.png",
+        "bbox": [
+          471,
+          708,
+          557,
+          782
+        ],
+        "confidence": 0.5839,
+        "finish": "jelly",
+        "source": "seg"
+      }
+    },
+    "finish": "jelly",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.745,
+      "tipSharpness": 0.5,
+      "rootWidthRatio": 0.6034,
+      "maxWidthPosition": 0.5364,
+      "sideTaper": 0.3966,
+      "coverage": 0.5578,
+      "rootY": 0.9211,
+      "tipY": 0.0614,
+      "rootCenterX": 0.2061,
+      "bedLengthRatio": 0.8919
+    },
+    "shapeConfidence": 0.7042,
+    "rootProfile": {
+      "rootY": 0.9211,
+      "rootWidthRatio": 0.6034,
+      "rootCenterX": 0.2061,
+      "tipY": 0.0614,
+      "bedLengthRatio": 0.8919
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8009,
+      "coverage": 0.5219,
+      "aspectMedian": 0.6667,
+      "aspectStd": 0.1725,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.7042,
+      "lengthScale": 1.14,
+      "widthScale": 1.08,
+      "tipExtension": 0.081,
+      "rootFade": 0.32,
+      "confidence": 0.8009
+    },
+    "meanColor": [
+      169,
+      148,
+      140
+    ],
+    "luminance": 0.5964277386665344,
+    "coverage": 0.5218968968968969
+  },
+  {
+    "id": 14,
+    "name": "14 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/eecfba4ab276e895b579a79491b2d0211982788.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/b99490b3f4a5e088ffe36c6ae60211941005960.png",
+    "preview": "./assets/nail-assets/style-14/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-14/thumb.png",
+        "mask": "./assets/nail-assets/style-14/thumb-mask.png",
+        "bbox": [
+          366,
+          511,
+          548,
+          667
+        ],
+        "confidence": 0.9073,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-14/index.png",
+        "mask": "./assets/nail-assets/style-14/index-mask.png",
+        "bbox": [
+          317,
+          606,
+          498,
+          735
+        ],
+        "confidence": 0.889,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-14/middle.png",
+        "mask": "./assets/nail-assets/style-14/middle-mask.png",
+        "bbox": [
+          424,
+          405,
+          569,
+          563
+        ],
+        "confidence": 0.8835,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-14/ring.png",
+        "mask": "./assets/nail-assets/style-14/ring-mask.png",
+        "bbox": [
+          462,
+          179,
+          695,
+          429
+        ],
+        "confidence": 0.7168,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-14/pinky.png",
+        "mask": "./assets/nail-assets/style-14/pinky-mask.png",
+        "bbox": [
+          152,
+          638,
+          452,
+          798
+        ],
+        "confidence": 0.4905,
+        "finish": "metallic",
+        "source": "seg"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.8533,
+      "tipSharpness": 0.0408,
+      "rootWidthRatio": 0.3614,
+      "maxWidthPosition": 0.1538,
+      "sideTaper": 0.6386,
+      "coverage": 0.491,
+      "rootY": 0.8625,
+      "tipY": 0.0125,
+      "rootCenterX": 0.8251,
+      "bedLengthRatio": 0.8726
+    },
+    "shapeConfidence": 0.7077,
+    "rootProfile": {
+      "rootY": 0.8625,
+      "rootWidthRatio": 0.3614,
+      "rootCenterX": 0.8251,
+      "tipY": 0.0125,
+      "bedLengthRatio": 0.8726
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8835,
+      "coverage": 0.4595,
+      "aspectMedian": 0.8564,
+      "aspectStd": 0.2071,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.7077,
+      "lengthScale": 1.15,
+      "widthScale": 1.075,
+      "tipExtension": 0.087,
+      "rootFade": 0.32,
+      "confidence": 0.8835
+    },
+    "meanColor": [
+      193,
+      171,
+      161
+    ],
+    "luminance": 0.6880496740341187,
+    "coverage": 0.459522022022022
+  },
+  {
+    "id": 15,
+    "name": "15 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/1248ad42d355b98257e5fbcdf90efc552138079.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/5c66d21b6fc2b78c59f3f2e36fc788451052442.png",
+    "preview": "./assets/nail-assets/style-15/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-15/thumb.png",
+        "mask": "./assets/nail-assets/style-15/thumb-mask.png",
+        "bbox": [
+          427,
+          662,
+          516,
+          754
+        ],
+        "confidence": 0.8973,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-15/index.png",
+        "mask": "./assets/nail-assets/style-15/index-mask.png",
+        "bbox": [
+          350,
+          718,
+          435,
+          809
+        ],
+        "confidence": 0.8958,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-15/middle.png",
+        "mask": "./assets/nail-assets/style-15/middle-mask.png",
+        "bbox": [
+          500,
+          591,
+          577,
+          677
+        ],
+        "confidence": 0.8947,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-15/ring.png",
+        "mask": "./assets/nail-assets/style-15/ring-mask.png",
+        "bbox": [
+          479,
+          358,
+          578,
+          419
+        ],
+        "confidence": 0.8597,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-15/pinky.png",
+        "mask": "./assets/nail-assets/style-15/pinky-mask.png",
+        "bbox": [
+          280,
+          784,
+          364,
+          854
+        ],
+        "confidence": 0.8298,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.0217,
+      "tipSharpness": 0.4946,
+      "rootWidthRatio": 0.6087,
+      "maxWidthPosition": 0.4516,
+      "sideTaper": 0.3913,
+      "coverage": 0.7224,
+      "rootY": 0.9485,
+      "tipY": 0.0412,
+      "rootCenterX": 0.6374,
+      "bedLengthRatio": 0.9468
+    },
+    "shapeConfidence": 0.6999,
+    "rootProfile": {
+      "rootY": 0.9485,
+      "rootWidthRatio": 0.6087,
+      "rootCenterX": 0.6374,
+      "tipY": 0.0412,
+      "bedLengthRatio": 0.9468
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8947,
+      "coverage": 0.7044,
+      "aspectMedian": 1.0208,
+      "aspectStd": 0.1719,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6999,
+      "lengthScale": 1.0,
+      "widthScale": 1.062,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8947
+    },
+    "meanColor": [
+      174,
+      112,
+      112
+    ],
+    "luminance": 0.49361592531204224,
+    "coverage": 0.7044231731731732
+  },
+  {
+    "id": 16,
+    "name": "16 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/137aad1f6a36655ae395cf7dc57604642782680.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/81a8b3a96d3dd6ba1c849cc666bf85f51089012.png",
+    "preview": "./assets/nail-assets/style-16/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-16/thumb.png",
+        "mask": "./assets/nail-assets/style-16/thumb-mask.png",
+        "bbox": [
+          378,
+          612,
+          471,
+          687
+        ],
+        "confidence": 0.887,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-16/index.png",
+        "mask": "./assets/nail-assets/style-16/index-mask.png",
+        "bbox": [
+          432,
+          384,
+          518,
+          462
+        ],
+        "confidence": 0.8363,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-16/middle.png",
+        "mask": "./assets/nail-assets/style-16/middle-mask.png",
+        "bbox": [
+          321,
+          713,
+          401,
+          764
+        ],
+        "confidence": 0.8356,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-16/ring.png",
+        "mask": "./assets/nail-assets/style-16/ring-mask.png",
+        "bbox": [
+          415,
+          488,
+          552,
+          570
+        ],
+        "confidence": 0.7362,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-16/pinky.png",
+        "mask": "./assets/nail-assets/style-16/pinky-mask.png",
+        "bbox": [
+          415,
+          488,
+          499,
+          570
+        ],
+        "confidence": 0.5972,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.8298,
+      "tipSharpness": 0.3404,
+      "rootWidthRatio": 0.5798,
+      "maxWidthPosition": 0.3506,
+      "sideTaper": 0.4202,
+      "coverage": 0.7722,
+      "rootY": 0.9259,
+      "tipY": 0.0247,
+      "rootCenterX": 0.6882,
+      "bedLengthRatio": 0.9487
+    },
+    "shapeConfidence": 0.6918,
+    "rootProfile": {
+      "rootY": 0.9259,
+      "rootWidthRatio": 0.5798,
+      "rootCenterX": 0.6882,
+      "tipY": 0.0247,
+      "bedLengthRatio": 0.9487
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8356,
+      "coverage": 0.7249,
+      "aspectMedian": 0.8367,
+      "aspectStd": 0.1371,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6918,
+      "lengthScale": 1.0,
+      "widthScale": 1.077,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8356
+    },
+    "meanColor": [
+      219,
+      114,
+      141
+    ],
+    "luminance": 0.5447683334350586,
+    "coverage": 0.7249436936936937
+  },
+  {
+    "id": 17,
+    "name": "17 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/ec437f6291295904c2f894edb8c01cb82131722.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/ff68ba22d655fd1e0a812f197e406d951137747.png",
+    "preview": "./assets/nail-assets/style-17/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-17/thumb.png",
+        "mask": "./assets/nail-assets/style-17/thumb-mask.png",
+        "bbox": [
+          239,
+          536,
+          388,
+          644
+        ],
+        "confidence": 0.8376,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-17/index.png",
+        "mask": "./assets/nail-assets/style-17/index-mask.png",
+        "bbox": [
+          332,
+          460,
+          479,
+          589
+        ],
+        "confidence": 0.6824,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-17/middle.png",
+        "mask": "./assets/nail-assets/style-17/middle-mask.png",
+        "bbox": [
+          140,
+          647,
+          215,
+          689
+        ],
+        "confidence": 0.6117,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-17/ring.png",
+        "mask": "./assets/nail-assets/style-17/ring-mask.png",
+        "bbox": [
+          193,
+          636,
+          279,
+          686
+        ],
+        "confidence": 0.3694,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-17/pinky.png",
+        "mask": "./assets/nail-assets/style-17/pinky-mask.png",
+        "bbox": [
+          538,
+          513,
+          671,
+          655
+        ],
+        "confidence": 0.2138,
+        "finish": "metallic",
+        "source": "seg"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.7219,
+      "tipSharpness": 0.4492,
+      "rootWidthRatio": 0.5593,
+      "maxWidthPosition": 0.5741,
+      "sideTaper": 0.4407,
+      "coverage": 0.5694,
+      "rootY": 0.9196,
+      "tipY": 0.0357,
+      "rootCenterX": 0.8367,
+      "bedLengthRatio": 0.9174
+    },
+    "shapeConfidence": 0.6533,
+    "rootProfile": {
+      "rootY": 0.9196,
+      "rootWidthRatio": 0.5593,
+      "rootCenterX": 0.8367,
+      "tipY": 0.0357,
+      "bedLengthRatio": 0.9174
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.6117,
+      "coverage": 0.5383,
+      "aspectMedian": 0.729,
+      "aspectStd": 0.1779,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.6533,
+      "lengthScale": 1.14,
+      "widthScale": 1.08,
+      "tipExtension": 0.081,
+      "rootFade": 0.32,
+      "confidence": 0.6117
+    },
+    "meanColor": [
+      183,
+      161,
+      150
+    ],
+    "luminance": 0.647783100605011,
+    "coverage": 0.538257007007007
+  },
+  {
+    "id": 18,
+    "name": "18 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/5591229138c4e7e1d183b59be442d9dc2267735.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/29c85d420f45062d29890f4ae014b82f960529.png",
+    "preview": "./assets/nail-assets/style-18/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-18/thumb.png",
+        "mask": "./assets/nail-assets/style-18/thumb-mask.png",
+        "bbox": [
+          392,
+          395,
+          456,
+          499
+        ],
+        "confidence": 0.8389,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-18/index.png",
+        "mask": "./assets/nail-assets/style-18/index-mask.png",
+        "bbox": [
+          310,
+          456,
+          372,
+          546
+        ],
+        "confidence": 0.8244,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-18/middle.png",
+        "mask": "./assets/nail-assets/style-18/middle-mask.png",
+        "bbox": [
+          244,
+          526,
+          321,
+          603
+        ],
+        "confidence": 0.6946,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-18/ring.png",
+        "mask": "./assets/nail-assets/style-18/ring-mask.png",
+        "bbox": [
+          639,
+          307,
+          701,
+          426
+        ],
+        "confidence": 0.6203,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-18/pinky.png",
+        "mask": "./assets/nail-assets/style-18/pinky-mask.png",
+        "bbox": [
+          489,
+          358,
+          544,
+          415
+        ],
+        "confidence": 0.4307,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.6061,
+      "tipSharpness": 0.2121,
+      "rootWidthRatio": 0.7955,
+      "maxWidthPosition": 0.2857,
+      "sideTaper": 0.2045,
+      "coverage": 0.8804,
+      "rootY": 0.9817,
+      "tipY": 0.0183,
+      "rootCenterX": 0.5846,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.7215,
+    "rootProfile": {
+      "rootY": 0.9817,
+      "rootWidthRatio": 0.7955,
+      "rootCenterX": 0.5846,
+      "tipY": 0.0183,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.6946,
+      "coverage": 0.7603,
+      "aspectMedian": 1.4118,
+      "aspectStd": 0.306,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "squoval",
+      "shapeConfidence": 0.7215,
+      "lengthScale": 1.0,
+      "widthScale": 1.031,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.6946
+    },
+    "meanColor": [
+      183,
+      133,
+      123
+    ],
+    "luminance": 0.563265323638916,
+    "coverage": 0.7603228228228228
+  },
+  {
+    "id": 19,
+    "name": "19 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/5fad21e6d38656170bf726ff3973a4501918338.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/b6a8da8cb0d46f30ec2c65b79c3710e91040053.png",
+    "preview": "./assets/nail-assets/style-19/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-19/thumb.png",
+        "mask": "./assets/nail-assets/style-19/thumb-mask.png",
+        "bbox": [
+          361,
+          473,
+          469,
+          599
+        ],
+        "confidence": 0.911,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-19/index.png",
+        "mask": "./assets/nail-assets/style-19/index-mask.png",
+        "bbox": [
+          300,
+          550,
+          412,
+          653
+        ],
+        "confidence": 0.8979,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-19/middle.png",
+        "mask": "./assets/nail-assets/style-19/middle-mask.png",
+        "bbox": [
+          405,
+          407,
+          500,
+          550
+        ],
+        "confidence": 0.8701,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-19/ring.png",
+        "mask": "./assets/nail-assets/style-19/ring-mask.png",
+        "bbox": [
+          462,
+          329,
+          530,
+          465
+        ],
+        "confidence": 0.8529,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-19/pinky.png",
+        "mask": "./assets/nail-assets/style-19/pinky-mask.png",
+        "bbox": [
+          650,
+          142,
+          695,
+          282
+        ],
+        "confidence": 0.5757,
+        "finish": "metallic",
+        "source": "seg"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.1835,
+      "tipSharpness": 0.2848,
+      "rootWidthRatio": 0.5443,
+      "maxWidthPosition": 0.3281,
+      "sideTaper": 0.4557,
+      "coverage": 0.5585,
+      "rootY": 0.9318,
+      "tipY": 0.0152,
+      "rootCenterX": 0.8704,
+      "bedLengthRatio": 0.9457
+    },
+    "shapeConfidence": 0.8016,
+    "rootProfile": {
+      "rootY": 0.9318,
+      "rootWidthRatio": 0.5443,
+      "rootCenterX": 0.8704,
+      "tipY": 0.0152,
+      "bedLengthRatio": 0.9457
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8701,
+      "coverage": 0.5271,
+      "aspectMedian": 1.4608,
+      "aspectStd": 0.6704,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": true,
+      "reasons": [
+        "unstable_aspect",
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": true,
+      "allowExtension": true,
+      "shape": "oval",
+      "shapeConfidence": 0.8016,
+      "lengthScale": 1.15,
+      "widthScale": 1.027,
+      "tipExtension": 0.087,
+      "rootFade": 0.32,
+      "confidence": 0.8701
+    },
+    "meanColor": [
+      187,
+      159,
+      141
+    ],
+    "luminance": 0.6433103680610657,
+    "coverage": 0.5270895895895896
+  },
+  {
+    "id": 20,
+    "name": "20 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/d5eedc75b0021f79381962fc145b0bc62301165.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/7f3d1832f40e03685a0e413e6196efcd1139460.png",
+    "preview": "./assets/nail-assets/style-20/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-20/thumb.png",
+        "mask": "./assets/nail-assets/style-20/thumb-mask.png",
+        "bbox": [
+          412,
+          701,
+          608,
+          843
+        ],
+        "confidence": 0.7979,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-20/index.png",
+        "mask": "./assets/nail-assets/style-20/index-mask.png",
+        "bbox": [
+          421,
+          574,
+          614,
+          775
+        ],
+        "confidence": 0.7856,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-20/middle.png",
+        "mask": "./assets/nail-assets/style-20/middle-mask.png",
+        "bbox": [
+          378,
+          374,
+          516,
+          588
+        ],
+        "confidence": 0.4007,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-20/ring.png",
+        "mask": "./assets/nail-assets/style-20/ring-mask.png",
+        "bbox": [
+          414,
+          632,
+          609,
+          844
+        ],
+        "confidence": 0.3531,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-20/pinky.png",
+        "mask": "./assets/nail-assets/style-20/pinky-mask.png",
+        "bbox": [
+          278,
+          272,
+          483,
+          367
+        ],
+        "confidence": 0.1852,
+        "finish": "gloss",
+        "source": "seg"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 0.7222,
+      "tipSharpness": 0.5449,
+      "rootWidthRatio": 0.4167,
+      "maxWidthPosition": 0.0563,
+      "sideTaper": 0.5833,
+      "coverage": 0.4,
+      "rootY": 0.9041,
+      "tipY": 0.0479,
+      "rootCenterX": 0.1396,
+      "bedLengthRatio": 0.8811
+    },
+    "shapeConfidence": 0.6223,
+    "rootProfile": {
+      "rootY": 0.9041,
+      "rootWidthRatio": 0.4167,
+      "rootCenterX": 0.1396,
+      "tipY": 0.0479,
+      "bedLengthRatio": 0.8811
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.4007,
+      "coverage": 0.38,
+      "aspectMedian": 1.0352,
+      "aspectStd": 0.3558,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": true,
+      "reasons": [
+        "low_confidence",
+        "unstable_aspect",
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": true,
+      "allowExtension": true,
+      "shape": "round",
+      "shapeConfidence": 0.6223,
+      "lengthScale": 1.13,
+      "widthScale": 1.061,
+      "tipExtension": 0.075,
+      "rootFade": 0.32,
+      "confidence": 0.4007
+    },
+    "meanColor": [
+      150,
+      118,
+      107
+    ],
+    "luminance": 0.48939967155456543,
+    "coverage": 0.37997372372372373
+  },
+  {
+    "id": 21,
+    "name": "21 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/f4b69d45af5d3b496adbd9d21e768a8e2195181.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/fe1824a01b10a0fee24a8aaa5b1ef1991009918.png",
+    "preview": "./assets/nail-assets/style-21/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-21/thumb.png",
+        "mask": "./assets/nail-assets/style-21/thumb-mask.png",
+        "bbox": [
+          434,
+          509,
+          516,
+          593
+        ],
+        "confidence": 0.8793,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-21/index.png",
+        "mask": "./assets/nail-assets/style-21/index-mask.png",
+        "bbox": [
+          469,
+          406,
+          549,
+          498
+        ],
+        "confidence": 0.8541,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-21/middle.png",
+        "mask": "./assets/nail-assets/style-21/middle-mask.png",
+        "bbox": [
+          386,
+          570,
+          462,
+          654
+        ],
+        "confidence": 0.8125,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-21/ring.png",
+        "mask": "./assets/nail-assets/style-21/ring-mask.png",
+        "bbox": [
+          483,
+          214,
+          608,
+          373
+        ],
+        "confidence": 0.7468,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-21/pinky.png",
+        "mask": "./assets/nail-assets/style-21/pinky-mask.png",
+        "bbox": [
+          267,
+          557,
+          409,
+          687
+        ],
+        "confidence": 0.5472,
+        "finish": "jelly",
+        "source": "seg"
+      }
+    },
+    "finish": "jelly",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.0119,
+      "tipSharpness": 0.4167,
+      "rootWidthRatio": 0.5357,
+      "maxWidthPosition": 0.4048,
+      "sideTaper": 0.4643,
+      "coverage": 0.7367,
+      "rootY": 0.9205,
+      "tipY": 0.0227,
+      "rootCenterX": 0.6145,
+      "bedLengthRatio": 0.9412
+    },
+    "shapeConfidence": 0.6859,
+    "rootProfile": {
+      "rootY": 0.9205,
+      "rootWidthRatio": 0.5357,
+      "rootCenterX": 0.6145,
+      "tipY": 0.0227,
+      "bedLengthRatio": 0.9412
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8125,
+      "coverage": 0.6982,
+      "aspectMedian": 1.1235,
+      "aspectStd": 0.113,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": []
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.6859,
+      "lengthScale": 1.0,
+      "widthScale": 1.054,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8125
+    },
+    "meanColor": [
+      150,
+      109,
+      95
+    ],
+    "luminance": 0.4592612087726593,
+    "coverage": 0.6982294794794794
+  },
+  {
+    "id": 22,
+    "name": "22 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/5b985a1c661ae2e964286178e6c0b0f92258113.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/1e86c987caf89d5b15a226ad097e270b963164.png",
+    "preview": "./assets/nail-assets/style-22/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-22/thumb.png",
+        "mask": "./assets/nail-assets/style-22/thumb-mask.png",
+        "bbox": [
+          352,
+          383,
+          447,
+          463
+        ],
+        "confidence": 0.6916,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-22/index.png",
+        "mask": "./assets/nail-assets/style-22/index-mask.png",
+        "bbox": [
+          329,
+          546,
+          420,
+          609
+        ],
+        "confidence": 0.5678,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-22/middle.png",
+        "mask": "./assets/nail-assets/style-22/middle-mask.png",
+        "bbox": [
+          326,
+          462,
+          423,
+          546
+        ],
+        "confidence": 0.5544,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-22/ring.png",
+        "mask": "./assets/nail-assets/style-22/ring-mask.png",
+        "bbox": [
+          478,
+          106,
+          553,
+          201
+        ],
+        "confidence": 0.3477,
+        "finish": "gloss",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-22/pinky.png",
+        "mask": "./assets/nail-assets/style-22/pinky-mask.png",
+        "bbox": [
+          668,
+          655,
+          737,
+          735
+        ],
+        "confidence": 0.68,
+        "finish": "gloss",
+        "source": "cluster"
+      }
+    },
+    "finish": "gloss",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.8454,
+      "tipSharpness": 0.4468,
+      "rootWidthRatio": 0.3936,
+      "maxWidthPosition": 0.4568,
+      "sideTaper": 0.6064,
+      "coverage": 0.6384,
+      "rootY": 0.8588,
+      "tipY": 0.0235,
+      "rootCenterX": 0.8125,
+      "bedLengthRatio": 0.878
+    },
+    "shapeConfidence": 0.5395,
+    "rootProfile": {
+      "rootY": 0.8588,
+      "rootWidthRatio": 0.3936,
+      "rootCenterX": 0.8125,
+      "tipY": 0.0235,
+      "bedLengthRatio": 0.878
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "cluster": 1,
+        "seg": 4
+      },
+      "confidence": 0.5678,
+      "coverage": 0.5799,
+      "aspectMedian": 0.8515,
+      "aspectStd": 0.1861,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "low_confidence"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.5395,
+      "lengthScale": 1.0,
+      "widthScale": 1.076,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.5678
+    },
+    "meanColor": [
+      180,
+      131,
+      133
+    ],
+    "luminance": 0.557716965675354,
+    "coverage": 0.5798611111111112
+  },
+  {
+    "id": 23,
+    "name": "23 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/bf8657d94693fb0fe1da3f7729d5667d2020119.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/ec8057452f9520a0ca5cdba3f78f6f80982638.png",
+    "preview": "./assets/nail-assets/style-23/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-23/thumb.png",
+        "mask": "./assets/nail-assets/style-23/thumb-mask.png",
+        "bbox": [
+          404,
+          517,
+          497,
+          636
+        ],
+        "confidence": 0.9156,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-23/index.png",
+        "mask": "./assets/nail-assets/style-23/index-mask.png",
+        "bbox": [
+          370,
+          398,
+          452,
+          521
+        ],
+        "confidence": 0.9071,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-23/middle.png",
+        "mask": "./assets/nail-assets/style-23/middle-mask.png",
+        "bbox": [
+          454,
+          604,
+          545,
+          705
+        ],
+        "confidence": 0.8955,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-23/ring.png",
+        "mask": "./assets/nail-assets/style-23/ring-mask.png",
+        "bbox": [
+          522,
+          631,
+          615,
+          712
+        ],
+        "confidence": 0.8729,
+        "finish": "metallic",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-23/pinky.png",
+        "mask": "./assets/nail-assets/style-23/pinky-mask.png",
+        "bbox": [
+          365,
+          151,
+          435,
+          246
+        ],
+        "confidence": 0.7264,
+        "finish": "metallic",
+        "source": "seg"
+      }
+    },
+    "finish": "metallic",
+    "allowExtension": true,
+    "shapeMetrics": {
+      "aspectRatio": 1.2872,
+      "tipSharpness": 0.3187,
+      "rootWidthRatio": 0.6687,
+      "maxWidthPosition": 0.4083,
+      "sideTaper": 0.3313,
+      "coverage": 0.6743,
+      "rootY": 0.9516,
+      "tipY": 0.0161,
+      "rootCenterX": 0.2688,
+      "bedLengthRatio": 0.9669
+    },
+    "shapeConfidence": 0.8057,
+    "rootProfile": {
+      "rootY": 0.9516,
+      "rootWidthRatio": 0.6687,
+      "rootCenterX": 0.2688,
+      "tipY": 0.0161,
+      "bedLengthRatio": 0.9669
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8955,
+      "coverage": 0.6179,
+      "aspectMedian": 1.2755,
+      "aspectStd": 0.195,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "press_on",
+      "geometryMode": "press_on_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": true,
+      "shape": "oval",
+      "shapeConfidence": 0.8057,
+      "lengthScale": 1.14,
+      "widthScale": 1.042,
+      "tipExtension": 0.081,
+      "rootFade": 0.32,
+      "confidence": 0.8955
+    },
+    "meanColor": [
+      197,
+      168,
+      157
+    ],
+    "luminance": 0.6803141236305237,
+    "coverage": 0.6178991491491491
+  },
+  {
+    "id": 24,
+    "name": "24 自动提取款式",
+    "sourceUrl": "http://p0.meituan.net/pilotimages/e80e1d25e48d7ef5c505b29ee8e331822641412.png",
+    "originalUrl": "http://p1.meituan.net/pilotimages/1fb5e1b20aea0b0881a4eb5d41bff80b1076304.png",
+    "preview": "./assets/nail-assets/style-24/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-24/thumb.png",
+        "mask": "./assets/nail-assets/style-24/thumb-mask.png",
+        "bbox": [
+          203,
+          342,
+          242,
+          406
+        ],
+        "confidence": 0.8326,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-24/index.png",
+        "mask": "./assets/nail-assets/style-24/index-mask.png",
+        "bbox": [
+          344,
+          240,
+          395,
+          315
+        ],
+        "confidence": 0.7845,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-24/middle.png",
+        "mask": "./assets/nail-assets/style-24/middle-mask.png",
+        "bbox": [
+          482,
+          213,
+          525,
+          291
+        ],
+        "confidence": 0.7752,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-24/ring.png",
+        "mask": "./assets/nail-assets/style-24/ring-mask.png",
+        "bbox": [
+          640,
+          289,
+          686,
+          359
+        ],
+        "confidence": 0.7062,
+        "finish": "jelly",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-24/pinky.png",
+        "mask": "./assets/nail-assets/style-24/pinky-mask.png",
+        "bbox": [
+          92,
+          345,
+          117,
+          402
+        ],
+        "confidence": 0.6921,
+        "finish": "jelly",
+        "source": "seg"
+      }
+    },
+    "finish": "jelly",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 1.625,
+      "tipSharpness": 0.2,
+      "rootWidthRatio": 1.0,
+      "maxWidthPosition": 0.2969,
+      "sideTaper": 0.0,
+      "coverage": 0.9281,
+      "rootY": 0.9706,
+      "tipY": 0.0294,
+      "rootCenterX": 0.4872,
+      "bedLengthRatio": 1.0
+    },
+    "shapeConfidence": 0.716,
+    "rootProfile": {
+      "rootY": 0.9706,
+      "rootWidthRatio": 1.0,
+      "rootCenterX": 0.4872,
+      "tipY": 0.0294,
+      "bedLengthRatio": 1.0
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.7752,
+      "coverage": 0.779,
+      "aspectMedian": 1.5682,
+      "aspectStd": 0.2873,
+      "heuristicRatio": 0.0,
+      "complexStyle": false,
+      "needsReview": false,
+      "reasons": [
+        "unstable_aspect"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "squoval",
+      "shapeConfidence": 0.716,
+      "lengthScale": 1.0,
+      "widthScale": 1.019,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.7752
+    },
+    "meanColor": [
+      138,
+      141,
+      143
+    ],
+    "luminance": 0.5525793433189392,
+    "coverage": 0.7789977477477478
+  },
+  {
+    "id": 25,
+    "name": "25 自动提取款式",
+    "sourceUrl": "http://p1.meituan.net/pilotimages/73ee568aa09547d8bfc0168113ac9ebc2712329.png",
+    "originalUrl": "http://p0.meituan.net/pilotimages/0d9545bd4583f87e8cc3882d15ff84101211916.png",
+    "preview": "./assets/nail-assets/style-25/preview.png",
+    "textures": {
+      "thumb": {
+        "image": "./assets/nail-assets/style-25/thumb.png",
+        "mask": "./assets/nail-assets/style-25/thumb-mask.png",
+        "bbox": [
+          499,
+          600,
+          616,
+          696
+        ],
+        "confidence": 0.915,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "index": {
+        "image": "./assets/nail-assets/style-25/index.png",
+        "mask": "./assets/nail-assets/style-25/index-mask.png",
+        "bbox": [
+          450,
+          514,
+          563,
+          620
+        ],
+        "confidence": 0.9141,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "middle": {
+        "image": "./assets/nail-assets/style-25/middle.png",
+        "mask": "./assets/nail-assets/style-25/middle-mask.png",
+        "bbox": [
+          546,
+          697,
+          639,
+          764
+        ],
+        "confidence": 0.8491,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "ring": {
+        "image": "./assets/nail-assets/style-25/ring.png",
+        "mask": "./assets/nail-assets/style-25/ring-mask.png",
+        "bbox": [
+          416,
+          409,
+          519,
+          514
+        ],
+        "confidence": 0.8279,
+        "finish": "shimmer",
+        "source": "seg"
+      },
+      "pinky": {
+        "image": "./assets/nail-assets/style-25/pinky.png",
+        "mask": "./assets/nail-assets/style-25/pinky-mask.png",
+        "bbox": [
+          447,
+          195,
+          567,
+          252
+        ],
+        "confidence": 0.8223,
+        "finish": "shimmer",
+        "source": "seg"
+      }
+    },
+    "finish": "shimmer",
+    "allowExtension": false,
+    "shapeMetrics": {
+      "aspectRatio": 0.8305,
+      "tipSharpness": 0.4274,
+      "rootWidthRatio": 0.5556,
+      "maxWidthPosition": 0.5052,
+      "sideTaper": 0.4444,
+      "coverage": 0.7261,
+      "rootY": 0.9307,
+      "tipY": 0.0198,
+      "rootCenterX": 0.3675,
+      "bedLengthRatio": 0.949
+    },
+    "shapeConfidence": 0.7137,
+    "rootProfile": {
+      "rootY": 0.9307,
+      "rootWidthRatio": 0.5556,
+      "rootCenterX": 0.3675,
+      "tipY": 0.0198,
+      "bedLengthRatio": 0.949
+    },
+    "assetQuality": {
+      "sourceCounts": {
+        "seg": 5
+      },
+      "confidence": 0.8491,
+      "coverage": 0.7201,
+      "aspectMedian": 0.8361,
+      "aspectStd": 0.1728,
+      "heuristicRatio": 0.0,
+      "complexStyle": true,
+      "needsReview": false,
+      "reasons": [
+        "complex_finish"
+      ]
+    },
+    "tryOnProfile": {
+      "fitMode": "natural",
+      "geometryMode": "natural_style",
+      "assetPolicy": "seg_only",
+      "needsReview": false,
+      "allowExtension": false,
+      "shape": "round",
+      "shapeConfidence": 0.7137,
+      "lengthScale": 1.0,
+      "widthScale": 1.077,
+      "tipExtension": 0.0,
+      "rootFade": 0.2,
+      "confidence": 0.8491
+    },
+    "meanColor": [
+      194,
+      124,
+      130
+    ],
+    "luminance": 0.5489077568054199,
+    "coverage": 0.7200638138138138
+  }
+]

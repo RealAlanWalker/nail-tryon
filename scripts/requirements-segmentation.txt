@@ -1,0 +1,4 @@
+ultralytics>=8.3.0
+opencv-python>=4.9.0
+onnx>=1.16.0
+onnxsim>=0.4.36

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 美甲 AR 试穿</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="site-nav" aria-label="主导航">
+        <a class="brand-mark" href="#top" aria-label="AI 美甲 AR 试穿">Nail AR</a>
+        <div class="nav-links">
+          <a href="#tryon">试穿</a>
+          <a href="#styles">款式</a>
+          <a href="#samples">样例</a>
+        </div>
+      </nav>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">REAL-TIME HAND LANDMARK TRY-ON</p>
+          <h1>让美甲先上手，再决定。</h1>
+          <p class="hero-lede">上传图片或打开摄像头，系统自动识别手型与指甲位置，款式选择后即刻贴合试穿。</p>
+        </div>
+
+        <section class="tryon-studio" id="tryon" aria-label="AR 美甲试穿">
+          <div class="studio-stage" id="stage">
+            <img id="photoPreview" class="media-layer is-active" alt="手部图片预览" crossorigin="anonymous" />
+            <video id="videoPreview" class="media-layer" autoplay playsinline muted></video>
+            <div class="stage-glass" aria-hidden="true"></div>
+            <div class="empty-state" id="emptyState">
+              <strong>把手放进画面</strong>
+              <span>选择样例、上传手图，或开启实时视频试穿</span>
+            </div>
+            <canvas class="tryon-canvas" id="tryonCanvas" aria-hidden="true"></canvas>
+            <div class="tracking-card" aria-live="polite">
+              <span class="status-dot" id="statusDot"></span>
+              <div>
+                <strong id="stageStatus">正在加载识别模型</strong>
+                <span id="trackingHint">模型就绪后会自动贴合 5 个指甲位置</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="studio-controls">
+            <div class="mode-tabs" role="tablist" aria-label="试穿模式">
+              <button class="mode-tab is-active" type="button" data-mode="photo">图片试穿</button>
+              <button class="mode-tab" type="button" data-mode="camera">实时视频</button>
+            </div>
+
+            <div class="control-cluster" data-panel="photo">
+              <input id="photoInput" type="file" accept="image/*" hidden />
+              <button class="primary-button" type="button" id="uploadTrigger">上传手图</button>
+              <div class="sample-strip" id="handSamples" aria-label="样例手图"></div>
+            </div>
+
+            <div class="control-cluster is-hidden" data-panel="camera">
+              <button class="primary-button" type="button" id="startCamera">打开摄像头</button>
+              <button class="ghost-button" type="button" id="captureFrame">定格画面</button>
+              <button class="ghost-button" type="button" id="stopCamera">关闭</button>
+              <label class="mirror-toggle">
+                <input id="mirrorVideo" type="checkbox" checked />
+                <span>镜像</span>
+              </label>
+            </div>
+
+            <div class="profile-bar">
+              <div>
+                <span>手型识别</span>
+                <strong id="profileSummary">等待手部进入画面</strong>
+              </div>
+              <div>
+                <span>模型状态</span>
+                <strong id="modelBadge">加载中</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="style-section" id="styles" aria-label="美甲款式">
+        <div class="section-heading">
+          <p class="eyebrow">STYLE LIBRARY</p>
+          <h2>选择一种手上效果。</h2>
+        </div>
+        <div class="selected-style" id="selectedStyle"></div>
+        <div class="style-rail" id="styleGrid" aria-label="25 个美甲款式"></div>
+      </section>
+
+      <section class="note-section" id="samples">
+        <p>当前使用本地 MediaPipe 手部跟踪、Nails343 指甲分割模型入口与 Canvas 真实感合成；模型缺失时自动回退基础贴合，确保演示不断流。</p>
+      </section>
+    </main>
+
+    <script src="./vendor/onnxruntime-web/ort.min.js"></script>
+    <script src="./app.js?v=20260530-rootline-profile-ortfix"></script>
+  </body>
+</html>

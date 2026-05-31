@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pt
+.venv/
+.venv-seg/
+.cache/
+.wheels/
+runs/
+datasets/
+assets/source-cache/
+assets/debug-*.png
+assets/style*-contact.png
+models/nail-seg/*.onnx
+models/nail-seg/*.pt

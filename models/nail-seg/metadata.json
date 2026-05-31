@@ -1,0 +1,18 @@
+{
+  "name": "yolo11n-seg-nails343",
+  "version": "local-export-1780121941",
+  "model": "./models/nail-seg/yolo11n-seg-nails343.onnx",
+  "inputName": "images",
+  "inputSize": 640,
+  "classNames": [
+    "nail"
+  ],
+  "confThreshold": 0.35,
+  "iouThreshold": 0.45,
+  "maskThreshold": 0.48,
+  "maxDetections": 12,
+  "staleAfterMs": 350,
+  "videoIntervalMs": 260,
+  "videoStaleAfterMs": 1600,
+  "source": "local-yolo-seg"
+}

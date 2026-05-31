@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI 美甲 AR 试穿</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./merchant.css" />
   </head>
   <body>
     <main class="page-shell">
@@ -15,6 +16,7 @@
           <a href="#styles">款式</a>
           <a href="#samples">样例</a>
         </div>
+        <button class="merchant-btn" id="merchantBtn">商家端</button>
       </nav>
 
       <section class="hero" id="top">
@@ -93,7 +95,134 @@
       </section>
     </main>
 
+    <!-- 商家端 overlay -->
+    <div class="merchant-overlay" id="merchantOverlay">
+
+      <!-- ===== 登录屏 ===== -->
+      <div class="m-login" id="mLoginScreen">
+        <div class="m-login-card">
+          <div class="m-brand-row">
+            <div class="m-brand-icon">💅</div>
+            <div>
+              <div class="m-brand-name">美甲智能运营</div>
+              <div class="m-brand-sub">Cookie 已失效，请重新粘贴</div>
+            </div>
+          </div>
+          <div class="m-form-label">小红书 Cookie</div>
+          <textarea class="m-cookie-input" id="mCookieInput"
+            placeholder="粘贴浏览器 F12 → Network → 任意 XHS 请求 → Request Headers → cookie 字段的完整值&#10;&#10;Ctrl+Enter 快速提交"></textarea>
+          <div class="m-hint">🔒 仅存于本地浏览器，不会上传任何服务器</div>
+          <button class="m-submit-btn" id="mSubmitBtn">保存并进入</button>
+          <div class="m-error-msg" id="mErrorMsg"></div>
+        </div>
+      </div>
+
+      <!-- ===== 看板屏 ===== -->
+      <div class="m-dash m-hidden" id="mDashScreen">
+
+        <!-- 顶栏 -->
+        <div class="m-topbar">
+          <div class="m-topbar-brand">💅 美甲智能运营</div>
+          <div class="m-topbar-date">数据更新：<span id="mUpdDate">—</span></div>
+          <div class="m-topbar-spacer"></div>
+          <button class="m-cookie-btn" id="mCookieEditBtn">🔑 更新 Cookie</button>
+          <button class="m-close-btn" id="mCloseBtn" title="关闭商家端">✕</button>
+        </div>
+
+        <!-- 主体 -->
+        <div class="m-body">
+
+          <!-- 侧边导航 -->
+          <aside class="m-sidebar">
+            <button class="m-nav-item active" data-section="overview"><span class="m-nav-ico">📊</span><span>趋势总览</span></button>
+            <button class="m-nav-item" data-section="rising"><span class="m-nav-ico">🔥</span><span>飙升榜</span></button>
+            <button class="m-nav-item" data-section="strategy"><span class="m-nav-ico">🤖</span><span>AI 策略</span></button>
+            <button class="m-nav-item" data-section="catalog"><span class="m-nav-ico">📦</span><span>款式库匹配</span></button>
+            <button class="m-nav-item" data-section="demand"><span class="m-nav-ico">🗣️</span><span>用户需求</span></button>
+            <button class="m-nav-item" data-section="notes"><span class="m-nav-ico">📝</span><span>笔记明细</span></button>
+            <div class="m-sidebar-foot">小红书美甲运营 · AI 决策</div>
+          </aside>
+
+          <!-- 内容区 -->
+          <div class="m-content">
+
+            <!-- 趋势总览 -->
+            <div class="m-view" data-view="overview">
+              <div class="m-kpi-row" id="mKpiRow"></div>
+              <div class="m-grid-2" style="margin-bottom:14px">
+                <div class="m-panel">
+                  <div class="m-panel-head"><h3>🔥 热度飙升榜</h3><span class="m-panel-tag">环比增速</span></div>
+                  <div class="m-panel-body" id="mRisePreview"></div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-head"><h3>🤖 AI 运营策略</h3></div>
+                  <div class="m-panel-body" id="mStratPreview"></div>
+                </div>
+              </div>
+              <div class="m-grid-4" id="mVlMini"></div>
+            </div>
+
+            <!-- 飙升榜 -->
+            <div class="m-view m-hidden" data-view="rising">
+              <div class="m-panel">
+                <div class="m-panel-head"><h3>🔥 热度飙升榜</h3><span class="m-panel-tag">环比增速 · 上升/新出现优先</span></div>
+                <div class="m-panel-body" id="mRiseTable"></div>
+              </div>
+            </div>
+
+            <!-- AI 策略 -->
+            <div class="m-view m-hidden" data-view="strategy">
+              <div id="mStrategyFull"></div>
+            </div>
+
+            <!-- 款式库匹配 -->
+            <div class="m-view m-hidden" data-view="catalog">
+              <div class="m-grid-3" id="mCatalogGrid"></div>
+            </div>
+
+            <!-- 用户需求 -->
+            <div class="m-view m-hidden" data-view="demand">
+              <div class="m-grid-2" style="margin-bottom:14px">
+                <div class="m-panel">
+                  <div class="m-panel-head"><h3>🗣️ 需求信号</h3></div>
+                  <div class="m-panel-body" id="mDemandSignals"></div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-head"><h3>💬 高赞用户原声</h3></div>
+                  <div class="m-panel-body" id="mVoiceList"></div>
+                </div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-head"><h3>🎯 用户点名属性</h3><span class="m-panel-tag">库内有 / 缺</span></div>
+                <div class="m-panel-body" id="mWantedList"></div>
+              </div>
+            </div>
+
+            <!-- 笔记明细 -->
+            <div class="m-view m-hidden" data-view="notes">
+              <div class="m-panel">
+                <div class="m-panel-head">
+                  <h3>📝 笔记明细</h3>
+                  <input type="search" id="mNoteSearch" class="m-search-input" placeholder="搜索标题 / 作者 / 标签…" />
+                </div>
+                <div class="m-panel-body">
+                  <div class="m-table-wrap">
+                    <table class="m-data-table" id="mNotesTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.m-content -->
+        </div><!-- /.m-body -->
+      </div><!-- /#mDashScreen -->
+
+    </div><!-- /#merchantOverlay -->
+
     <script src="./vendor/onnxruntime-web/ort.min.js"></script>
+    <script src="./merchant-data.js"></script>
+    <script src="./merchant.js"></script>
     <script src="./app.js?v=20260530-rootline-profile-ortfix"></script>
+    <script src="./trending-styles.js"></script>
   </body>
 </html>

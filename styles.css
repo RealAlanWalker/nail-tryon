@@ -483,6 +483,29 @@ h2 {
   scroll-snap-type: x proximity;
 }
 
+/* 热门趋势分隔符 */
+.trending-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  min-height: 260px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 91, 82, 0.4);
+  background: rgba(255, 91, 82, 0.05);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+.trending-divider-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: rgba(255, 91, 82, 0.7);
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
 .style-tile {
   position: relative;
   display: grid;

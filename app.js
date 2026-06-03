@@ -226,74 +226,6 @@ const styles = [
   },
 ];
 
-const handSamples = [
-  {
-    id: 1,
-    image: "http://p0.meituan.net/pilotimages/b9632e3a699fdb63a1a6139bbfd6bf0d2159483.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/87797733466cfd525625a5947767e2ff1794125.png",
-  },
-  {
-    id: 2,
-    image: "http://p1.meituan.net/pilotimages/704b1c4bdf589b5d5367f2748f6868f42205269.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/162afb52255bd908ba3ec418fd61824a2254875.png",
-  },
-  {
-    id: 3,
-    image: "http://p0.meituan.net/pilotimages/3cd4bc446f321574df68ce0a749b16b62603765.png",
-    styleUrl: "http://p1.meituan.net/pilotimages/7bb5bc0c2c741f9f0aa63787a601d7ad2604877.png",
-  },
-  {
-    id: 4,
-    image: "http://p0.meituan.net/pilotimages/7c791f4b4b13659d62d991f172f5ffd02674881.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/fc8fe60e78341d77a5070fc2f8e520072098070.png",
-  },
-  {
-    id: 5,
-    image: "http://p1.meituan.net/pilotimages/5a7efacd78020469ab44e4caca1afe972676586.png",
-    styleUrl: "http://p1.meituan.net/pilotimages/3c0d090e20f0cb56f70fcb56c54dd6582416974.png",
-  },
-  {
-    id: 6,
-    image: "http://p1.meituan.net/pilotimages/6a3d032df4a143c79c3e2ec3cd4c53522723999.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/6c857edd85a5fa4bcec59698fe9416cb1913981.png",
-  },
-  {
-    id: 7,
-    image: "http://p0.meituan.net/pilotimages/ed9a1cd3cca3997ede3779771dda6a772149757.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/2ac2d01a9bc78320edbe2b545b485b4a2132292.png",
-  },
-  {
-    id: 8,
-    image: "http://p1.meituan.net/pilotimages/a52c995f1f9e2e668c6093099cfd24032514125.png",
-    styleUrl: "http://p1.meituan.net/pilotimages/d15c06e8c2137d4f39f3b60476a90cf92026957.png",
-  },
-  {
-    id: 9,
-    image: "http://p0.meituan.net/pilotimages/e0d094b37e9595e465280b26b9cefc7b2318139.png",
-    styleUrl: "http://p1.meituan.net/pilotimages/69614397f0ecb559b98cb46a5a46f3b32642714.png",
-  },
-  {
-    id: 10,
-    image: "http://p0.meituan.net/pilotimages/4b310e7ce87af3d5f20064a25420f34b2320446.png",
-    styleUrl: "http://p1.meituan.net/pilotimages/2277d6f9d82264fa6a3c986373e5e44c2292083.png",
-  },
-  {
-    id: 11,
-    image: "http://p0.meituan.net/pilotimages/e763917e1e5b4a68f33d8075fc1504bf2680556.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/bc153edf655dd6961dc9f8e95ad8cd1e2561531.png",
-  },
-  {
-    id: 12,
-    image: "http://p0.meituan.net/pilotimages/8a73302ae05d6520b90d50db36d481492489372.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/43cc4ced977a3dd271f60ee2f05607772681747.png",
-  },
-  {
-    id: 13,
-    image: "http://p0.meituan.net/pilotimages/badf638f6e3989a31d524b7a8cc4a2332706287.png",
-    styleUrl: "http://p0.meituan.net/pilotimages/682c173ae3a95d0b838655e8337b30d72213857.png",
-  },
-];
-
 const MEDIAPIPE_MODULE_URL = "./vendor/mediapipe/vision_bundle.mjs";
 const MEDIAPIPE_WASM_ROOT = "./vendor/mediapipe";
 const HAND_MODEL_URL = "./models/hand_landmarker.task";
@@ -302,6 +234,7 @@ const NAIL_SEG_METADATA_URL = "./models/nail-seg/metadata.json";
 const DEFAULT_NAIL_SEG_MODEL_URL = "./models/nail-seg/yolo11n-seg-nails343.onnx";
 const NAIL_SEG_WORKER_URL = "./nail-seg-worker.js";
 const ORT_WASM_ROOT = new URL("./vendor/onnxruntime-web/", window.location.href).href;
+const PHOTO_TRYON_SERVICE_URL = "http://127.0.0.1:8765";
 const VIDEO_SEGMENTATION_INTERVAL_MS = 260;
 const VIDEO_SEGMENTATION_STALE_MS = 1600;
 const STABLE_MASK_STALE_MS = 1300;
@@ -328,8 +261,8 @@ const state = {
   mode: "photo",
   selectedStyle: styles[0],
   photoReady: false,
+  photoPreviewReady: false,
   videoReady: false,
-  activeSample: null,
   stream: null,
   tracker: null,
   trackerMode: null,
@@ -374,6 +307,11 @@ const state = {
   lastVideoTime: -1,
   isDetectingFrame: false,
   lastImageSrc: "",
+  currentPhotoFile: null,
+  photoJobState: "idle",
+  photoJobAbort: null,
+  photoTryonResult: null,
+  comparisonReady: false,
   vision: {
     FilesetResolver: null,
     HandLandmarker: null,
@@ -394,9 +332,27 @@ const els = {
   profileSummary: document.getElementById("profileSummary"),
   selectedStyle: document.getElementById("selectedStyle"),
   styleGrid: document.getElementById("styleGrid"),
-  handSamples: document.getElementById("handSamples"),
   photoInput: document.getElementById("photoInput"),
   uploadTrigger: document.getElementById("uploadTrigger"),
+  generatePhoto: document.getElementById("generatePhoto"),
+  cancelPhotoJob: document.getElementById("cancelPhotoJob"),
+  photoJobPanel: document.getElementById("photoJobPanel"),
+  photoServiceBadge: document.getElementById("photoServiceBadge"),
+  photoJobStatus: document.getElementById("photoJobStatus"),
+  photoJobMessage: document.getElementById("photoJobMessage"),
+  photoJobProgressBar: document.getElementById("photoJobProgressBar"),
+  photoResultSection: document.getElementById("photoResultSection"),
+  photoOriginalImage: document.getElementById("photoOriginalImage"),
+  photoResultImage: document.getElementById("photoResultImage"),
+  photoResultCaption: document.getElementById("photoResultCaption"),
+  photoResultMeta: document.getElementById("photoResultMeta"),
+  photoDownload: document.getElementById("photoDownload"),
+  photoRetry: document.getElementById("photoRetry"),
+  comparisonLayer: document.getElementById("comparisonLayer"),
+  comparisonAfterClip: document.getElementById("comparisonAfterClip"),
+  generationWait: document.getElementById("generationWait"),
+  generationWaitText: document.getElementById("generationWaitText"),
+  continueChatgptLogin: document.getElementById("continueChatgptLogin"),
   startCamera: document.getElementById("startCamera"),
   stopCamera: document.getElementById("stopCamera"),
   mirrorVideo: document.getElementById("mirrorVideo"),
@@ -420,6 +376,113 @@ function setModelState(nextState, label) {
   state.modelState = nextState;
   els.modelBadge.textContent = label;
   updateModelBadge();
+}
+
+function setPhotoJobState(nextState, status, message = "", progress = 0) {
+  state.photoJobState = nextState;
+  const busyStates = new Set(["queued", "uploading", "generating", "downloading"]);
+  const isBusy = busyStates.has(nextState);
+  els.photoJobPanel.classList.toggle("is-running", isBusy);
+  els.photoJobPanel.classList.toggle("is-done", nextState === "done");
+  els.photoJobPanel.classList.toggle("is-failed", nextState === "failed");
+  els.stage.classList.toggle("is-generating", isBusy);
+  els.generationWait.classList.toggle("is-hidden", !isBusy);
+  els.generationWaitText.textContent = message || "请稍等，正在保持手部和背景不变，只生成指甲区域。";
+  els.photoJobStatus.textContent = status;
+  els.photoJobMessage.textContent = message;
+  els.photoJobProgressBar.style.width = `${Math.round(clamp(progress, 0, 1) * 100)}%`;
+  const badgeMap = {
+    idle: "高保真服务待连接",
+    detecting: "正在识别手部",
+    preview: "手图与款式已就绪",
+    queued: "正在准备 AI 生成",
+    uploading: "正在上传参考图",
+    generating: "ChatGPT 正在生成",
+    downloading: "正在保存结果",
+    login_required: "需要登录授权",
+    done: "生成完成",
+    failed: "生成服务未就绪",
+  };
+  els.photoServiceBadge.textContent = badgeMap[nextState] || badgeMap.idle;
+  updateGenerateButtonState();
+  els.cancelPhotoJob.disabled = !(busyStates.has(nextState) && nextState !== "login_required");
+  els.continueChatgptLogin.classList.toggle("is-hidden", nextState !== "login_required");
+}
+
+function updateGenerateButtonState() {
+  const busyStates = new Set(["queued", "uploading", "generating", "downloading", "login_required"]);
+  const canGenerate = state.photoReady && !busyStates.has(state.photoJobState);
+  els.generatePhoto.disabled = !canGenerate;
+  els.generatePhoto.textContent = busyStates.has(state.photoJobState)
+    ? "生成中"
+    : state.photoTryonResult
+      ? "重新生成 AI 试戴"
+      : "生成 AI 试戴";
+}
+
+function setComparisonReveal(value) {
+  const numericValue = Number(value ?? 100);
+  const split = clamp(Number.isFinite(numericValue) ? numericValue : 100, 0, 100);
+  els.comparisonLayer.style.setProperty("--split", `${split}%`);
+  els.comparisonLayer.classList.toggle("is-revealed", split <= 2);
+}
+
+function showGeneratedComparison(resultUrl) {
+  const revealToken = `${Date.now()}-${Math.random()}`;
+  state.comparisonReady = false;
+  els.comparisonLayer.dataset.revealToken = revealToken;
+  els.comparisonLayer.classList.add("is-hidden");
+  els.comparisonLayer.classList.remove("is-revealed");
+  setComparisonReveal(100);
+  els.photoOriginalImage.src = state.lastImageSrc;
+  els.photoResultImage.onload = () => {
+    if (els.comparisonLayer.dataset.revealToken !== revealToken) {
+      return;
+    }
+    state.comparisonReady = true;
+    els.comparisonLayer.classList.remove("is-hidden");
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => setComparisonReveal(0));
+    });
+  };
+  els.photoResultImage.onerror = () => {
+    if (els.comparisonLayer.dataset.revealToken !== revealToken) {
+      return;
+    }
+    setPhotoJobState("failed", "结果图加载失败", "ChatGPT 已返回结果地址，但图片未能正确加载，请重新生成。", 0.92);
+  };
+  els.photoResultImage.removeAttribute("src");
+  els.photoResultImage.src = resultUrl;
+  if (els.photoResultImage.complete && els.photoResultImage.naturalWidth > 0) {
+    els.photoResultImage.onload();
+  }
+}
+
+function resetPhotoResult({ keepMessage = false } = {}) {
+  if (state.photoJobAbort) {
+    state.photoJobAbort.abort();
+    state.photoJobAbort = null;
+  }
+  state.photoTryonResult = null;
+  state.comparisonReady = false;
+  els.photoResultSection.classList.add("is-hidden");
+  els.comparisonLayer.classList.add("is-hidden");
+  els.comparisonLayer.classList.remove("is-revealed");
+  setComparisonReveal(100);
+  els.continueChatgptLogin.classList.add("is-hidden");
+  els.photoDownload.removeAttribute("href");
+  els.photoOriginalImage.removeAttribute("src");
+  els.photoResultImage.removeAttribute("src");
+  if (!keepMessage) {
+    setPhotoJobState("idle", "上传照片后开始生成", "上传手图并选择款式后，点击生成 AI 试戴。", 0);
+  } else {
+    updateGenerateButtonState();
+  }
+}
+
+function resetPhotoPreviewReadiness() {
+  state.photoPreviewReady = false;
+  updateGenerateButtonState();
 }
 
 function currentMediaReady() {
@@ -453,10 +516,11 @@ function setMode(mode) {
   stopVideoLoop();
   if (state.photoReady) {
     setTrackingState("detecting", "正在识别手型", "图片会自动定位 5 个指甲");
-    detectCurrentPhoto();
+    setTrackingState("ready", "手图已就绪", "可直接生成 AI 试戴，本地识别不再阻塞流程");
   } else {
-    setTrackingState("ready", "等待手图", "上传图片或选择样例开始试穿");
+    setTrackingState("ready", "等待手图", "上传图片开始试穿");
   }
+  updateGenerateButtonState();
 }
 
 function markMediaReady(isReady) {
@@ -466,6 +530,7 @@ function markMediaReady(isReady) {
     state.photoReady = isReady;
   }
   syncMediaState();
+  updateGenerateButtonState();
 }
 
 async function initHandModel() {
@@ -481,7 +546,7 @@ async function initHandModel() {
     setModelState("ready", "本地模型就绪");
     setTrackingState("ready", "识别模型就绪", "上传手图或开启摄像头");
     if (state.photoReady) {
-      await detectCurrentPhoto();
+      updateGenerateButtonState();
     }
   } catch (gpuError) {
     try {
@@ -494,7 +559,7 @@ async function initHandModel() {
       setModelState("ready", "CPU 模型就绪");
       setTrackingState("ready", "识别模型就绪", "上传手图或开启摄像头");
       if (state.photoReady) {
-        await detectCurrentPhoto();
+        updateGenerateButtonState();
       }
     } catch (error) {
       state.tracker = null;
@@ -570,7 +635,7 @@ async function initNailSegmentationModel() {
     state.segmentation.state = "ready";
     updateModelBadge();
     if (state.mode === "photo" && state.photoReady && state.tracker) {
-      await detectCurrentPhoto();
+      updateGenerateButtonState();
     }
   } catch (error) {
     state.segmentation.state = "failed";
@@ -1590,6 +1655,7 @@ function renderStyles() {
       `;
     })
     .join("");
+  window.requestAnimationFrame(updateStyleFocus);
 }
 
 function getStylePreview(style) {
@@ -1597,17 +1663,49 @@ function getStylePreview(style) {
   return `./assets/source-cache/style_${id}.png`;
 }
 
-function renderHandSamples() {
-  els.handSamples.innerHTML = handSamples
-    .map((sample) => {
-      const active = sample.id === state.activeSample ? " is-active" : "";
-      return `
-        <button class="sample-button${active}" type="button" data-sample-id="${sample.id}" aria-label="样例 ${sample.id}">
-          <img src="${sample.image}" alt="样例手图 ${sample.id}" loading="lazy" />
-        </button>
-      `;
-    })
-    .join("");
+function updateStyleFocus() {
+  const tiles = Array.from(els.styleGrid.querySelectorAll(".style-tile"));
+  if (!tiles.length) return;
+  const railRect = els.styleGrid.getBoundingClientRect();
+  const center = railRect.left + railRect.width / 2;
+  let focused = tiles[0];
+  let bestDistance = Number.POSITIVE_INFINITY;
+  tiles.forEach((tile) => {
+    const rect = tile.getBoundingClientRect();
+    const tileCenter = rect.left + rect.width / 2;
+    const distance = Math.abs(tileCenter - center);
+    if (distance < bestDistance) {
+      focused = tile;
+      bestDistance = distance;
+    }
+  });
+  tiles.forEach((tile) => {
+    tile.classList.toggle("is-focus", tile === focused);
+  });
+}
+
+function bindStyleRailMotion() {
+  let focusFrame = null;
+  const scheduleFocus = () => {
+    if (focusFrame) return;
+    focusFrame = window.requestAnimationFrame(() => {
+      focusFrame = null;
+      updateStyleFocus();
+    });
+  };
+  els.styleGrid.addEventListener("scroll", scheduleFocus, { passive: true });
+  els.styleGrid.addEventListener(
+    "wheel",
+    (event) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+        return;
+      }
+      event.preventDefault();
+      els.styleGrid.scrollBy({ left: event.deltaY * 1.2, behavior: "smooth" });
+      scheduleFocus();
+    },
+    { passive: false },
+  );
 }
 
 function selectStyle(styleId) {
@@ -1618,33 +1716,45 @@ function selectStyle(styleId) {
   renderSelectedStyle();
   renderStyles();
   renderOverlay();
+  if (state.mode === "photo" && state.photoReady) {
+    resetPhotoResult({ keepMessage: true });
+    setPhotoJobState("preview", "款式已切换", "已选择新的美甲款式，点击生成 AI 试戴。", 0.22);
+  }
   if (state.anchors.length) {
     setTrackingState("tracked", "试穿已贴合", `${next.name} 已应用到 5 个指甲`);
   } else {
     setTrackingState(state.trackingState, state.mode === "camera" ? "等待手部" : "已选款式", "识别到手部后会自动试穿");
   }
+  updateGenerateButtonState();
 }
 
-function loadPhoto(src, statusText = "图片试戴") {
+function loadPhoto(src, statusText = "图片试戴", options = {}) {
   stopVideoLoop();
   state.lastImageSrc = src;
+  state.currentPhotoFile = options.file || null;
   state.photoReady = false;
   state.anchors = [];
+  resetPhotoPreviewReadiness();
   clearSegmentationMasks();
   state.smoothedAnchors = null;
+  resetPhotoResult();
   syncMediaState();
   els.photo.src = src;
   els.photo.onload = () => {
     setMode("photo");
     markMediaReady(true);
+    state.photoPreviewReady = true;
+    setPhotoJobState("preview", "手图已就绪", "可以直接生成 AI 试戴；照片模式不再等待本地识别。", 0.16);
     setTrackingState("detecting", statusText, "正在识别手型并定位指甲");
-    detectCurrentPhoto();
+    updateGenerateButtonState();
+    setTrackingState("ready", "手图已就绪", "可直接生成 AI 试戴，本地识别不再阻塞流程");
   };
   els.photo.onerror = () => {
     setMode("photo");
     markMediaReady(false);
     state.anchors = [];
     renderOverlay();
+    setPhotoJobState("failed", "图片加载失败", "请换一张清晰的手部图片。", 0);
     setTrackingState("lost", "图片加载失败", "请换一张清晰手部图片");
   };
 }
@@ -1658,6 +1768,8 @@ async function detectCurrentPhoto() {
     renderOverlay();
     if (state.modelState === "unsupported") {
       setTrackingState("unsupported", "识别模型未就绪", "请检查本地模型资源");
+    } else {
+      setTrackingState("loading", "识别模型准备中", "AI 生成已可用，本地识别稍后自动补充");
     }
     return;
   }
@@ -1670,7 +1782,7 @@ async function detectCurrentPhoto() {
   } catch (error) {
     state.anchors = [];
     renderOverlay();
-    setTrackingState("lost", "图片识别失败", "请使用本地上传图片或检查图片跨域权限");
+    setTrackingState("lost", "本地识别失败", "仍可直接生成 AI 试戴，或换一张更清晰的手图");
     console.warn("Image detection failed", error);
   }
 }
@@ -1747,7 +1859,9 @@ function captureFrame() {
     context.scale(-1, 1);
   }
   context.drawImage(els.video, 0, 0, canvas.width, canvas.height);
-  loadPhoto(canvas.toDataURL("image/png"), "已定格");
+  canvas.toBlob((blob) => {
+    loadPhoto(canvas.toDataURL("image/png"), "已定格", { file: blob });
+  }, "image/png");
 }
 
 function startVideoLoop() {
@@ -1823,6 +1937,11 @@ function consumeDetectionResult(result, mode) {
   updateProfile(profile);
   const segReady = state.segmentation.state === "ready" || state.segmentation.state === "running";
   setTrackingState("tracked", segReady ? "精准分割中" : "试穿已贴合", `${profile.handedness} / ${profile.shapeLabel} / ${segReady ? "像素级指甲 mask" : "分割模型未就绪，使用基础贴合"}`);
+  if (mode === "IMAGE") {
+    state.photoPreviewReady = true;
+    setPhotoJobState("preview", "本地预览已完成", "可以继续点击生成 AI 试戴。", 0.22);
+    updateGenerateButtonState();
+  }
 }
 
 function scheduleNailSegmentation(rawLandmarks, anchors, mode) {
@@ -1922,6 +2041,246 @@ function acceptSegmentationMasks(masks, hint) {
   updateModelBadge();
   renderOverlay();
   setTrackingState("tracked", "试穿已贴合", accepted ? hint : "分割稳定中，保留上一帧贴合");
+  updateGenerateButtonState();
+}
+
+async function submitPhotoTryonJob() {
+  if (!state.photoReady || state.mode !== "photo") {
+    setPhotoJobState("failed", "请先上传手图", "上传一张清晰的手部照片后再生成 AI 试戴。", 0);
+    return;
+  }
+  if (state.photoJobAbort) {
+    state.photoJobAbort.abort();
+  }
+  const controller = new AbortController();
+  state.photoJobAbort = controller;
+  try {
+    setPhotoJobState("queued", "正在准备 AI 生成", "正在连接本机浏览器执行器，并准备原图与款式参考。", 0.14);
+    const form = await buildPhotoTryonFormData();
+    const response = await fetch(`${PHOTO_TRYON_SERVICE_URL}/api/photo-tryon/jobs`, {
+      method: "POST",
+      body: form,
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`生成服务返回 ${response.status}`);
+    }
+    const job = await response.json();
+    await pollPhotoTryonJob(job.jobId, controller);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      setPhotoJobState("idle", "已取消生成", "当前仍保留快速试戴预览。", 0);
+      return;
+    }
+    console.warn("Photo try-on service unavailable", error);
+    setPhotoJobState("failed", "AI 生成服务未连接", `请先启动本机服务：python -m uvicorn photo_tryon_service.server:app --host 127.0.0.1 --port 8765。当前仍可查看快速预览。`, 0);
+  } finally {
+    if (state.photoJobAbort === controller) {
+      state.photoJobAbort = null;
+    }
+  }
+}
+
+async function pollPhotoTryonJob(jobId, controller) {
+  let lastProgress = 0.18;
+  while (!controller.signal.aborted) {
+    const response = await fetch(`${PHOTO_TRYON_SERVICE_URL}/api/photo-tryon/jobs/${jobId}`, {
+      cache: "no-store",
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`任务查询失败 ${response.status}`);
+    }
+    const job = await response.json();
+    const progress = clamp(Number(job.progress || lastProgress), lastProgress, 1);
+    lastProgress = progress;
+    if (job.state === "done") {
+      showPhotoTryonResult(job);
+      return;
+    }
+    if (job.state === "login_required") {
+      state.photoTryonResult = {
+        ...(state.photoTryonResult || {}),
+        jobId: job.jobId,
+        resultUrl: absoluteServiceUrl(job.resultUrl || job.previewUrl),
+        previewUrl: absoluteServiceUrl(job.previewUrl || job.resultUrl),
+        styleId: state.selectedStyle.id,
+      };
+      setPhotoJobState("login_required", "需要完成一次 ChatGPT 登录授权", "已打开浏览器窗口；登录完成后回到本页点击“我已登录，继续”。", progress || 0.52);
+      return;
+    }
+    if (job.state === "failed") {
+      setPhotoJobState("failed", "AI 生成失败", job.error || job.message || "请检查本机服务、ChatGPT 登录状态或输入图片。", progress);
+      return;
+    }
+    setPhotoJobState(job.state || "generating", job.message || "AI 生成中", "请保持页面打开；首次使用可能需要完成一次 ChatGPT 登录。", progress || 0.28);
+    await delay(1200);
+  }
+}
+
+function showPhotoTryonResult(job) {
+  const cacheKey = `${job.jobId || "job"}-${job.elapsedMs || Date.now()}`;
+  const resultUrl = cacheBustUrl(absoluteServiceUrl(job.resultUrl || job.previewUrl), cacheKey);
+  const previewUrl = cacheBustUrl(absoluteServiceUrl(job.previewUrl || job.resultUrl), cacheKey);
+  const isChatGptResult = job.resultTier === "chatgpt_image2";
+  const isLocalAi = job.resultTier === "local_ai";
+  state.photoTryonResult = {
+    jobId: job.jobId,
+    originalUrl: state.lastImageSrc,
+    previewUrl,
+    resultUrl,
+    styleId: state.selectedStyle.id,
+    elapsedMs: job.elapsedMs || 0,
+    message: job.message || "AI 试戴结果已完成",
+    provider: job.provider || "deterministic_preview",
+    resultTier: job.resultTier || "quick_preview",
+  };
+  els.photoDownload.href = resultUrl;
+  els.photoResultCaption.textContent = isChatGptResult ? "ChatGPT 生成结果" : isLocalAi ? "本地 AI 结果" : "快速预览";
+  showGeneratedComparison(resultUrl);
+  const tierText = isChatGptResult ? "ChatGPT Image 2" : isLocalAi ? "本地 SDXL" : `快速预览兜底${job.fallbackReason ? ` / ${job.fallbackReason}` : ""}`;
+  els.photoResultMeta.textContent = `${state.selectedStyle.name} / ${Math.round((job.elapsedMs || 0) / 1000)} 秒 / ${tierText}`;
+  els.photoResultSection.classList.remove("is-hidden");
+  setPhotoJobState("done", isChatGptResult ? "生成完成" : "快速预览兜底", job.message || "可以查看前后对比并下载 PNG。", 1);
+}
+
+async function resumeChatgptAutomation() {
+  const jobId = state.photoTryonResult?.jobId;
+  if (!jobId) {
+    setPhotoJobState("failed", "无法继续", "当前没有可继续的生成任务，请重新生成。", 0);
+    return;
+  }
+  const controller = new AbortController();
+  state.photoJobAbort = controller;
+  try {
+    setPhotoJobState("queued", "正在继续生成", "正在复用已登录的 ChatGPT 浏览器会话。", 0.56);
+    const response = await fetch(`${PHOTO_TRYON_SERVICE_URL}/api/photo-tryon/jobs/${jobId}/run-browser`, {
+      method: "POST",
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`继续生成失败 ${response.status}`);
+    }
+    await pollPhotoTryonJob(jobId, controller);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      setPhotoJobState("idle", "已取消生成", "当前仍保留快速试戴预览。", 0);
+      return;
+    }
+    console.warn("Unable to resume ChatGPT automation", error);
+    setPhotoJobState("failed", "继续生成失败", "请确认 ChatGPT 登录已完成，或重新生成。", 0.52);
+  } finally {
+    if (state.photoJobAbort === controller) {
+      state.photoJobAbort = null;
+    }
+  }
+}
+
+async function buildPhotoTryonFormData() {
+  const blob = await getCurrentPhotoBlob();
+  const metadata = buildPhotoTryonMetadata();
+  const form = new FormData();
+  form.append("handImage", blob, "hand.png");
+  form.append("styleId", String(state.selectedStyle.id));
+  form.append("anchorsJson", JSON.stringify(metadata.anchors));
+  form.append("masksJson", JSON.stringify(metadata.masks));
+  form.append("qualityPreset", "browser_chatgpt_image2");
+  return form;
+}
+
+function buildPhotoTryonMetadata() {
+  const metrics = getMediaMetrics();
+  if (!metrics) {
+    return { anchors: [], masks: [] };
+  }
+  const scale = metrics.displayW / Math.max(1, metrics.mediaW);
+  const anchors = state.anchors.map((anchor) => {
+    const center = stagePercentToMedia(anchor.x, anchor.y, metrics);
+    return {
+      finger: anchor.finger,
+      x: center.x,
+      y: center.y,
+      width: ((anchor.width / 100) * metrics.stageW) / Math.max(0.001, scale),
+      height: ((anchor.height / 100) * metrics.stageH) / Math.max(0.001, scale),
+      rotation: anchor.rotation,
+      confidence: anchor.confidence,
+    };
+  });
+  const masks = refreshStableMasks().map((mask) => ({
+    finger: mask.finger,
+    rel: mask.rel || null,
+    nailBed: mask.nailBed || null,
+    confidence: mask.confidence || 0,
+    areaRatio: mask.areaRatio || 0,
+    source: mask.source || "seg",
+  }));
+  return {
+    mediaWidth: metrics.mediaW,
+    mediaHeight: metrics.mediaH,
+    anchors,
+    masks,
+  };
+}
+
+async function getCurrentPhotoBlob() {
+  if (state.currentPhotoFile) {
+    return state.currentPhotoFile;
+  }
+  const canvas = document.createElement("canvas");
+  canvas.width = els.photo.naturalWidth;
+  canvas.height = els.photo.naturalHeight;
+  const context = canvas.getContext("2d");
+  context.drawImage(els.photo, 0, 0, canvas.width, canvas.height);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error("无法读取当前手图"));
+    }, "image/png");
+  });
+}
+
+function absoluteServiceUrl(path) {
+  if (!path) return "";
+  return path.startsWith("http") ? path : `${PHOTO_TRYON_SERVICE_URL}${path}`;
+}
+
+function cacheBustUrl(url, key = Date.now()) {
+  if (!url) return "";
+  const joiner = url.includes("?") ? "&" : "?";
+  return `${url}${joiner}t=${encodeURIComponent(key)}`;
+}
+
+function delay(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function checkPhotoServiceHealth() {
+  try {
+    const response = await fetch(`${PHOTO_TRYON_SERVICE_URL}/api/photo-tryon/health`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const health = await response.json();
+    if (state.photoJobState === "idle") {
+      const deepseekText = health.deepseekConfigured ? "DeepSeek 辅助已启用" : "使用固定生成策略";
+      let browserText = "浏览器执行器已就绪";
+      if (!health.playwrightDriverReady) {
+        browserText =
+          health.recommendedAction === "install_playwright"
+            ? "缺少 Playwright，请安装生成服务依赖"
+            : "需要通过启动脚本提升权限重启生成服务";
+      }
+      setPhotoJobState("idle", "AI 生成服务已连接", `${browserText}；${deepseekText}。`, 0);
+      return;
+    }
+    if (state.photoJobState === "idle") {
+      const deepseekText = health.deepseekConfigured ? "DeepSeek 辅助已启用" : "使用固定生成策略";
+      const browserText = health.browserAutomationReady ? "浏览器执行器已就绪" : "缺少 Playwright，生成会降级为快速预览";
+      setPhotoJobState("idle", "AI 生成服务已连接", `${browserText}；${deepseekText}。`, 0);
+    }
+  } catch (_) {
+    if (state.photoJobState === "idle") {
+      setPhotoJobState("idle", "AI 生成服务未连接", "启动本机服务后可自动生成高保真结果；当前仍可使用快速预览。", 0);
+    }
+  }
 }
 
 function scoreNailMaskQuality(mask, previous, anchor) {
@@ -2682,10 +3041,27 @@ function bindEvents() {
   els.photoInput.addEventListener("change", (event) => {
     const [file] = event.target.files || [];
     if (!file) return;
-    state.activeSample = null;
-    renderHandSamples();
     const src = URL.createObjectURL(file);
-    loadPhoto(src, "已上传");
+    loadPhoto(src, "已上传", { file });
+  });
+
+  els.generatePhoto.addEventListener("click", () => {
+    submitPhotoTryonJob();
+  });
+
+  els.cancelPhotoJob.addEventListener("click", () => {
+    if (state.photoJobAbort) {
+      state.photoJobAbort.abort();
+    }
+    setPhotoJobState("idle", "已取消生成", "当前仍保留快速试戴预览。", 0);
+  });
+
+  els.photoRetry.addEventListener("click", () => {
+    submitPhotoTryonJob();
+  });
+
+  els.continueChatgptLogin.addEventListener("click", () => {
+    resumeChatgptAutomation();
   });
 
   els.styleGrid.addEventListener("click", (event) => {
@@ -2693,22 +3069,7 @@ function bindEvents() {
     if (!tile) return;
     selectStyle(tile.dataset.styleId);
   });
-
-  els.handSamples.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-sample-id]");
-    if (!button) return;
-    const sample = handSamples.find((item) => item.id === Number(button.dataset.sampleId));
-    if (!sample) return;
-    const matchedStyle = styles.find((style) => style.image === sample.styleUrl);
-    if (matchedStyle) {
-      state.selectedStyle = matchedStyle;
-      renderSelectedStyle();
-      renderStyles();
-    }
-    state.activeSample = sample.id;
-    renderHandSamples();
-    loadPhoto(sample.image, "样例试戴");
-  });
+  bindStyleRailMotion();
 
   els.startCamera.addEventListener("click", startCamera);
   els.stopCamera.addEventListener("click", stopCamera);
@@ -2718,20 +3079,21 @@ function bindEvents() {
     state.smoothedAnchors = null;
     clearSegmentationMasks();
   });
+
 }
 
 function init() {
   renderSelectedStyle();
   renderStyles();
-  renderHandSamples();
   bindEvents();
+  resetPhotoResult();
+  checkPhotoServiceHealth();
   els.video.classList.toggle("is-mirrored", els.mirrorVideo.checked);
   loadNailAssets();
   initNailSegmentationModel();
   initHandModel();
-  loadPhoto(handSamples[0].image, "样例试戴");
-  state.activeSample = 1;
-  renderHandSamples();
+  markMediaReady(false);
+  updateGenerateButtonState();
   window.addEventListener("resize", renderOverlay);
 }
 

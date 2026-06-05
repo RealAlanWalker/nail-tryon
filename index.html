@@ -3,68 +3,117 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI 美甲 AR 试穿</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./merchant.css" />
+    <title>AI 美甲高保真试戴</title>
+    <link rel="stylesheet" href="./styles.css?v=20260602-single-screen" />
+    <link rel="stylesheet" href="./merchant/merchant.css" />
   </head>
   <body>
     <main class="page-shell">
       <nav class="site-nav" aria-label="主导航">
-        <a class="brand-mark" href="#top" aria-label="AI 美甲 AR 试穿">Nail AR</a>
+        <a class="brand-mark" href="#top" aria-label="AI 美甲高保真试戴">Nail Studio</a>
         <div class="nav-links">
-          <a href="#tryon">试穿</a>
+          <a href="#tryon">上传试戴</a>
           <a href="#styles">款式</a>
-          <a href="#samples">样例</a>
         </div>
         <button class="merchant-btn" id="merchantBtn">商家端</button>
       </nav>
 
       <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">REAL-TIME HAND LANDMARK TRY-ON</p>
-          <h1>让美甲先上手，再决定。</h1>
-          <p class="hero-lede">上传图片或打开摄像头，系统自动识别手型与指甲位置，款式选择后即刻贴合试穿。</p>
+          <p class="eyebrow">PHOTO-FIRST HIGH FIDELITY TRY-ON</p>
+          <h1>上传一张手图，生成真实试戴。</h1>
+          <p class="hero-lede">系统先自动识别手部和指甲位置，再把款式颜色、图案和风格迁移到你的手上；姿态、肤色、纹理和光影保持一致。</p>
         </div>
 
-        <section class="tryon-studio" id="tryon" aria-label="AR 美甲试穿">
+        <section class="tryon-studio" id="tryon" aria-label="照片美甲试戴">
           <div class="studio-stage" id="stage">
             <img id="photoPreview" class="media-layer is-active" alt="手部图片预览" crossorigin="anonymous" />
             <video id="videoPreview" class="media-layer" autoplay playsinline muted></video>
             <div class="stage-glass" aria-hidden="true"></div>
             <div class="empty-state" id="emptyState">
-              <strong>把手放进画面</strong>
-              <span>选择样例、上传手图，或开启实时视频试穿</span>
+              <strong>上传手部照片</strong>
+              <span>选择款式后点击生成，后台会自动完成高保真试戴。</span>
             </div>
             <canvas class="tryon-canvas" id="tryonCanvas" aria-hidden="true"></canvas>
+            <div class="comparison-layer is-hidden" id="comparisonLayer" style="--split: 100%">
+              <img id="photoOriginalImage" class="comparison-image comparison-before" alt="原始手图" />
+              <div class="comparison-after-clip" id="comparisonAfterClip">
+                <img id="photoResultImage" class="comparison-image comparison-after" alt="试戴结果" />
+              </div>
+              <div class="comparison-handle" aria-hidden="true">
+                <span></span>
+              </div>
+              <div class="comparison-badges" aria-hidden="true">
+                <span>原图</span>
+                <span id="photoResultCaption">AI 试戴</span>
+              </div>
+            </div>
+            <div class="generation-wait is-hidden" id="generationWait" aria-hidden="true">
+              <div class="generation-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <strong>AI 正在精修指尖</strong>
+              <p id="generationWaitText">请稍等，正在保持手部和背景不变，只生成指甲区域。</p>
+            </div>
             <div class="tracking-card" aria-live="polite">
               <span class="status-dot" id="statusDot"></span>
               <div>
                 <strong id="stageStatus">正在加载识别模型</strong>
-                <span id="trackingHint">模型就绪后会自动贴合 5 个指甲位置</span>
+                <span id="trackingHint">模型就绪后会自动定位 5 个指甲位置</span>
               </div>
             </div>
           </div>
 
           <div class="studio-controls">
-            <div class="mode-tabs" role="tablist" aria-label="试穿模式">
-              <button class="mode-tab is-active" type="button" data-mode="photo">图片试穿</button>
-              <button class="mode-tab" type="button" data-mode="camera">实时视频</button>
+            <div class="mode-tabs" role="tablist" aria-label="试戴模式">
+              <button class="mode-tab is-active" type="button" data-mode="photo">上传图片</button>
+              <button class="mode-tab" type="button" data-mode="camera">实时预览</button>
             </div>
 
             <div class="control-cluster" data-panel="photo">
               <input id="photoInput" type="file" accept="image/*" hidden />
               <button class="primary-button" type="button" id="uploadTrigger">上传手图</button>
-              <div class="sample-strip" id="handSamples" aria-label="样例手图"></div>
+              <button class="ghost-button" type="button" id="generatePhoto" disabled>生成 AI 试戴</button>
             </div>
+
+            <section class="style-section" id="styles" aria-label="美甲款式">
+              <div class="section-heading">
+                <p class="eyebrow">STYLE LIBRARY</p>
+                <h2>选择一种手上效果。</h2>
+              </div>
+              <div class="selected-style" id="selectedStyle"></div>
+              <div class="style-rail" id="styleGrid" aria-label="25 个美甲款式"></div>
+            </section>
 
             <div class="control-cluster is-hidden" data-panel="camera">
               <button class="primary-button" type="button" id="startCamera">打开摄像头</button>
-              <button class="ghost-button" type="button" id="captureFrame">定格画面</button>
+              <button class="ghost-button" type="button" id="captureFrame">定格为照片</button>
               <button class="ghost-button" type="button" id="stopCamera">关闭</button>
               <label class="mirror-toggle">
                 <input id="mirrorVideo" type="checkbox" checked />
                 <span>镜像</span>
               </label>
+            </div>
+
+            <div class="photo-job-panel" id="photoJobPanel" aria-live="polite">
+              <div class="job-heading">
+                <span id="photoServiceBadge">高保真服务待连接</span>
+                <strong id="photoJobStatus">上传照片后开始生成</strong>
+              </div>
+              <div class="job-progress" aria-hidden="true">
+                <span id="photoJobProgressBar"></span>
+              </div>
+              <p id="photoJobMessage">没有启动本机生成服务时，页面仍会保留当前 Canvas 快速预览。</p>
+              <button class="ghost-button is-compact" type="button" id="cancelPhotoJob">取消等待</button>
+              <button class="ghost-button is-compact is-hidden" type="button" id="continueChatgptLogin">我已登录，继续</button>
+            </div>
+
+            <div class="result-actions result-actions-inline is-hidden" id="photoResultSection" aria-label="试戴生成结果">
+              <p id="photoResultMeta">等待生成结果。</p>
+              <a class="primary-button result-download" id="photoDownload" download="nail-tryon-result.png">下载 PNG</a>
+              <button class="ghost-button" type="button" id="photoRetry">重新生成</button>
             </div>
 
             <div class="profile-bar">
@@ -81,24 +130,15 @@
         </section>
       </section>
 
-      <section class="style-section" id="styles" aria-label="美甲款式">
-        <div class="section-heading">
-          <p class="eyebrow">STYLE LIBRARY</p>
-          <h2>选择一种手上效果。</h2>
-        </div>
-        <div class="selected-style" id="selectedStyle"></div>
-        <div class="style-rail" id="styleGrid" aria-label="25 个美甲款式"></div>
-      </section>
-
       <section class="note-section" id="samples">
-        <p>当前使用本地 MediaPipe 手部跟踪、Nails343 指甲分割模型入口与 Canvas 真实感合成；模型缺失时自动回退基础贴合，确保演示不断流。</p>
+        <p>照片模式会调用本机服务自动驱动 ChatGPT Image 2 生成高保真结果；服务未启动时仍可使用 MediaPipe、Nails343 指甲分割和 Canvas 快速预览，保证演示不断流。</p>
       </section>
     </main>
 
-    <!-- 商家端 overlay -->
+    <!-- ========== 商家端 overlay ========== -->
     <div class="merchant-overlay" id="merchantOverlay">
 
-      <!-- ===== 登录屏 ===== -->
+      <!-- 登录屏（Cookie 失效时显示） -->
       <div class="m-login" id="mLoginScreen">
         <div class="m-login-card">
           <div class="m-brand-row">
@@ -117,10 +157,9 @@
         </div>
       </div>
 
-      <!-- ===== 看板屏 ===== -->
+      <!-- 看板屏 -->
       <div class="m-dash m-hidden" id="mDashScreen">
 
-        <!-- 顶栏 -->
         <div class="m-topbar">
           <div class="m-topbar-brand">💅 美甲智能运营</div>
           <div class="m-topbar-date">数据更新：<span id="mUpdDate">—</span></div>
@@ -129,10 +168,7 @@
           <button class="m-close-btn" id="mCloseBtn" title="关闭商家端">✕</button>
         </div>
 
-        <!-- 主体 -->
         <div class="m-body">
-
-          <!-- 侧边导航 -->
           <aside class="m-sidebar">
             <button class="m-nav-item active" data-section="overview"><span class="m-nav-ico">📊</span><span>趋势总览</span></button>
             <button class="m-nav-item" data-section="rising"><span class="m-nav-ico">🔥</span><span>飙升榜</span></button>
@@ -140,13 +176,11 @@
             <button class="m-nav-item" data-section="catalog"><span class="m-nav-ico">📦</span><span>款式库匹配</span></button>
             <button class="m-nav-item" data-section="demand"><span class="m-nav-ico">🗣️</span><span>用户需求</span></button>
             <button class="m-nav-item" data-section="notes"><span class="m-nav-ico">📝</span><span>笔记明细</span></button>
+            <button class="m-nav-item" data-section="tryon-stats"><span class="m-nav-ico">📈</span><span>试戴数据</span></button>
             <div class="m-sidebar-foot">小红书美甲运营 · AI 决策</div>
           </aside>
 
-          <!-- 内容区 -->
           <div class="m-content">
-
-            <!-- 趋势总览 -->
             <div class="m-view" data-view="overview">
               <div class="m-kpi-row" id="mKpiRow"></div>
               <div class="m-grid-2" style="margin-bottom:14px">
@@ -162,7 +196,6 @@
               <div class="m-grid-4" id="mVlMini"></div>
             </div>
 
-            <!-- 飙升榜 -->
             <div class="m-view m-hidden" data-view="rising">
               <div class="m-panel">
                 <div class="m-panel-head"><h3>🔥 热度飙升榜</h3><span class="m-panel-tag">环比增速 · 上升/新出现优先</span></div>
@@ -170,17 +203,14 @@
               </div>
             </div>
 
-            <!-- AI 策略 -->
             <div class="m-view m-hidden" data-view="strategy">
               <div id="mStrategyFull"></div>
             </div>
 
-            <!-- 款式库匹配 -->
             <div class="m-view m-hidden" data-view="catalog">
               <div class="m-grid-3" id="mCatalogGrid"></div>
             </div>
 
-            <!-- 用户需求 -->
             <div class="m-view m-hidden" data-view="demand">
               <div class="m-grid-2" style="margin-bottom:14px">
                 <div class="m-panel">
@@ -198,7 +228,6 @@
               </div>
             </div>
 
-            <!-- 笔记明细 -->
             <div class="m-view m-hidden" data-view="notes">
               <div class="m-panel">
                 <div class="m-panel-head">
@@ -213,16 +242,29 @@
               </div>
             </div>
 
-          </div><!-- /.m-content -->
-        </div><!-- /.m-body -->
-      </div><!-- /#mDashScreen -->
+            <!-- 试戴数据：通过 shared/interface.js 接收用户侧事件 -->
+            <div class="m-view m-hidden" data-view="tryon-stats">
+              <div class="m-panel">
+                <div class="m-panel-head"><h3>📈 实时试戴数据</h3><span class="m-panel-tag">来自用户侧埋点</span></div>
+                <div class="m-panel-body" id="mTryonStats">
+                  <p class="m-muted">等待用户侧数据…（用户选择款式或完成生成后自动更新）</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </div><!-- /#merchantOverlay -->
 
+    <!-- 用户侧脚本 -->
     <script src="./vendor/onnxruntime-web/ort.min.js"></script>
-    <script src="./merchant-data.js"></script>
-    <script src="./merchant.js"></script>
-    <script src="./app.js?v=20260530-rootline-profile-ortfix"></script>
-    <script src="./trending-styles.js"></script>
+    <script src="./shared/interface.js"></script>
+    <script src="./app.js?v=20260603-playwright-probe"></script>
+    <!-- 商家端脚本（在 app.js 之后，trending-styles 依赖 app.js 的 styles 数组） -->
+    <script src="./merchant/merchant-data.js"></script>
+    <script src="./merchant/merchant.js"></script>
+    <script src="./merchant/trending-styles.js"></script>
   </body>
 </html>

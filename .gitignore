@@ -10,5 +10,6 @@ datasets/
 assets/source-cache/
 assets/debug-*.png
 assets/style*-contact.png
+models/diffusion/
 models/nail-seg/*.onnx
 models/nail-seg/*.pt

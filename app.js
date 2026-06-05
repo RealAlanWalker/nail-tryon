@@ -1712,6 +1712,7 @@ function selectStyle(styleId) {
   const next = styles.find((style) => style.id === Number(styleId));
   if (!next) return;
   state.selectedStyle = next;
+  window.reportStyleSelected && window.reportStyleSelected({ id: next.id, name: next.name, tags: next.tags });
   preloadStyleTextures(next);
   renderSelectedStyle();
   renderStyles();
@@ -2135,6 +2136,13 @@ function showPhotoTryonResult(job) {
     provider: job.provider || "deterministic_preview",
     resultTier: job.resultTier || "quick_preview",
   };
+  window.reportGenerationCompleted && window.reportGenerationCompleted({
+    styleId: state.selectedStyle.id,
+    styleName: state.selectedStyle.name,
+    durationMs: job.elapsedMs || 0,
+    provider: job.provider || "unknown",
+    resultTier: job.resultTier || "quick_preview",
+  });
   els.photoDownload.href = resultUrl;
   els.photoResultCaption.textContent = isChatGptResult ? "ChatGPT 生成结果" : isLocalAi ? "本地 AI 结果" : "快速预览";
   showGeneratedComparison(resultUrl);

@@ -177,6 +177,8 @@
             <button class="m-nav-item" data-section="demand"><span class="m-nav-ico">🗣️</span><span>用户需求</span></button>
             <button class="m-nav-item" data-section="notes"><span class="m-nav-ico">📝</span><span>笔记明细</span></button>
             <button class="m-nav-item" data-section="tryon-stats"><span class="m-nav-ico">📈</span><span>试戴数据</span></button>
+            <button class="m-nav-item" data-section="daily-report"><span class="m-nav-ico">📋</span><span>运营日报</span></button>
+            <button class="m-nav-item" data-section="style-adjust"><span class="m-nav-ico">⚙️</span><span>智能调整</span></button>
             <div class="m-sidebar-foot">小红书美甲运营 · AI 决策</div>
           </aside>
 
@@ -249,6 +251,41 @@
                 <div class="m-panel-body" id="mTryonStats">
                   <p class="m-muted">等待用户侧数据…（用户选择款式或完成生成后自动更新）</p>
                 </div>
+              </div>
+            </div>
+
+            <!-- 运营日报 -->
+            <div class="m-view m-hidden" data-view="daily-report">
+              <div class="m-panel" style="margin-bottom:14px">
+                <div class="m-panel-head">
+                  <h3>📋 运营日报</h3>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <span class="m-panel-tag" id="mReportDate">—</span>
+                    <button class="m-cookie-btn" id="mGenReportBtn">✨ 生成今日日报</button>
+                    <button class="m-cookie-btn m-hidden" id="mSendFeishuBtn">📨 发送到飞书</button>
+                  </div>
+                </div>
+                <div class="m-panel-body" id="mReportBody">
+                  <p class="m-muted">点击「生成今日日报」，AI 会读取最新数据并生成摘要（需启动运营日报服务：<code style="font-size:11px;opacity:.7">python -m merchant_service.daily_report</code>）</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 智能调整执行 -->
+            <div class="m-view m-hidden" data-view="style-adjust">
+              <div class="m-panel" style="margin-bottom:14px">
+                <div class="m-panel-head">
+                  <h3>⚙️ 智能调整执行</h3>
+                  <button class="m-cookie-btn" id="mPushRecommendBtn">🚀 推送主推款到用户侧</button>
+                </div>
+                <div class="m-panel-body">
+                  <p style="font-size:12px;color:var(--m-tx-dim);margin-bottom:12px">基于趋势分析，将以下款式标记为「主推」，在用户侧样式网格中加星展示。</p>
+                  <div id="mStyleAdjustGrid"></div>
+                </div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-head"><h3>⚠️ 冷门预警</h3><span class="m-panel-tag">建议降权或清库</span></div>
+                <div class="m-panel-body" id="mColdWarningList"></div>
               </div>
             </div>
 

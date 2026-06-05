@@ -275,6 +275,132 @@
     renderCatalog();
     renderDemand();
     renderNotes();
+    renderStyleAdjust();
+  }
+
+  /* -------------------- 运营日报 -------------------- */
+  const REPORT_API = 'http://127.0.0.1:4174/api/daily-report';
+  const FEISHU_API = 'http://127.0.0.1:4174/api/feishu-send';
+  let lastReport = null;
+
+  function renderReport(report) {
+    lastReport = report;
+    const el = $('#mReportBody');
+    if (!el) return;
+    $('#mReportDate').textContent = report.date || '—';
+    $('#mSendFeishuBtn').classList.remove('m-hidden');
+
+    const kpi = report.kpi || {};
+    const cold = (report.cold_warning || []);
+
+    el.innerHTML = `
+      <div style="background:rgba(181,139,250,.07);border:1px solid rgba(181,139,250,.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.75;color:var(--m-tx);white-space:pre-wrap">${esc(report.ai_summary || '暂无 AI 摘要')}</div>
+      <div class="m-kpi-row" style="margin-bottom:14px">
+        <div class="m-kpi-card"><div class="m-kpi-label">笔记总数</div><div class="m-kpi-val">${fmt(kpi.total_notes)}</div></div>
+        <div class="m-kpi-card"><div class="m-kpi-label">评论样本</div><div class="m-kpi-val">${fmt(kpi.total_comments)}</div></div>
+        <div class="m-kpi-card"><div class="m-kpi-label">平均热度</div><div class="m-kpi-val">${fmt(kpi.avg_hotness)}</div></div>
+        <div class="m-kpi-card"><div class="m-kpi-label">上升趋势</div><div class="m-kpi-val">${fmt(kpi.rising_count)}</div></div>
+        <div class="m-kpi-card"><div class="m-kpi-label">需求信号</div><div class="m-kpi-val">${fmt(kpi.demand_signals)}</div></div>
+      </div>
+      <div class="m-grid-2">
+        <div class="m-panel">
+          <div class="m-panel-head"><h3>🔥 热门TOP榜</h3></div>
+          <div class="m-panel-body">
+            ${(report.top_rising||[]).map((r,i)=>`
+              <div class="m-bar-row">
+                <div class="m-bar-label" style="width:70px;font-size:11px">${esc(r.name)}</div>
+                <div class="m-bar-track"><div class="m-bar-fill" style="width:${Math.max(10,(r.curr_hotness||0)/Math.max(1,...(report.top_rising||[]).map(x=>x.curr_hotness||0))*100).toFixed(0)}%"></div></div>
+                <div class="m-bar-val">${fmt(r.curr_hotness)}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="m-panel">
+          <div class="m-panel-head"><h3>💡 运营建议</h3></div>
+          <div class="m-panel-body">
+            ${(report.recommend||[]).map(r=>`<div class="m-push-item"><div class="m-push-name">${esc(r.name)}</div><div class="m-push-reason">${esc(r.reason||'')}</div></div>`).join('')||'<p class="m-muted">暂无</p>'}
+            ${(report.gaps||[]).map(g=>`<div class="m-gap-item"><div class="m-cat-name">${esc(g.name)}<span class="m-tag" style="margin-left:6px">${esc(g.type)}</span></div><div class="m-cat-reason">${esc(g.suggest)}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+      ${cold.length ? `<div class="m-panel" style="margin-top:12px;border-color:rgba(255,92,122,.2)"><div class="m-panel-head"><h3>🧊 冷门预警</h3><span class="m-panel-tag">热度低于均值50%</span></div><div class="m-panel-body">${cold.map(c=>`<div class="m-risk-item">${esc(c.name)} — 当前热度 ${fmt(c.curr_hotness)}，趋势 ${pct(c.growth_pct)}</div>`).join('')}</div></div>` : ''}`;
+  }
+
+  function initReportPanel() {
+    $('#mGenReportBtn')?.addEventListener('click', async () => {
+      const btn = $('#mGenReportBtn');
+      btn.textContent = '生成中…';
+      btn.disabled = true;
+      try {
+        const res = await fetch(REPORT_API);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const report = await res.json();
+        renderReport(report);
+      } catch (e) {
+        $('#mReportBody').innerHTML = `<p class="m-muted" style="color:var(--m-down)">⚠️ 日报服务未启动，请先运行：<br><code>cd nail-tryon && python -m merchant_service.daily_report</code></p>`;
+      } finally {
+        btn.textContent = '✨ 生成今日日报';
+        btn.disabled = false;
+      }
+    });
+
+    $('#mSendFeishuBtn')?.addEventListener('click', async () => {
+      if (!lastReport) return;
+      const chatId = prompt('请输入飞书群 Chat ID（群→群设置→群 ID）：');
+      if (!chatId) return;
+      const text = `📋 美甲运营日报 ${lastReport.date}\n\n${lastReport.ai_summary}\n\n🔥 热门TOP3：${(lastReport.top_rising||[]).slice(0,3).map(r=>r.name).join('、')}\n✅ 主推：${(lastReport.recommend||[]).slice(0,2).map(r=>r.name).join('、')}`;
+      try {
+        const res = await fetch(FEISHU_API, {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ chat_id: chatId, text }),
+        });
+        const d = await res.json();
+        alert(res.ok ? '✅ 已发送到飞书！' : `❌ 发送失败：${d.error}`);
+      } catch (e) {
+        alert('❌ 日报服务未响应，请检查是否已启动');
+      }
+    });
+  }
+
+  /* -------------------- 智能调整执行 -------------------- */
+  function renderStyleAdjust() {
+    const D = getData();
+    const rec = D.catalog?.recommend || [];
+    const slow = D.catalog?.slow_movers || [];
+
+    const grid = $('#mStyleAdjustGrid');
+    if (grid) {
+      grid.innerHTML = rec.length
+        ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:8px">` +
+          rec.map(r => `
+            <div style="background:var(--m-card);border:1px solid rgba(61,220,151,.25);border-radius:10px;padding:10px 12px">
+              <div style="font-size:13px;font-weight:700;color:var(--m-tx);margin-bottom:4px">⭐ ${esc(r.name)}</div>
+              <div style="font-size:11px;color:var(--m-tx-faint)">转化 ${((r.conversion||0)*100).toFixed(1)}% · 试戴 ${fmt(r.try_on)}</div>
+            </div>`).join('') + `</div>`
+        : '<p class="m-muted">暂无推荐款式数据</p>';
+    }
+
+    const coldEl = $('#mColdWarningList');
+    if (coldEl) {
+      coldEl.innerHTML = slow.length
+        ? slow.map(s => `<div class="m-risk-item" style="margin-bottom:7px">
+            <strong>${esc(s.name)}</strong> — 转化 ${((s.conversion||0)*100).toFixed(1)}%，试戴 ${fmt(s.try_on)}次<br>
+            <span style="font-size:11.5px;opacity:.85">${esc(s.reason)}</span>
+          </div>`).join('')
+        : '<p class="m-muted">暂无冷门款式</p>';
+    }
+  }
+
+  function initStyleAdjust() {
+    $('#mPushRecommendBtn')?.addEventListener('click', () => {
+      const D = getData();
+      const recIds = (D.catalog?.recommend || []).map(r => r._styleId).filter(Boolean);
+      if (window.MERCHANT_API) {
+        window.MERCHANT_API.setRecommendedStyles(recIds);
+      }
+      const btn = $('#mPushRecommendBtn');
+      btn.textContent = '✅ 已推送';
+      setTimeout(() => { btn.textContent = '🚀 推送主推款到用户侧'; }, 2000);
+    });
   }
 
   /* -------------------- 复制文案 -------------------- */
@@ -383,6 +509,12 @@
 
     // 接收用户侧试戴埋点
     initUserHooks();
+
+    // 运营日报
+    initReportPanel();
+
+    // 智能调整（数据就绪后渲染）
+    initStyleAdjust();
   }
 
   document.addEventListener('DOMContentLoaded', init);

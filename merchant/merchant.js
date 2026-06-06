@@ -281,8 +281,8 @@
         type: 'rising',
         icon: '🚀',
         label: '爆款窗口',
-        title: `「${newHot.map(r => r.name).join('」「)}」热度飙升`,
-        desc: `${newHot.map(r => r.name + (r.growth_pct != null ? `（+${r.growth_pct}%）` : '（新出现）')).join('、')}，是本周关键机会款。`,
+        title: newHot.map(r => r.name).join('、') + ' 热度飙升',
+        desc: newHot.map(r => r.name + (r.growth_pct != null ? '（+' + r.growth_pct + '%）' : '（新出现）')).join('、') + '，是本周关键机会款。',
         btns: [
           { label: '查看飙升榜', section: 'rising' },
           { label: '生成日报', section: 'daily-report', primary: true },
@@ -297,7 +297,7 @@
         type: 'urgent',
         icon: '📦',
         label: '紧急 · 上新缺口',
-        title: `${gaps.map(g => '「' + g.name + '」').join('')} 需求有，库内无`,
+        title: gaps.map(g => g.name).join('、') + ' 需求有，库内无',
         desc: gaps.map(g => g.suggest).join('；'),
         btns: [
           { label: '款式库详情', section: 'catalog' },
@@ -314,8 +314,8 @@
         type: 'warning',
         icon: '🧊',
         label: '冷门预警',
-        title: `${cold.map(r => '「' + r.name + '」').join('')} 连续下跌`,
-        desc: cold.map(r => `${r.name} 热度 ${fmt(r.curr_hotness)}，环比 ${pct(r.growth_pct)}，建议降权或清库`).join('；'),
+        title: cold.map(r => r.name).join('、') + ' 连续下跌',
+        desc: cold.map(r => r.name + ' 热度 ' + fmt(r.curr_hotness) + '，环比 ' + pct(r.growth_pct) + '，建议降权或清库').join('；'),
         btns: [
           { label: '查看滞销款', section: 'style-adjust' },
         ],
@@ -329,7 +329,7 @@
         type: 'rising',
         icon: '💬',
         label: '用户呼声',
-        title: `「${topSignal[0]}」信号 ${topSignal[1]} 条，值得响应`,
+        title: topSignal[0] + ' 信号 ' + topSignal[1] + ' 条，值得响应',
         desc: '来自评论挖掘的真实用户需求，可作为选品和文案方向参考。',
         btns: [
           { label: '查看用户需求', section: 'demand' },

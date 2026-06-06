@@ -161,29 +161,38 @@
       <div class="m-dash m-hidden" id="mDashScreen">
 
         <div class="m-topbar">
-          <div class="m-topbar-brand">💅 美甲智能运营</div>
-          <div class="m-topbar-date">数据更新：<span id="mUpdDate">—</span></div>
+          <div class="m-topbar-brand">💅 甲甲运营</div>
+          <div class="m-topbar-date">更新：<span id="mUpdDate">—</span></div>
+          <div class="m-topbar-live"><div class="m-live-dot"></div>飞书在线</div>
           <div class="m-topbar-spacer"></div>
-          <button class="m-cookie-btn" id="mCookieEditBtn">🔑 更新 Cookie</button>
-          <button class="m-close-btn" id="mCloseBtn" title="关闭商家端">✕</button>
+          <button class="m-icon-btn" id="mCookieEditBtn">🔑 更新 Cookie</button>
+          <button class="m-close-btn" id="mCloseBtn" title="关闭">✕</button>
         </div>
 
         <div class="m-body">
           <aside class="m-sidebar">
-            <button class="m-nav-item active" data-section="overview"><span class="m-nav-ico">📊</span><span>趋势总览</span></button>
-            <button class="m-nav-item" data-section="rising"><span class="m-nav-ico">🔥</span><span>飙升榜</span></button>
-            <button class="m-nav-item" data-section="strategy"><span class="m-nav-ico">🤖</span><span>AI 策略</span></button>
-            <button class="m-nav-item" data-section="catalog"><span class="m-nav-ico">📦</span><span>款式库匹配</span></button>
-            <button class="m-nav-item" data-section="demand"><span class="m-nav-ico">🗣️</span><span>用户需求</span></button>
-            <button class="m-nav-item" data-section="notes"><span class="m-nav-ico">📝</span><span>笔记明细</span></button>
-            <button class="m-nav-item" data-section="tryon-stats"><span class="m-nav-ico">📈</span><span>试戴数据</span></button>
+            <div class="m-sidebar-label">决策</div>
+            <button class="m-nav-item active" data-section="today"><span class="m-nav-ico">🎯</span><span>今日行动</span><span class="m-nav-badge" id="mActionBadge">3</span></button>
             <button class="m-nav-item" data-section="daily-report"><span class="m-nav-ico">📋</span><span>运营日报</span></button>
             <button class="m-nav-item" data-section="style-adjust"><span class="m-nav-ico">⚙️</span><span>智能调整</span></button>
-            <div class="m-sidebar-foot">小红书美甲运营 · AI 决策</div>
+            <div class="m-sidebar-label">洞察</div>
+            <button class="m-nav-item" data-section="overview"><span class="m-nav-ico">📊</span><span>趋势总览</span></button>
+            <button class="m-nav-item" data-section="rising"><span class="m-nav-ico">🔥</span><span>飙升榜</span></button>
+            <button class="m-nav-item" data-section="demand"><span class="m-nav-ico">🗣️</span><span>用户需求</span></button>
+            <div class="m-sidebar-label">数据</div>
+            <button class="m-nav-item" data-section="tryon-stats"><span class="m-nav-ico">📈</span><span>试戴数据</span></button>
+            <button class="m-nav-item" data-section="notes"><span class="m-nav-ico">📝</span><span>笔记明细</span></button>
+            <div class="m-sidebar-foot">甲甲 · 美甲智能运营<br>飞书 @甲甲 随时问</div>
           </aside>
 
           <div class="m-content">
-            <div class="m-view" data-view="overview">
+
+            <!-- 今日行动（首页，告诉商家今天该做什么） -->
+            <div class="m-view" data-view="today">
+              <div id="mTodayActions"></div>
+            </div>
+
+            <div class="m-view m-hidden" data-view="overview">
               <div class="m-kpi-row" id="mKpiRow"></div>
               <div class="m-grid-2" style="margin-bottom:14px">
                 <div class="m-panel">

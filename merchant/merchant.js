@@ -264,10 +264,133 @@
     });
   }
 
+  /* -------------------- 今日行动（产品思维首页） -------------------- */
+  function renderTodayActions() {
+    const D = getData();
+    const rising   = D.rising  || [];
+    const catalog  = D.catalog || {};
+    const demand   = D.demand  || {};
+    const kpi      = D.kpi     || {};
+
+    const actions = [];
+
+    // 1. 爆款窗口：新出现/快速上升 → 立即主推
+    const newHot = rising.filter(r => r.status === '新出现' || (r.growth_pct != null && r.growth_pct > 0)).slice(0, 2);
+    if (newHot.length) {
+      actions.push({
+        type: 'rising',
+        icon: '🚀',
+        label: '爆款窗口',
+        title: `「${newHot.map(r => r.name).join('」「)}」热度飙升`,
+        desc: `${newHot.map(r => r.name + (r.growth_pct != null ? `（+${r.growth_pct}%）` : '（新出现）')).join('、')}，是本周关键机会款。`,
+        btns: [
+          { label: '查看飙升榜', section: 'rising' },
+          { label: '生成日报', section: 'daily-report', primary: true },
+        ],
+      });
+    }
+
+    // 2. 上新缺口：用户呼声有但库内无
+    const gaps = (catalog.gaps || []).slice(0, 2);
+    if (gaps.length) {
+      actions.push({
+        type: 'urgent',
+        icon: '📦',
+        label: '紧急 · 上新缺口',
+        title: `${gaps.map(g => '「' + g.name + '」').join('')} 需求有，库内无`,
+        desc: gaps.map(g => g.suggest).join('；'),
+        btns: [
+          { label: '款式库详情', section: 'catalog' },
+          { label: '推送款式', section: 'style-adjust', primary: true },
+        ],
+      });
+    }
+
+    // 3. 冷门预警：热度下跌 → 建议降权清库
+    const avgH = kpi.avg_hotness || 0;
+    const cold = rising.filter(r => r.status === '下降' && (r.growth_pct || 0) < -10).slice(0, 2);
+    if (cold.length) {
+      actions.push({
+        type: 'warning',
+        icon: '🧊',
+        label: '冷门预警',
+        title: `${cold.map(r => '「' + r.name + '」').join('')} 连续下跌`,
+        desc: cold.map(r => `${r.name} 热度 ${fmt(r.curr_hotness)}，环比 ${pct(r.growth_pct)}，建议降权或清库`).join('；'),
+        btns: [
+          { label: '查看滞销款', section: 'style-adjust' },
+        ],
+      });
+    }
+
+    // 4. 需求信号：高赞用户呼声
+    const topSignal = Object.entries(demand.signals || {}).sort((a,b) => b[1]-a[1])[0];
+    if (topSignal && topSignal[1] > 20) {
+      actions.push({
+        type: 'rising',
+        icon: '💬',
+        label: '用户呼声',
+        title: `「${topSignal[0]}」信号 ${topSignal[1]} 条，值得响应`,
+        desc: '来自评论挖掘的真实用户需求，可作为选品和文案方向参考。',
+        btns: [
+          { label: '查看用户需求', section: 'demand' },
+        ],
+      });
+    }
+
+    // 更新 badge 数量
+    const badge = $('#mActionBadge');
+    if (badge) badge.textContent = actions.length;
+
+    const el = $('#mTodayActions');
+    if (!el) return;
+
+    if (!actions.length) {
+      el.innerHTML = `<div style="padding:32px;text-align:center;color:var(--m-tx3)">
+        <div style="font-size:32px;margin-bottom:12px">✨</div>
+        <div style="font-size:14px;font-weight:700;color:var(--m-tx2)">今日暂无紧急行动</div>
+        <div style="font-size:12px;margin-top:4px">数据正常，可去「趋势总览」查看详情</div>
+      </div>`;
+      return;
+    }
+
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div>
+          <div style="font-size:17px;font-weight:800;color:var(--m-tx)">今日行动</div>
+          <div style="font-size:12px;color:var(--m-tx3);margin-top:2px">基于最新趋势数据，${actions.length} 项需要跟进</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--m-up);font-weight:700">
+          <div class="m-live-dot"></div> 数据已更新 · ${D.generated_at || '—'}
+        </div>
+      </div>
+      ${actions.map(a => `
+        <div class="m-action-card ${a.type}">
+          <div class="m-action-icon">${a.icon}</div>
+          <div class="m-action-body">
+            <div class="m-action-label">${esc(a.label)}</div>
+            <div class="m-action-title">${esc(a.title)}</div>
+            <div class="m-action-desc">${esc(a.desc)}</div>
+            <div class="m-action-btns">
+              ${a.btns.map(b => `<button class="m-btn${b.primary ? ' primary' : ''} m-action-nav" data-section="${b.section}">${esc(b.label)}</button>`).join('')}
+            </div>
+          </div>
+        </div>`).join('')}`;
+
+    // 行动卡按钮导航
+    el.querySelectorAll('.m-action-nav').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sec = btn.dataset.section;
+        $$('.m-nav-item').forEach(n => n.classList.toggle('active', n.dataset.section === sec));
+        $$('.m-view').forEach(v => v.classList.toggle('m-hidden', v.dataset.view !== sec));
+      });
+    });
+  }
+
   /* -------------------- 全部渲染 -------------------- */
   function renderAll() {
     const D = getData();
     $('#mUpdDate').textContent = D.generated_at || '—';
+    renderTodayActions();
     renderKPI();
     renderRising();
     renderVL();

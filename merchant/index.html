@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>美甲 · 商家运营看板</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     OVERLAY  ·  full-screen, slide-in from right
+     ============================================================ -->
+<div class="overlay" data-screen-label="商家运营看板">
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3c-1.2 3-3 4.5-5 6-2.2 1.7-3 3.7-3 6 0 2.8 2.4 5 8 5s8-2.2 8-5c0-2.3-.8-4.3-3-6-2-1.5-3.8-3-5-6Z" fill="currentColor"/><path d="M9 13c0 2 1.3 3.5 3 3.5" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">指尖 · 运营看板</div>
+        <div class="brand-sub">NAIL OPS CONSOLE</div>
+      </div>
+    </div>
+
+    <div class="topbar-date">
+      <span class="dot"></span>
+      数据更新于 <span id="topbarDate">—</span>
+    </div>
+
+    <div class="topbar-spacer"></div>
+
+    <button class="btn btn-primary" onclick="document.getElementById('cookie').classList.add('show')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9" r="1.1" fill="currentColor"/><circle cx="14.5" cy="11" r="1.1" fill="currentColor"/><circle cx="11" cy="15" r="1.1" fill="currentColor"/></svg>
+      更新 Cookie
+    </button>
+    <button class="btn btn-icon" title="关闭" onclick="window.close()">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="body">
+
+    <!-- ===== SIDEBAR ===== -->
+    <nav class="sidebar">
+      <div class="nav-group-label">数据洞察</div>
+      <div class="nav-item active" data-page="overview">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M7 16l3.5-4 3 2.5L20 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        趋势总览
+      </div>
+      <div class="nav-item" data-page="rising">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 3c1 4-2 5-2 8a3 3 0 0 0 6 0c0-1 0-2-1-3 2 1 3 3.5 3 6a7 7 0 0 1-14 0c0-4 3-6 4-9 .8 1 1.4 2 1.6 3 .9-1.4 1.4-3 1.4-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        飙升榜
+      </div>
+      <div class="nav-item" data-page="strategy">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        AI 策略
+      </div>
+      <div class="nav-item" data-page="library">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/></svg>
+        款式库
+      </div>
+      <div class="nav-item" data-page="demand">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.5a3 3 0 0 1 0 5.5M17.5 19a5.5 5.5 0 0 0-3-4.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        用户需求
+      </div>
+      <div class="nav-item" data-page="notes">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        笔记明细
+      </div>
+      <div class="nav-item" data-page="tryon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1V4.5a1.5 1.5 0 0 1 3 0V10m0-.5a1.5 1.5 0 0 1 3 0V14c0 3.5-2 6-5.5 6S7 18 6 16l-1.6-2.6a1.5 1.5 0 0 1 2.4-1.8L9 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        试戴数据
+      </div>
+
+      <div class="nav-group-label">运营动作</div>
+      <div class="nav-item" data-page="report">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 3.5h6v3H9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        运营日报
+      </div>
+      <div class="nav-item" data-page="adjust">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 8h9M19 8h0M5 16h0M10 16h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="16.5" cy="8" r="2.3" stroke="currentColor" stroke-width="1.6"/><circle cx="7.5" cy="16" r="2.3" stroke="currentColor" stroke-width="1.6"/></svg>
+        智能调整
+      </div>
+
+      <div class="sidebar-foot">门店 ID · NL-0427<br/>北京 · 三里屯店</div>
+    </nav>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="content">
+
+      <!-- ────────────── 趋势总览 ────────────── -->
+      <section class="page active" data-page="overview" data-screen-label="趋势总览">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">趋势总览</h1>
+            <p class="page-desc">近 7 日核心经营指标与热门款式表现</p>
+          </div>
+          <div class="seg">
+            <button class="on">近 7 天</button>
+            <button>近 30 天</button>
+            <button>本季</button>
+          </div>
+        </div>
+
+        <!-- DATA CENTER HERO -->
+        <div class="card hero">
+          <div class="hero-head">
+            <h2>数据中心</h2>
+            <span class="hero-period"><span class="q">?</span>统计周期：2026.05.30 - 2026.06.05（每天 09 点更新）</span>
+            <div class="topbar-spacer"></div>
+            <span class="card-link">查看更多 ›</span>
+          </div>
+
+          <div class="hero-grid">
+            <!-- latest work -->
+            <div class="work">
+              <div class="work-label">最新作品</div>
+              <div class="work-thumb">
+                <div class="work-meta-top"><span>5 图</span><span>00:00</span></div>
+                <div>
+                  <div class="work-title" id="latestWorkTitle">—</div>
+                  <div class="work-stats">
+                    <div class="r"><span class="k">曝光量</span><span class="v" id="latestExposure">—</span></div>
+                    <div class="r"><span class="k">点赞量</span><span class="v" id="latestLikes">—</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- chart -->
+            <div class="chart-side">
+              <div class="tabs">
+                <div class="tab on">数据总览</div>
+                <div class="tab">近期作品</div>
+                <div class="tab">到店转化</div>
+                <div class="topbar-spacer"></div>
+                <div class="pill-dd" style="align-self:center;margin-bottom:8px">时间 <b>近 7 日</b><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+              <div class="chart-legend"><span class="d"></span>曝光量</div>
+              <svg class="linechart" viewBox="0 0 700 150" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4B8BF4" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#4B8BF4" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,34 C40,40 70,52 100,58 C140,68 170,88 200,92 C240,97 270,98 300,97 C340,96 370,99 400,97 C440,95 470,106 500,104 C540,101 570,97 600,99 C640,101 670,96 700,95 L700,150 L0,150 Z" fill="url(#areaFill)"/>
+                <path d="M0,34 C40,40 70,52 100,58 C140,68 170,88 200,92 C240,97 270,98 300,97 C340,96 370,99 400,97 C440,95 470,106 500,104 C540,101 570,97 600,99 C640,101 670,96 700,95" fill="none" stroke="#4B8BF4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+              </svg>
+              <div class="chart-x"><span>05-29</span><span>05-30</span><span>05-31</span><span>06-01</span><span>06-02</span><span>06-03</span><span>06-04</span></div>
+
+              <!-- stat grid -->
+              <div class="stat-grid" id="kpiStatGrid">
+                <div class="stat">
+                  <div class="stat-label">曝光量</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-exposure">—</span><span class="stat-delta" id="kpi-exposure-delta"></span></div>
+                </div>
+                <div class="stat b">
+                  <div class="stat-label">主页访问</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-visits">—</span><span class="stat-delta" id="kpi-visits-delta"></span></div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">笔记点赞</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-likes">—</span><span class="stat-delta" id="kpi-likes-delta"></span></div>
+                </div>
+                <div class="stat b">
+                  <div class="stat-label">内容分享</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-shares">—</span><span class="stat-delta" id="kpi-shares-delta"></span></div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">笔记评论</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-comments">—</span><span class="stat-delta" id="kpi-comments-delta"></span></div>
+                </div>
+                <div class="stat b">
+                  <div class="stat-label">净增粉丝</div>
+                  <div class="stat-row"><span class="stat-num" id="kpi-fans">—</span><span class="stat-delta" id="kpi-fans-delta"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- bar chart + table -->
+        <div class="grid-2-wide">
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>热门款式曝光占比</div>
+            <div class="card-sub">TOP 6 款式近 7 日曝光分布</div>
+            <div class="barchart" id="overviewStyleBars">
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">1</span>猫眼镜面晕染</div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><div class="bar-val">23.4万</div></div>
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">2</span>奶油法式微钻</div><div class="bar-track"><div class="bar-fill p" style="width:78%"></div></div><div class="bar-val">19.8万</div></div>
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">3</span>玻璃糖果渐变</div><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><div class="bar-val">16.2万</div></div>
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">4</span>清水蜜桃绒</div><div class="bar-track"><div class="bar-fill p" style="width:51%"></div></div><div class="bar-val">12.9万</div></div>
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">5</span>复古晕染油画</div><div class="bar-track"><div class="bar-fill g" style="width:38%"></div></div><div class="bar-val">9.6万</div></div>
+              <div class="bar-row"><div class="bar-label"><span class="bar-rank">6</span>裸色芭比甲</div><div class="bar-track"><div class="bar-fill" style="width:27%"></div></div><div class="bar-val">6.8万</div></div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8l9-5 9 5-9 5-9-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>渠道来源</div>
+            <div class="card-sub">流量入口分布</div>
+            <div class="barchart">
+              <div class="bar-row"><div class="bar-label">推荐流</div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><div class="bar-val">62%</div></div>
+              <div class="bar-row"><div class="bar-label">搜索</div><div class="bar-track"><div class="bar-fill p" style="width:54%"></div></div><div class="bar-val">21%</div></div>
+              <div class="bar-row"><div class="bar-label">同城</div><div class="bar-track"><div class="bar-fill g" style="width:34%"></div></div><div class="bar-val">11%</div></div>
+              <div class="bar-row"><div class="bar-label">关注</div><div class="bar-track"><div class="bar-fill p" style="width:18%"></div></div><div class="bar-val">6%</div></div>
+            </div>
+            <div class="tags" style="margin-top:18px">
+              <span class="tag"># 夏日美甲</span><span class="tag"># 猫眼甲</span><span class="tag"># 法式</span><span class="tag"># 显白</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- table -->
+        <div class="card card-pad mb" style="margin-top:16px">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>款式表现明细</div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>#</th><th>款式</th><th>曝光</th><th>互动率</th><th>试戴</th><th>趋势</th></tr>
+              </thead>
+              <tbody id="overviewStyleTbl">
+                <tr><td class="rank-cell top">01</td><td><div class="cell-thumb"><span class="thumb c1">图</span><div><div class="cell-name">猫眼镜面晕染</div><div class="cell-tag">晕染 · 高级感</div></div></div></td><td class="num">23.4万</td><td class="num">8.6%</td><td class="num">4,210</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+32%</span></td></tr>
+                <tr><td class="rank-cell top">02</td><td><div class="cell-thumb"><span class="thumb c2">图</span><div><div class="cell-name">奶油法式微钻</div><div class="cell-tag">法式 · 通勤</div></div></div></td><td class="num">19.8万</td><td class="num">7.2%</td><td class="num">3,640</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+21%</span></td></tr>
+                <tr><td class="rank-cell">03</td><td><div class="cell-thumb"><span class="thumb c3">图</span><div><div class="cell-name">玻璃糖果渐变</div><div class="cell-tag">渐变 · 少女</div></div></div></td><td class="num">16.2万</td><td class="num">6.9%</td><td class="num">2,980</td><td><span class="badge new"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4l1.8 4.6L18.5 10l-3.6 3 1 4.8L12 15.4 8.1 17.8l1-4.8L5.5 10l4.7-1.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>NEW</span></td></tr>
+                <tr><td class="rank-cell">04</td><td><div class="cell-thumb"><span class="thumb c4">图</span><div><div class="cell-name">清水蜜桃绒</div><div class="cell-tag">绒感 · 秋冬</div></div></div></td><td class="num">12.9万</td><td class="num">5.4%</td><td class="num">2,110</td><td><span class="badge down"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>-8%</span></td></tr>
+                <tr><td class="rank-cell">05</td><td><div class="cell-thumb"><span class="thumb c1">图</span><div><div class="cell-name">复古晕染油画</div><div class="cell-tag">油画 · 复古</div></div></div></td><td class="num">9.6万</td><td class="num">4.8%</td><td class="num">1,560</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+12%</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── 飙升榜 ────────────── -->
+      <section class="page" data-page="rising" data-screen-label="飙升榜">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">飙升榜</h1>
+            <p class="page-desc">近 24 小时增速最快的款式与话题</p>
+          </div>
+          <div class="seg"><button class="on">款式</button><button>话题</button><button>博主</button></div>
+        </div>
+
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)" id="risingKpiRow">
+          <div class="card kpi"><div class="kpi-label">飙升款式</div><div class="kpi-num" id="risingCount">—</div><div class="kpi-foot"><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>较昨日</span></div></div>
+          <div class="card kpi"><div class="kpi-label">新冒头</div><div class="kpi-num" id="risingNew">—</div><div class="kpi-foot"><span class="badge new"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4l1.8 4.6L18.5 10l-3.6 3 1 4.8L12 15.4 8.1 17.8l1-4.8L5.5 10l4.7-1.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>NEW</span></div></div>
+          <div class="card kpi"><div class="kpi-label">最高增速</div><div class="kpi-num" id="risingTop">—</div><div class="kpi-foot"><span class="muted" id="risingTopName">—</span></div></div>
+          <div class="card kpi"><div class="kpi-label">回落款式</div><div class="kpi-num" id="risingDown">—</div><div class="kpi-foot"><span class="badge down"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>注意</span></div></div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 3c1 4-2 5-2 8a3 3 0 0 0 6 0c0-1 0-2-1-3 2 1 3 3.5 3 6a7 7 0 0 1-14 0c0-4 3-6 4-9 .8 1 1.4 2 1.6 3 .9-1.4 1.4-3 1.4-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>实时飙升榜</div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>排名</th><th>款式 / 话题</th><th>24h 增速</th><th>当前热度</th><th>预估热度峰值</th><th>状态</th></tr></thead>
+              <tbody id="risingTbl">
+                <tr><td colspan="6" class="num" style="padding:24px;color:var(--ink-3)">加载中…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── AI 策略 ────────────── -->
+      <section class="page" data-page="strategy" data-screen-label="AI策略">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">AI 策略</h1>
+            <p class="page-desc">基于热度与库存的智能内容与选款建议</p>
+          </div>
+        </div>
+        <div class="ai-summary">
+          <div class="ai-head">
+            <span class="ai-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>AI 选款建议</span>
+            <span class="ai-date" id="stratDate">基于最新数据生成</span>
+          </div>
+          <p class="ai-text" id="stratText">—</p>
+          <div class="ai-metrics" id="stratMetrics">
+            <div class="ai-metric"><div class="n" style="color:var(--accent)" id="stratPushCount">—</div><div class="l">建议主推</div></div>
+            <div class="ai-metric"><div class="n" style="color:var(--up)" id="stratNoteCount">—</div><div class="l">建议上新笔记</div></div>
+            <div class="ai-metric"><div class="n" style="color:var(--down)" id="stratDownCount">—</div><div class="l">建议下架</div></div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>内容选题建议</div>
+            <div class="sug-list" id="stratSugList">
+              <div class="sug"><div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div><div class="sug-t">加载中…</div><div class="sug-d">正在读取 AI 策略数据。</div></div></div>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>定价与排期</div>
+            <div class="sug-list" id="stratPricingList">
+              <div class="sug"><div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M7 7h7a3 3 0 0 1 0 6H7m0 0h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="sug-t">加载中…</div><div class="sug-d">正在读取策略数据。</div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── 款式库 ────────────── -->
+      <section class="page" data-page="library" data-screen-label="款式库">
+        <div class="page-head">
+          <div><h1 class="page-title">款式库</h1><p class="page-desc">全部在售与备选款式</p></div>
+          <div class="seg"><button class="on">全部</button><button>在售</button><button>备选</button></div>
+        </div>
+        <div class="push-grid" style="grid-template-columns:repeat(4,1fr)" id="catalogGrid">
+          <div class="card card-pad" style="border-radius:var(--r-lg);border-style:dashed;display:grid;place-items:center;min-height:180px;color:var(--ink-3)"><div style="text-align:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div style="margin-top:8px;font-size:13px">添加新款式</div></div></div>
+        </div>
+      </section>
+
+      <!-- ────────────── 用户需求 ────────────── -->
+      <section class="page" data-page="demand" data-screen-label="用户需求">
+        <div class="page-head"><div><h1 class="page-title">用户需求</h1><p class="page-desc">评论与搜索中提炼的真实诉求</p></div></div>
+        <div class="grid-2-wide">
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>高频需求词</div>
+            <div class="barchart" id="demandBars">
+              <div class="bar-row"><div class="bar-label">加载中…</div><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><div class="bar-val">—</div></div>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>典型评论</div>
+            <div class="sug-list" id="demandVoices">
+              <div class="sug"><div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 19a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div><div class="sug-d" style="color:var(--ink)">加载中…</div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── 笔记明细 ────────────── -->
+      <section class="page" data-page="notes" data-screen-label="笔记明细">
+        <div class="page-head"><div><h1 class="page-title">笔记明细</h1><p class="page-desc">已发布内容的逐篇数据</p></div><div class="seg"><button class="on">全部</button><button>视频</button><button>图文</button></div></div>
+        <div class="card card-pad">
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>#</th><th>笔记标题</th><th>类型</th><th>曝光</th><th>点赞</th><th>收藏</th><th>涨粉</th><th>趋势</th></tr></thead>
+              <tbody id="notesTbl">
+                <tr><td colspan="8" class="num" style="padding:24px;color:var(--ink-3)">加载中…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── 试戴数据 ────────────── -->
+      <section class="page" data-page="tryon" data-screen-label="试戴数据">
+        <div class="page-head"><div><h1 class="page-title">试戴数据</h1><p class="page-desc">AR 虚拟试戴的使用与转化</p></div></div>
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
+          <div class="card kpi"><div class="kpi-label">试戴次数</div><div class="kpi-num" id="tryonTotal">—</div><div class="kpi-foot" id="tryonTotalFoot"><span class="muted">本次会话</span></div></div>
+          <div class="card kpi"><div class="kpi-label">人均试戴</div><div class="kpi-num" id="tryonAvg">—</div><div class="kpi-foot"><span class="muted">单次会话</span></div></div>
+          <div class="card kpi"><div class="kpi-label">试戴→预约</div><div class="kpi-num" id="tryonConv">—</div><div class="kpi-foot"><span class="muted">—</span></div></div>
+          <div class="card kpi"><div class="kpi-label">平均时长</div><div class="kpi-num" id="tryonDuration">—</div><div class="kpi-foot"><span class="muted">分:秒</span></div></div>
+        </div>
+        <div class="card card-pad">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>试戴热门款式</div>
+          <div id="tryonContent">
+            <div style="padding:32px;text-align:center;color:var(--ink-3);font-size:13px">
+              等待用户侧数据…（用户选择款式或完成生成后自动更新）
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ────────────── 运营日报 ────────────── -->
+      <section class="page" data-page="report" data-screen-label="运营日报">
+        <div class="page-head">
+          <div><h1 class="page-title">运营日报</h1><p class="page-desc" id="reportPageDesc">加载中…</p></div>
+          <button class="btn" id="genReportBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 4 5-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>生成今日日报</button>
+        </div>
+
+        <!-- AI summary placeholder -->
+        <div class="ai-summary" id="reportAiSummary">
+          <div class="ai-head">
+            <span class="ai-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>AI 今日摘要</span>
+            <span class="ai-date" id="reportAiDate">—</span>
+          </div>
+          <p class="ai-text" id="reportAiText">点击「生成今日日报」获取 AI 分析摘要。</p>
+          <div class="ai-metrics" id="reportAiMetrics" style="display:none">
+            <div class="ai-metric"><div class="n" id="reportMetric1" style="color:var(--up)">—</div><div class="l">曝光环比</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric2" style="color:var(--accent)">—</div><div class="l">今日曝光</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric3" style="color:var(--ink)">—</div><div class="l">待办建议</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric4" style="color:var(--new)">—</div><div class="l">风险预警</div></div>
+          </div>
+        </div>
+
+        <!-- Report body populated on generate -->
+        <div id="reportBody"></div>
+      </section>
+
+      <!-- ────────────── 智能调整 ────────────── -->
+      <section class="page" data-page="adjust" data-screen-label="智能调整">
+        <div class="page-head">
+          <div><h1 class="page-title">智能调整</h1><p class="page-desc">基于实时表现的主推与风险调整建议</p></div>
+          <button class="btn btn-primary" id="applyAdjustBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>一键应用</button>
+        </div>
+
+        <div class="sec-label"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--up)"><path d="M3 17l5-5 4 3 8-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>建议主推 <span class="pill g" id="adjustRecPill">上升趋势</span></div>
+        <div class="push-grid" id="adjustRecGrid">
+          <div style="padding:24px;color:var(--ink-3);font-size:13px">加载中…</div>
+        </div>
+
+        <div class="sec-label"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--down)"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z" stroke-width="1.6" stroke-linejoin="round"/></svg>冷门预警 <span class="pill r" id="adjustSlowPill">下降趋势</span></div>
+        <div class="risk-grid" id="adjustSlowGrid">
+          <div style="padding:24px;color:var(--ink-3);font-size:13px">加载中…</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== COOKIE UPDATE CARD ===== -->
+  <div class="cookie-overlay" id="cookie">
+    <div class="cookie-card">
+      <div class="cookie-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9" r="1.1" fill="currentColor"/><circle cx="14.5" cy="11" r="1.1" fill="currentColor"/><circle cx="11" cy="15" r="1.1" fill="currentColor"/></svg></div>
+      <h2>更新登录 Cookie</h2>
+      <p class="lead">粘贴最新的平台登录 Cookie，用于同步实时数据。我们仅在本地会话中使用，不会上传。</p>
+
+      <div class="field">
+        <label>Cookie 字符串</label>
+        <textarea id="cookieInput" placeholder="在此粘贴完整 Cookie，例如：&#10;sessionid=xxxxxxxx; web_session=xxxxxxxx; ..."></textarea>
+      </div>
+
+      <div class="cookie-hint">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3h.01M12 3l9 16H3L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Cookie 约 7 天过期，过期后数据将停止更新。
+      </div>
+
+      <div class="cookie-actions">
+        <button class="btn" onclick="document.getElementById('cookie').classList.remove('show')">取消</button>
+        <button class="btn btn-primary" id="saveCookieBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>保存并同步</button>
+      </div>
+
+      <div class="status-dot" id="cookieStatus"><span class="d"></span>当前 Cookie 状态加载中…</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Data source -->
+<script src="./merchant-data.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  const COOKIE_KEY = 'merchant_xhs_cookie';
+  const REPORT_API = 'http://127.0.0.1:4174/api/daily-report';
+
+  /* -------------------- Utils -------------------- */
+  const $ = (id) => document.getElementById(id);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = (n) => (n == null ? '—' : Number(n).toLocaleString('zh-CN'));
+  const pct = (n) => (n == null ? '—' : (n > 0 ? '+' : '') + n + '%');
+  const getData = () => window.MERCHANT_DATA || {};
+
+  const THUMB_COLORS = ['c1','c2','c3','c4'];
+  const thumbCls = (i) => THUMB_COLORS[i % THUMB_COLORS.length];
+
+  /* ---------- badge SVGs ---------- */
+  const svgUp = `<svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const svgDn = `<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const svgNw = `<svg viewBox="0 0 24 24" fill="none"><path d="M12 4l1.8 4.6L18.5 10l-3.6 3 1 4.8L12 15.4 8.1 17.8l1-4.8L5.5 10l4.7-1.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+
+  function badge(status, growthPct) {
+    if (status === '新出现' || status === '新冒头') return `<span class="badge new">${svgNw}新冒头</span>`;
+    if (growthPct != null && growthPct >= 0) return `<span class="badge up">${svgUp}${pct(growthPct)}</span>`;
+    if (growthPct != null && growthPct < 0) return `<span class="badge down">${svgDn}${pct(growthPct)}</span>`;
+    return `<span class="badge up">${svgUp}飙升</span>`;
+  }
+
+  /* -------------------- Nav switching -------------------- */
+  const navItems = $$('.nav-item');
+  const pages = $$('.page');
+  navItems.forEach(it => it.addEventListener('click', () => {
+    const id = it.dataset.page;
+    navItems.forEach(n => n.classList.toggle('active', n === it));
+    pages.forEach(p => p.classList.toggle('active', p.dataset.page === id));
+    document.querySelector('.content').scrollTop = 0;
+  }));
+
+  /* -------------------- Cookie overlay -------------------- */
+  document.getElementById('cookie').addEventListener('click', e => {
+    if (e.target.id === 'cookie') e.currentTarget.classList.remove('show');
+  });
+
+  // Populate cookie textarea from localStorage on open
+  document.querySelector('button.btn-primary[onclick*="cookie"]')?.addEventListener('click', () => {
+    const saved = localStorage.getItem(COOKIE_KEY);
+    const inp = $('cookieInput');
+    if (saved && inp) inp.value = saved;
+    updateCookieStatus();
+  });
+
+  function updateCookieStatus() {
+    const saved = localStorage.getItem(COOKIE_KEY);
+    const el = $('cookieStatus');
+    if (!el) return;
+    if (saved) {
+      el.innerHTML = '<span class="d"></span>Cookie 已保存到本地';
+    } else {
+      el.innerHTML = '<span class="d" style="background:var(--down)"></span>未保存 Cookie';
+    }
+  }
+
+  $('saveCookieBtn')?.addEventListener('click', () => {
+    const val = $('cookieInput')?.value?.trim();
+    if (!val) return;
+    localStorage.setItem(COOKIE_KEY, val);
+    updateCookieStatus();
+    document.getElementById('cookie').classList.remove('show');
+  });
+
+  /* -------------------- KPI -------------------- */
+  function renderKPI() {
+    const D = getData();
+    const k = D.kpi || {};
+
+    // topbar date
+    const dateEl = $('topbarDate');
+    if (dateEl && D.generated_at) dateEl.textContent = D.generated_at;
+
+    // stat grid – map expected kpi keys; fall back to static if missing
+    function setKpi(numId, deltaId, val, delta, isUp) {
+      const numEl = $(numId);
+      const dltEl = $(deltaId);
+      if (numEl && val != null) numEl.textContent = fmt(val);
+      if (dltEl && delta != null) {
+        const cls = isUp ? 'u' : 'dn';
+        dltEl.innerHTML = `较前7日 <b class="${cls}">${delta}</b>`;
+      }
+    }
+
+    // Try reading from MERCHANT_DATA.kpi; keys may vary per pipeline version
+    if (k.exposure != null || k.visits != null || k.likes != null) {
+      setKpi('kpi-exposure', 'kpi-exposure-delta', k.exposure, k.exposure_delta, k.exposure_delta_up);
+      setKpi('kpi-visits',   'kpi-visits-delta',   k.visits,   k.visits_delta,   k.visits_delta_up);
+      setKpi('kpi-likes',    'kpi-likes-delta',     k.likes,    k.likes_delta,    k.likes_delta_up);
+      setKpi('kpi-shares',   'kpi-shares-delta',   k.shares,   k.shares_delta,   k.shares_delta_up);
+      setKpi('kpi-comments', 'kpi-comments-delta', k.comments, k.comments_delta, k.comments_delta_up);
+      setKpi('kpi-fans',     'kpi-fans-delta',     k.fans,     k.fans_delta,     k.fans_delta_up);
+    }
+
+    // Latest work from notes[0]
+    const notes = D.notes || [];
+    if (notes.length) {
+      const n = notes[0];
+      const titleEl = $('latestWorkTitle');
+      const expEl   = $('latestExposure');
+      const lkEl    = $('latestLikes');
+      if (titleEl) titleEl.textContent = n.title || '—';
+      if (expEl)   expEl.textContent   = n.exposure != null ? fmt(n.exposure) : (n.hotness != null ? fmt(n.hotness) : '—');
+      if (lkEl)    lkEl.textContent    = fmt(n.likes);
+    }
+  }
+
+  /* -------------------- 飙升榜 -------------------- */
+  function renderRising() {
+    const rising = getData().rising || [];
+    const tbl = $('risingTbl');
+    if (!tbl) return;
+
+    if (!rising.length) {
+      tbl.innerHTML = '<tr><td colspan="6" class="num" style="padding:24px;color:var(--ink-3)">暂无飙升数据（需至少两次快照）</td></tr>';
+      return;
+    }
+
+    // KPI counters
+    const upItems  = rising.filter(r => r.status !== '下降' && (r.growth_pct == null || r.growth_pct >= 0));
+    const newItems = rising.filter(r => r.status === '新出现' || r.status === '新冒头');
+    const dnItems  = rising.filter(r => (r.growth_pct != null && r.growth_pct < 0) || r.status === '下降');
+    const topItem  = [...rising].sort((a,b) => (b.growth_pct||0) - (a.growth_pct||0))[0];
+
+    const rCount = $('risingCount'); if (rCount) rCount.textContent = upItems.length;
+    const rNew   = $('risingNew');   if (rNew)   rNew.textContent   = newItems.length;
+    const rTop   = $('risingTop');   if (rTop && topItem) rTop.innerHTML = pct(topItem.growth_pct) + '<span class="unit"></span>';
+    const rTopN  = $('risingTopName'); if (rTopN && topItem) rTopN.textContent = topItem.name || '—';
+    const rDn    = $('risingDown');  if (rDn)    rDn.textContent    = dnItems.length;
+
+    tbl.innerHTML = rising.map((r, i) => {
+      const rank = String(i + 1).padStart(2, '0');
+      const isTop = i < 2;
+      const peak = r.peak_hotness != null ? fmt(r.peak_hotness) : (r.curr_hotness != null ? fmt(Math.round(r.curr_hotness * 1.4)) : '—');
+      return `<tr>
+        <td class="rank-cell${isTop ? ' top' : ''}">${rank}</td>
+        <td><div class="cell-thumb">
+          <span class="thumb ${thumbCls(i)}">图</span>
+          <div><div class="cell-name">${esc(r.name)}</div><div class="cell-tag">${esc(r.type || '')}</div></div>
+        </div></td>
+        <td class="num">${pct(r.growth_pct)}</td>
+        <td class="num">${fmt(r.curr_hotness)}</td>
+        <td class="num">${peak}</td>
+        <td>${badge(r.status, r.growth_pct)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  /* -------------------- AI 策略 -------------------- */
+  function renderStrategy() {
+    const s = getData().strategy || {};
+
+    const dateEl = $('stratDate');
+    if (dateEl) dateEl.textContent = getData().generated_at ? `基于 ${getData().generated_at} 数据生成` : '基于最新数据生成';
+
+    const textEl = $('stratText');
+    if (textEl) {
+      if (s.trend_reading) {
+        textEl.innerHTML = esc(s.trend_reading);
+      } else if (s.summary) {
+        textEl.innerHTML = esc(s.summary);
+      }
+    }
+
+    // Metrics
+    const pushList = s.push_list || [];
+    const riskList = s.restock_warnings || [];
+    const el1 = $('stratPushCount'); if (el1) el1.textContent = pushList.length ? pushList.length + ' 款' : '—';
+    const el2 = $('stratNoteCount'); if (el2) el2.textContent = s.note_count != null ? s.note_count + ' 篇' : '—';
+    const el3 = $('stratDownCount'); if (el3) el3.textContent = riskList.length ? riskList.length + ' 款' : '—';
+
+    // Content suggestions list
+    const sugEl = $('stratSugList');
+    if (sugEl) {
+      const items = s.content_suggestions || s.copywriting || [];
+      if (items.length) {
+        const mods = ['', 'p', 'g'];
+        sugEl.innerHTML = items.slice(0, 4).map((item, i) => {
+          const title = item.title || item.style || item.name || '—';
+          const desc  = item.desc  || item.text  || item.reason || '';
+          return `<div class="sug ${mods[i % 3]}">
+            <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <div><div class="sug-t">${esc(title)}</div><div class="sug-d">${esc(desc)}</div></div>
+          </div>`;
+        }).join('');
+      } else if (pushList.length) {
+        sugEl.innerHTML = pushList.slice(0, 4).map((p, i) => {
+          const mods = ['', 'p', 'g'];
+          return `<div class="sug ${mods[i % 3]}">
+            <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div><div class="sug-t">${esc(p.name)}</div><div class="sug-d">${esc(p.reason || '')}</div></div>
+          </div>`;
+        }).join('');
+      } else {
+        sugEl.innerHTML = '<div class="sug"><div class="sug-d" style="color:var(--ink-3)">暂无内容建议（需 AI 管线生成）</div></div>';
+      }
+    }
+
+    // Pricing / scheduling list
+    const prEl = $('stratPricingList');
+    if (prEl) {
+      const warns = s.restock_warnings || [];
+      if (warns.length) {
+        const mods = ['', 'p', 'g'];
+        prEl.innerHTML = warns.slice(0, 3).map((w, i) => `
+          <div class="sug ${mods[i % 3]}">
+            <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <div><div class="sug-t">${esc(w)}</div></div>
+          </div>`).join('');
+      } else if (s.risk) {
+        prEl.innerHTML = `<div class="sug">
+          <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <div><div class="sug-t">风险提示</div><div class="sug-d">${esc(s.risk)}</div></div>
+        </div>`;
+      } else {
+        prEl.innerHTML = '<div class="sug"><div class="sug-d" style="color:var(--ink-3)">暂无定价建议数据</div></div>';
+      }
+    }
+  }
+
+  /* -------------------- 款式库 -------------------- */
+  function renderCatalog() {
+    const cat = getData().catalog || {};
+    const items = cat.items || cat.recommend || [];
+    const grid = $('catalogGrid');
+    if (!grid) return;
+
+    const addCard = `<div class="card card-pad" style="border-radius:var(--r-lg);border-style:dashed;display:grid;place-items:center;min-height:180px;color:var(--ink-3)"><div style="text-align:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div style="margin-top:8px;font-size:13px">添加新款式</div></div></div>`;
+
+    if (!items.length) {
+      grid.innerHTML = addCard;
+      return;
+    }
+
+    const bgPalette = [
+      {bg:'#E7C9CC',border:'#D8B6BA',color:'#8E5560'},
+      {bg:'#DAD3E0',border:'#C8C0D4',color:'#6F6580'},
+      {bg:'#CFE0D6',border:'#BFD4C7',color:'#4B7A5F'},
+      {bg:'#E9DCC2',border:'#DBCBAA',color:'#8A6F38'},
+      {bg:'#E2D5D0',border:'var(--line-2)',color:'#8A746C'},
+      {bg:'#D6DAD9',border:'var(--line-2)',color:'#5F6C69'},
+      {bg:'#EBD6C8',border:'var(--line-2)',color:'#8A6A56'},
+    ];
+
+    grid.innerHTML = items.map((item, i) => {
+      const p = bgPalette[i % bgPalette.length];
+      const tags = (item.tags || []).slice(0, 3);
+      const shortName = (item.name || '—').slice(0, 5);
+      return `<div class="card card-pad" style="border-radius:var(--r-lg)">
+        <div class="push-thumb" style="background:${p.bg};border-color:${p.border};color:${p.color}">${esc(shortName)}</div>
+        <div class="push-name">${esc(item.name || '—')}</div>
+        <div class="tags" style="margin-top:9px">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      </div>`;
+    }).join('') + addCard;
+  }
+
+  /* -------------------- 用户需求 -------------------- */
+  function renderDemand() {
+    const d = getData().demand || {};
+    const signals = d.signals || {};
+    const barsEl = $('demandBars');
+
+    if (barsEl) {
+      const entries = Object.entries(signals).sort((a, b) => b[1] - a[1]);
+      const max = Math.max(1, ...entries.map(e => e[1]));
+      const mods = ['', 'p', '', 'g', 'p', ''];
+      if (entries.length) {
+        barsEl.innerHTML = entries.slice(0, 6).map(([k, v], i) => `
+          <div class="bar-row">
+            <div class="bar-label">${esc(k)}</div>
+            <div class="bar-track"><div class="bar-fill ${mods[i % mods.length]}" style="width:${(v / max * 100).toFixed(1)}%"></div></div>
+            <div class="bar-val">${fmt(v)}</div>
+          </div>`).join('');
+      } else {
+        barsEl.innerHTML = '<div style="padding:16px;color:var(--ink-3);font-size:13px">暂无需求信号数据</div>';
+      }
+    }
+
+    const voicesEl = $('demandVoices');
+    if (voicesEl) {
+      const voices = d.voices || [];
+      const mods = ['', 'p', 'g'];
+      if (voices.length) {
+        voicesEl.innerHTML = voices.slice(0, 5).map((v, i) => `
+          <div class="sug ${mods[i % 3]}">
+            <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 19a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div>
+              <div class="sug-d" style="color:var(--ink)">"${esc(v.content)}"</div>
+              <div class="cell-tag" style="margin-top:6px">${(v.tags || []).join(' · ')} · ${fmt(v.like_count)} 赞</div>
+            </div>
+          </div>`).join('');
+      } else {
+        voicesEl.innerHTML = '<div style="padding:16px;color:var(--ink-3);font-size:13px">暂无高赞评论数据</div>';
+      }
+    }
+  }
+
+  /* -------------------- 笔记明细 -------------------- */
+  function renderNotes() {
+    const notes = getData().notes || [];
+    const tbl = $('notesTbl');
+    if (!tbl) return;
+
+    if (!notes.length) {
+      tbl.innerHTML = '<tr><td colspan="8" class="num" style="padding:24px;color:var(--ink-3)">暂无笔记数据</td></tr>';
+      return;
+    }
+
+    tbl.innerHTML = notes.map((n, i) => {
+      const rank = String(i + 1).padStart(2, '0');
+      const isTop = i < 2;
+      const type = n.type || (n.note_type === 'video' ? '视频' : '图文');
+      const g = n.growth_pct;
+      const b = (g != null && g >= 0) ? `<span class="badge up">${svgUp}${pct(g)}</span>`
+               : (g != null) ? `<span class="badge down">${svgDn}${pct(g)}</span>`
+               : `<span class="badge new">${svgNw}NEW</span>`;
+      const title = n.note_url
+        ? `<a href="${esc(n.note_url)}" target="_blank" rel="noreferrer" style="color:inherit;text-decoration:none">${esc(n.title)}</a>`
+        : esc(n.title);
+      return `<tr>
+        <td class="rank-cell${isTop ? ' top' : ''}">${rank}</td>
+        <td><div class="cell-name">${title}</div><div class="cell-tag">${esc(n.published_at || n.date || '')}</div></td>
+        <td><span class="tag">${esc(type)}</span></td>
+        <td class="num">${fmt(n.exposure || n.hotness)}</td>
+        <td class="num">${fmt(n.likes)}</td>
+        <td class="num">${fmt(n.collects || n.favorites)}</td>
+        <td class="num">${n.fans_delta != null ? (n.fans_delta > 0 ? '+' : '') + fmt(n.fans_delta) : '—'}</td>
+        <td>${b}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  /* -------------------- 运营日报 -------------------- */
+  $('genReportBtn')?.addEventListener('click', async () => {
+    const btn = $('genReportBtn');
+    btn.textContent = '生成中…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(REPORT_API);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const report = await res.json();
+      renderReport(report);
+    } catch (e) {
+      $('reportAiText').textContent = '日报服务未启动，请先运行本地服务（merchant_service.daily_report）。';
+      $('reportBody').innerHTML = '';
+    } finally {
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 4 5-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>生成今日日报';
+      btn.disabled = false;
+    }
+  });
+
+  function renderReport(report) {
+    const D = getData();
+    const dateEl = $('reportAiDate');
+    if (dateEl) dateEl.textContent = report.date || D.generated_at || '—';
+
+    const textEl = $('reportAiText');
+    if (textEl) textEl.innerHTML = esc(report.ai_summary || '已生成，见下方详情。');
+
+    const metricsEl = $('reportAiMetrics');
+    if (metricsEl) {
+      metricsEl.style.display = '';
+      const kpi = report.kpi || {};
+      const m1 = $('reportMetric1'); if (m1) m1.textContent = kpi.exposure_delta || '—';
+      const m2 = $('reportMetric2'); if (m2) m2.textContent = fmt(kpi.exposure) || '—';
+      const m3 = $('reportMetric3'); if (m3) m3.textContent = (report.recommend || []).length + ' 项';
+      const m4 = $('reportMetric4'); if (m4) m4.textContent = (report.cold_warning || []).length + ' 款';
+    }
+
+    const body = $('reportBody');
+    if (!body) return;
+
+    const topRising = report.top_rising || [];
+    const maxH = Math.max(1, ...topRising.map(r => r.curr_hotness || 0));
+    const mods = ['', 'p', 'g'];
+
+    body.innerHTML = `
+      <div class="grid-2">
+        <div class="card card-pad">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 3c1 4-2 5-2 8a3 3 0 0 0 6 0c0-1 0-2-1-3 2 1 3 3.5 3 6a7 7 0 0 1-14 0c0-4 3-6 4-9 .8 1 1.4 2 1.6 3 .9-1.4 1.4-3 1.4-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>热门 TOP 榜</div>
+          <div class="rank-list">
+            ${topRising.slice(0, 5).map((r, i) => `
+              <div class="rank-li">
+                <div class="rank-no">${i + 1}</div>
+                <div><div class="rank-name">${esc(r.name)}</div><div class="rank-meta">热度 ${fmt(r.curr_hotness)}</div></div>
+                ${badge(r.status, r.growth_pct)}
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="card card-pad">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 11l2 2 4-4M5 4h14v16l-7-3-7 3V4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>今日运营建议</div>
+          <div class="sug-list">
+            ${(report.recommend || []).slice(0, 4).map((r, i) => `
+              <div class="sug ${mods[i % 3]}">
+                <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                <div><div class="sug-t">${esc(r.name)}</div><div class="sug-d">${esc(r.reason || '')}</div></div>
+              </div>`).join('')}
+            ${(report.gaps || []).slice(0, 2).map(g => `
+              <div class="sug">
+                <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+                <div><div class="sug-t">${esc(g.name)} 上新缺口</div><div class="sug-d">${esc(g.suggest || '')}</div></div>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+      ${(report.cold_warning || []).length ? `
+        <div class="card card-pad" style="margin-top:16px;border-color:rgba(255,92,122,.18)">
+          <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>冷门预警</div>
+          <div class="risk-grid">
+            ${(report.cold_warning || []).map(c => `
+              <div class="risk-card">
+                <div class="risk-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div style="flex:1">
+                  <div class="risk-name">${esc(c.name)} ${badge(c.status, c.growth_pct)}</div>
+                  <div class="risk-desc">当前热度 ${fmt(c.curr_hotness)}，建议降低投放权重。</div>
+                </div>
+              </div>`).join('')}
+          </div>
+        </div>` : ''}`;
+  }
+
+  /* -------------------- 智能调整 -------------------- */
+  function renderAdjust() {
+    const D = getData();
+    const rec  = (D.catalog && D.catalog.recommend)    || [];
+    const slow = (D.catalog && D.catalog.slow_movers)  || [];
+
+    const recPill = $('adjustRecPill');
+    if (recPill) recPill.textContent = `上升趋势 · ${rec.length} 款`;
+
+    const slowPill = $('adjustSlowPill');
+    if (slowPill) slowPill.textContent = `下降趋势 · ${slow.length} 款`;
+
+    const recGrid = $('adjustRecGrid');
+    if (recGrid) {
+      if (rec.length) {
+        recGrid.innerHTML = rec.map((r, i) => `
+          <div class="push-card">
+            <span class="corner"><span class="badge up">${svgUp}主推</span></span>
+            <div class="push-thumb" style="background:#E7C9CC">${esc((r.name || '—').slice(0, 5))}</div>
+            <div class="push-name">${esc(r.name)}</div>
+            <div class="push-stats">
+              <div class="s"><div class="n" style="color:var(--up)">${((r.conversion || 0) * 100).toFixed(1)}%</div><div class="l">转化率</div></div>
+              <div class="s"><div class="n">${fmt(r.try_on)}</div><div class="l">试戴次数</div></div>
+            </div>
+          </div>`).join('');
+      } else {
+        recGrid.innerHTML = '<div style="padding:24px;color:var(--ink-3);font-size:13px">暂无推荐款式数据</div>';
+      }
+    }
+
+    const slowGrid = $('adjustSlowGrid');
+    if (slowGrid) {
+      if (slow.length) {
+        slowGrid.innerHTML = slow.map(s => `
+          <div class="risk-card">
+            <div class="risk-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1">
+              <div class="risk-name">${esc(s.name)} <span class="badge down">${svgDn}滞销</span></div>
+              <div class="risk-desc">${esc(s.reason || '转化率偏低，建议减少排期并清理库存。')}</div>
+              <div class="risk-foot">
+                <div class="s">转化 <b>${((s.conversion || 0) * 100).toFixed(1)}%</b></div>
+                <div class="s">试戴 <b>${fmt(s.try_on)}次</b></div>
+              </div>
+            </div>
+          </div>`).join('');
+      } else {
+        slowGrid.innerHTML = '<div style="padding:24px;color:var(--ink-3);font-size:13px">暂无冷门款式预警</div>';
+      }
+    }
+
+    $('applyAdjustBtn')?.addEventListener('click', () => {
+      const btn = $('applyAdjustBtn');
+      if (window.MERCHANT_API && rec.length) {
+        const ids = rec.map(r => r._styleId).filter(Boolean);
+        window.MERCHANT_API.setRecommendedStyles(ids);
+      }
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>已应用';
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    });
+  }
+
+  /* -------------------- 试戴数据 (USER_HOOKS) -------------------- */
+  const tryonLog = [];
+
+  function refreshTryon() {
+    const selects = tryonLog.filter(e => e.type === 'styleSelected');
+    const gens    = tryonLog.filter(e => e.type === 'generationCompleted');
+
+    const totEl = $('tryonTotal');
+    const avgEl = $('tryonAvg');
+    if (totEl) totEl.textContent = selects.length || '—';
+    if (avgEl) avgEl.textContent = gens.length ? gens.length.toFixed(0) : '—';
+
+    const counts = {};
+    gens.forEach(e => { counts[e.name] = (counts[e.name] || 0) + 1; });
+
+    const contentEl = $('tryonContent');
+    if (!contentEl) return;
+
+    if (!tryonLog.length) {
+      contentEl.innerHTML = '<div style="padding:32px;text-align:center;color:var(--ink-3);font-size:13px">等待用户侧数据…（用户选择款式或完成生成后自动更新）</div>';
+      return;
+    }
+
+    const maxCount = Math.max(1, ...Object.values(counts));
+    const mods = ['', 'p', 'g', 'p', ''];
+    contentEl.innerHTML = `
+      <div class="barchart">
+        ${Object.entries(counts).sort((a,b) => b[1]-a[1]).map(([k, v], i) => `
+          <div class="bar-row">
+            <div class="bar-label"><span class="bar-rank">${i+1}</span>${esc(k)}</div>
+            <div class="bar-track"><div class="bar-fill ${mods[i % mods.length]}" style="width:${(v/maxCount*100).toFixed(0)}%"></div></div>
+            <div class="bar-val">${v}</div>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  function initUserHooks() {
+    if (!window.USER_HOOKS) return;
+    window.USER_HOOKS.on('styleSelected', d => {
+      tryonLog.push({ type: 'styleSelected', name: d.name, ts: Date.now() });
+      refreshTryon();
+    });
+    window.USER_HOOKS.on('generationStarted', d => {
+      tryonLog.push({ type: 'generationStarted', name: d.styleName, ts: Date.now() });
+      refreshTryon();
+    });
+    window.USER_HOOKS.on('generationCompleted', d => {
+      tryonLog.push({ type: 'generationCompleted', name: d.styleName, ts: Date.now() });
+      refreshTryon();
+    });
+  }
+
+  /* -------------------- Report page desc -------------------- */
+  function initReportDesc() {
+    const D = getData();
+    const el = $('reportPageDesc');
+    if (el && D.generated_at) {
+      el.textContent = D.generated_at.slice(0, 10) + ' · 每日自动生成';
+    }
+  }
+
+  /* -------------------- Bootstrap -------------------- */
+  function init() {
+    updateCookieStatus();
+    renderKPI();
+    renderRising();
+    renderStrategy();
+    renderCatalog();
+    renderDemand();
+    renderNotes();
+    renderAdjust();
+    initReportDesc();
+    initUserHooks();
+    refreshTryon();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

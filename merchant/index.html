@@ -1208,10 +1208,18 @@
     const cachedDay = localStorage.getItem('autoReportDate');
 
     if (cachedStr && cachedDay === today) {
-      try { renderReport(JSON.parse(cachedStr)); } catch (_) {}
-      const el = $('reportPageDesc');
-      if (el) el.textContent = today + ' · 已自动生成（缓存）';
-      return;
+      try {
+        const cached = JSON.parse(cachedStr);
+        const sum = cached.ai_summary || '';
+        // Only use cache if it has real AI content (not an error or placeholder)
+        if (!cached.error && sum && !sum.startsWith('（')) {
+          renderReport(cached);
+          const el = $('reportPageDesc');
+          if (el) el.textContent = today + ' · 已自动生成（缓存）';
+          return;
+        }
+      } catch (_) {}
+      // Bad/empty cache — fall through and re-fetch
     }
 
     // Show loading state while GLM generates (can take 20-30s)

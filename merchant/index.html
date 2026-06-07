@@ -506,6 +506,8 @@
     const f = TRENDING_IMGS[i % TRENDING_IMGS.length];
     return `<img src="/trending/${encodeURIComponent(f)}" width="${size}" height="${size}" style="object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display='none'">`;
   }
+  // catalog items use Chinese field '名称'; rising items use 'name'
+  const rname = (r) => r['名称'] || r.name || '—';
 
   /* ---------- badge SVGs ---------- */
   const svgUp = `<svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -758,7 +760,7 @@
       if (items.length) {
         const mods = ['', 'p', 'g'];
         sugEl.innerHTML = items.slice(0, 4).map((item, i) => {
-          const title = item.title || item.style || item.name || '—';
+          const title = item.title || item.style || item['名称'] || item.name || '—';
           const desc  = item.desc  || item.text  || item.reason || '';
           return `<div class="sug ${mods[i % 3]}">
             <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
@@ -827,10 +829,10 @@
     grid.innerHTML = items.map((item, i) => {
       const p = bgPalette[i % bgPalette.length];
       const tags = (item.tags || []).slice(0, 3);
-      const shortName = (item.name || '—').slice(0, 5);
+      const shortName = (item['名称'] || item.name || '—').slice(0, 5);
       return `<div class="card card-pad" style="border-radius:var(--r-lg)">
         <div class="push-thumb" style="background:${p.bg};border-color:${p.border};color:${p.color}">${esc(shortName)}</div>
-        <div class="push-name">${esc(item.name || '—')}</div>
+        <div class="push-name">${esc(item['名称'] || item.name || '—')}</div>
         <div class="tags" style="margin-top:9px">${tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       </div>`;
     }).join('') + addCard;
@@ -975,7 +977,7 @@
             ${(report.recommend || []).slice(0, 4).map((r, i) => `
               <div class="sug ${mods[i % 3]}">
                 <div class="sug-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9l-3.6 3 1 4.8L12 14.5 8.1 16.8l1-4.8L5.5 9l4.7-1.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-                <div><div class="sug-t">${esc(r.name)}</div><div class="sug-d">${esc(r.reason || '')}</div></div>
+                <div><div class="sug-t">${esc(rname(r))}</div><div class="sug-d">${esc(r.reason || '')}</div></div>
               </div>`).join('')}
             ${(report.gaps || []).slice(0, 2).map(g => `
               <div class="sug">
@@ -1020,10 +1022,10 @@
           <div class="push-card">
             <span class="corner"><span class="badge up">${svgUp}主推</span></span>
             <div class="push-thumb" style="padding:0;overflow:hidden">${trendImg(i, 80)}</div>
-            <div class="push-name">${esc(r.name)}</div>
+            <div class="push-name">${esc(rname(r))}</div>
             <div class="push-stats">
-              <div class="s"><div class="n" style="color:var(--up)">${((r.conversion || 0) * 100).toFixed(1)}%</div><div class="l">转化率</div></div>
-              <div class="s"><div class="n">${fmt(r.try_on)}</div><div class="l">试戴次数</div></div>
+              <div class="s"><div class="n" style="color:var(--up)">${((r['转化率'] || r.conversion || 0) * 100).toFixed(1)}%</div><div class="l">转化率</div></div>
+              <div class="s"><div class="n">${fmt(r['试戴数'] || r.try_on)}</div><div class="l">试戴次数</div></div>
             </div>
           </div>`).join('');
       } else {

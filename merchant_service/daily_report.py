@@ -102,10 +102,29 @@ def build_report() -> dict:
 
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     kpi     = data.get("kpi", {})
+    notes   = data.get("notes", [])
     rising  = data.get("rising", [])
     catalog = data.get("catalog", {})
     demand  = data.get("demand", {})
     gen_at  = data.get("generated_at", "未知")
+
+    # Compute KPI from raw notes if the kpi section is empty
+    if not kpi and notes:
+        hotness_vals = [n["hotness"] for n in notes if n.get("hotness")]
+        comment_total = 0
+        for n in notes:
+            raw = str(n.get("comment_count", "0")).replace(",", "").strip()
+            try:
+                comment_total += int(float(raw.replace("万", "")) * 10000) if "万" in raw else int(raw)
+            except ValueError:
+                pass
+        kpi = {
+            "total_notes":    len(notes),
+            "avg_hotness":    round(sum(hotness_vals) / len(hotness_vals)) if hotness_vals else 0,
+            "total_comments": comment_total,
+            "demand_signals": sum(demand.get("signals", {}).values()),
+            "rising_count":   len(rising),
+        }
 
     # ---- 拼 prompt ----
     prompt = f"""你是美甲电商运营助手。根据以下数据生成今日运营日报，用中文，200字以内，格式紧凑。

@@ -116,23 +116,21 @@
         <!-- DATA CENTER HERO -->
         <div class="card hero">
           <div class="hero-head">
-            <h2>数据中心</h2>
-            <span class="hero-period"><span class="q">?</span>统计周期：2026.05.30 - 2026.06.05（每天 09 点更新）</span>
+            <h2>趋势数据快照</h2>
+            <span class="hero-period"><span class="q">?</span>数据来源：小红书爬虫 · 更新于 <span id="topbarDate">—</span></span>
             <div class="topbar-spacer"></div>
-            <span class="card-link">查看更多 ›</span>
           </div>
 
           <div class="hero-grid">
-            <!-- latest work -->
+            <!-- top note -->
             <div class="work">
-              <div class="work-label">最新作品</div>
-              <div class="work-thumb">
-                <div class="work-meta-top"><span>5 图</span><span>00:00</span></div>
+              <div class="work-label">热度冠军笔记</div>
+              <div class="work-thumb" id="heroTopNote">
                 <div>
                   <div class="work-title" id="latestWorkTitle">—</div>
                   <div class="work-stats">
-                    <div class="r"><span class="k">曝光量</span><span class="v" id="latestExposure">—</span></div>
-                    <div class="r"><span class="k">点赞量</span><span class="v" id="latestLikes">—</span></div>
+                    <div class="r"><span class="k">热度</span><span class="v" id="latestExposure">—</span></div>
+                    <div class="r"><span class="k">点赞</span><span class="v" id="latestLikes">—</span></div>
                   </div>
                 </div>
               </div>
@@ -141,49 +139,45 @@
             <!-- chart -->
             <div class="chart-side">
               <div class="tabs">
-                <div class="tab on">数据总览</div>
-                <div class="tab">近期作品</div>
-                <div class="tab">到店转化</div>
-                <div class="topbar-spacer"></div>
-                <div class="pill-dd" style="align-self:center;margin-bottom:8px">时间 <b>近 7 日</b><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="tab on">关键词热度走势</div>
               </div>
-              <div class="chart-legend"><span class="d"></span>曝光量</div>
-              <svg class="linechart" viewBox="0 0 700 150" preserveAspectRatio="none">
+              <div class="chart-legend"><span class="d"></span>美甲·近14天热度</div>
+              <svg class="linechart" id="heroSparkline" viewBox="0 0 700 150" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#4B8BF4" stop-opacity="0.22"/>
                     <stop offset="100%" stop-color="#4B8BF4" stop-opacity="0"/>
                   </linearGradient>
                 </defs>
-                <path d="M0,34 C40,40 70,52 100,58 C140,68 170,88 200,92 C240,97 270,98 300,97 C340,96 370,99 400,97 C440,95 470,106 500,104 C540,101 570,97 600,99 C640,101 670,96 700,95 L700,150 L0,150 Z" fill="url(#areaFill)"/>
-                <path d="M0,34 C40,40 70,52 100,58 C140,68 170,88 200,92 C240,97 270,98 300,97 C340,96 370,99 400,97 C440,95 470,106 500,104 C540,101 570,97 600,99 C640,101 670,96 700,95" fill="none" stroke="#4B8BF4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+                <path id="heroSparkFill" fill="url(#areaFill)"/>
+                <path id="heroSparkLine" fill="none" stroke="#4B8BF4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
               </svg>
-              <div class="chart-x"><span>05-29</span><span>05-30</span><span>05-31</span><span>06-01</span><span>06-02</span><span>06-03</span><span>06-04</span></div>
+              <div class="chart-x" id="heroSparkX"></div>
 
-              <!-- stat grid -->
+              <!-- stat grid — real KPI fields -->
               <div class="stat-grid" id="kpiStatGrid">
                 <div class="stat">
-                  <div class="stat-label">曝光量</div>
+                  <div class="stat-label">采集笔记</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-exposure">—</span><span class="stat-delta" id="kpi-exposure-delta"></span></div>
                 </div>
                 <div class="stat b">
-                  <div class="stat-label">主页访问</div>
+                  <div class="stat-label">平均热度</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-visits">—</span><span class="stat-delta" id="kpi-visits-delta"></span></div>
                 </div>
                 <div class="stat">
-                  <div class="stat-label">笔记点赞</div>
+                  <div class="stat-label">上升趋势</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-likes">—</span><span class="stat-delta" id="kpi-likes-delta"></span></div>
                 </div>
                 <div class="stat b">
-                  <div class="stat-label">内容分享</div>
+                  <div class="stat-label">需求信号</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-shares">—</span><span class="stat-delta" id="kpi-shares-delta"></span></div>
                 </div>
                 <div class="stat">
-                  <div class="stat-label">笔记评论</div>
+                  <div class="stat-label">评论样本</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-comments">—</span><span class="stat-delta" id="kpi-comments-delta"></span></div>
                 </div>
                 <div class="stat b">
-                  <div class="stat-label">净增粉丝</div>
+                  <div class="stat-label">主推款数</div>
                   <div class="stat-row"><span class="stat-num" id="kpi-fans">—</span><span class="stat-delta" id="kpi-fans-delta"></span></div>
                 </div>
               </div>
@@ -197,26 +191,15 @@
             <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>热门款式曝光占比</div>
             <div class="card-sub">TOP 6 款式近 7 日曝光分布</div>
             <div class="barchart" id="overviewStyleBars">
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">1</span>猫眼镜面晕染</div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><div class="bar-val">23.4万</div></div>
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">2</span>奶油法式微钻</div><div class="bar-track"><div class="bar-fill p" style="width:78%"></div></div><div class="bar-val">19.8万</div></div>
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">3</span>玻璃糖果渐变</div><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><div class="bar-val">16.2万</div></div>
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">4</span>清水蜜桃绒</div><div class="bar-track"><div class="bar-fill p" style="width:51%"></div></div><div class="bar-val">12.9万</div></div>
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">5</span>复古晕染油画</div><div class="bar-track"><div class="bar-fill g" style="width:38%"></div></div><div class="bar-val">9.6万</div></div>
-              <div class="bar-row"><div class="bar-label"><span class="bar-rank">6</span>裸色芭比甲</div><div class="bar-track"><div class="bar-fill" style="width:27%"></div></div><div class="bar-val">6.8万</div></div>
+              <div style="padding:16px;color:var(--ink-3);font-size:13px">加载中…</div>
             </div>
           </div>
 
           <div class="card card-pad">
-            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8l9-5 9 5-9 5-9-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>渠道来源</div>
-            <div class="card-sub">流量入口分布</div>
-            <div class="barchart">
-              <div class="bar-row"><div class="bar-label">推荐流</div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><div class="bar-val">62%</div></div>
-              <div class="bar-row"><div class="bar-label">搜索</div><div class="bar-track"><div class="bar-fill p" style="width:54%"></div></div><div class="bar-val">21%</div></div>
-              <div class="bar-row"><div class="bar-label">同城</div><div class="bar-track"><div class="bar-fill g" style="width:34%"></div></div><div class="bar-val">11%</div></div>
-              <div class="bar-row"><div class="bar-label">关注</div><div class="bar-track"><div class="bar-fill p" style="width:18%"></div></div><div class="bar-val">6%</div></div>
-            </div>
-            <div class="tags" style="margin-top:18px">
-              <span class="tag"># 夏日美甲</span><span class="tag"># 猫眼甲</span><span class="tag"># 法式</span><span class="tag"># 显白</span>
+            <div class="card-title"><span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>用户需求信号</div>
+            <div class="card-sub">评论高频需求词 TOP 6</div>
+            <div class="barchart" id="overviewDemandBars">
+              <div style="padding:16px;color:var(--ink-3);font-size:13px">加载中…</div>
             </div>
           </div>
         </div>
@@ -227,14 +210,10 @@
           <div class="tbl-wrap">
             <table class="tbl">
               <thead>
-                <tr><th>#</th><th>款式</th><th>曝光</th><th>互动率</th><th>试戴</th><th>趋势</th></tr>
+                <tr><th>#</th><th>笔记</th><th>热度</th><th>点赞</th><th>评论</th><th>趋势</th></tr>
               </thead>
               <tbody id="overviewStyleTbl">
-                <tr><td class="rank-cell top">01</td><td><div class="cell-thumb"><span class="thumb c1">图</span><div><div class="cell-name">猫眼镜面晕染</div><div class="cell-tag">晕染 · 高级感</div></div></div></td><td class="num">23.4万</td><td class="num">8.6%</td><td class="num">4,210</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+32%</span></td></tr>
-                <tr><td class="rank-cell top">02</td><td><div class="cell-thumb"><span class="thumb c2">图</span><div><div class="cell-name">奶油法式微钻</div><div class="cell-tag">法式 · 通勤</div></div></div></td><td class="num">19.8万</td><td class="num">7.2%</td><td class="num">3,640</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+21%</span></td></tr>
-                <tr><td class="rank-cell">03</td><td><div class="cell-thumb"><span class="thumb c3">图</span><div><div class="cell-name">玻璃糖果渐变</div><div class="cell-tag">渐变 · 少女</div></div></div></td><td class="num">16.2万</td><td class="num">6.9%</td><td class="num">2,980</td><td><span class="badge new"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4l1.8 4.6L18.5 10l-3.6 3 1 4.8L12 15.4 8.1 17.8l1-4.8L5.5 10l4.7-1.4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>NEW</span></td></tr>
-                <tr><td class="rank-cell">04</td><td><div class="cell-thumb"><span class="thumb c4">图</span><div><div class="cell-name">清水蜜桃绒</div><div class="cell-tag">绒感 · 秋冬</div></div></div></td><td class="num">12.9万</td><td class="num">5.4%</td><td class="num">2,110</td><td><span class="badge down"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v13M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>-8%</span></td></tr>
-                <tr><td class="rank-cell">05</td><td><div class="cell-thumb"><span class="thumb c1">图</span><div><div class="cell-name">复古晕染油画</div><div class="cell-tag">油画 · 复古</div></div></div></td><td class="num">9.6万</td><td class="num">4.8%</td><td class="num">1,560</td><td><span class="badge up"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+12%</span></td></tr>
+                <tr><td colspan="6" class="num" style="padding:24px;color:var(--ink-3)">加载中…</td></tr>
               </tbody>
             </table>
           </div>
@@ -501,8 +480,32 @@
   const pct = (n) => (n == null ? '—' : (n > 0 ? '+' : '') + n + '%');
   const getData = () => window.MERCHANT_DATA || {};
 
-  const THUMB_COLORS = ['c1','c2','c3','c4'];
-  const thumbCls = (i) => THUMB_COLORS[i % THUMB_COLORS.length];
+  const TRENDING_IMGS = [
+    "01_67966_氛围感很强的美甲分享～已做1个月🪞💅.jpg",
+    "02_48219_我做了金冬天美甲就这样……🪺.jpg",
+    "03_44344_能转印的猫眼总算是被我玩到了！.jpg",
+    "04_40355_吹爆家楼下美甲店.jpg",
+    "05_29612_粉色系猫眼法式美甲🍧敲甜嘟.jpg",
+    "06_27704_今天是🎨(中指教程).jpg",
+    "07_25681_Breath 🫧.jpg",
+    "08_24448_这个颜色真的好温柔～法式美甲💅.jpg",
+    "09_24095_美甲｜简单又闪亮💎.jpg",
+    "10_20536_淡淡的.jpg",
+    "11_19446_把红苹果做成美甲🍎.jpg",
+    "12_19101_醋酸甲是什么仙品 ！美腻了～.jpg",
+    "13_18976_我为猫眼举大旗.jpg",
+    "14_16645_邪修克罗心美甲✨好好看呀.jpg",
+    "15_13928_裸茶燕麦白法式✨.jpg",
+    "16_12031_敲美的玻璃珠😍.jpg",
+    "17_9584_Nail share 💅.jpg",
+    "18_8428_猫眼碎钻法式 太嗲啦～🫧.jpg",
+    "19_7629_轻法式就是显白啊！✨.jpg",
+  ];
+  function trendImg(i, sz) {
+    const size = sz || 40;
+    const f = TRENDING_IMGS[i % TRENDING_IMGS.length];
+    return `<img src="/trending/${encodeURIComponent(f)}" width="${size}" height="${size}" style="object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display='none'">`;
+  }
 
   /* ---------- badge SVGs ---------- */
   const svgUp = `<svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -565,39 +568,122 @@
 
     // topbar date
     const dateEl = $('topbarDate');
-    if (dateEl && D.generated_at) dateEl.textContent = D.generated_at;
+    if (dateEl) dateEl.textContent = D.generated_at || '—';
 
-    // stat grid – map expected kpi keys; fall back to static if missing
-    function setKpi(numId, deltaId, val, delta, isUp) {
-      const numEl = $(numId);
-      const dltEl = $(deltaId);
-      if (numEl && val != null) numEl.textContent = fmt(val);
-      if (dltEl && delta != null) {
-        const cls = isUp ? 'u' : 'dn';
-        dltEl.innerHTML = `较前7日 <b class="${cls}">${delta}</b>`;
+    // stat grid — real pipeline fields
+    function setNum(id, val) {
+      const el = $(id);
+      if (el && val != null) el.textContent = fmt(val);
+    }
+    setNum('kpi-exposure', k.total_notes);
+    setNum('kpi-visits',   k.avg_hotness);
+    setNum('kpi-likes',    k.rising_count);
+    setNum('kpi-shares',   k.demand_signals);
+    setNum('kpi-comments', k.total_comments);
+    setNum('kpi-fans',     (D.catalog && D.catalog.recommend) ? D.catalog.recommend.length : null);
+
+    // Sparkline from history — use "美甲" series (always populated)
+    const hist = D.history;
+    if (hist && hist.series && hist.series.length) {
+      const stableSeries = hist.series.find(s => s.name === '美甲') || hist.series[0];
+      const pts = stableSeries.data;
+      const dates = hist.dates || [];
+      const min = Math.min(...pts), max = Math.max(...pts);
+      const range = max - min || 1;
+      const W = 700, H = 150, pad = 10;
+      const xs = pts.map((_, i) => (i / (pts.length - 1)) * W);
+      const ys = pts.map(v => pad + (1 - (v - min) / range) * (H - pad * 2));
+      const coords = xs.map((x, i) => `${x.toFixed(1)},${ys[i].toFixed(1)}`).join(' L');
+      const linePath  = `M${coords}`;
+      const fillPath  = `M${coords} L${W},${H} L0,${H} Z`;
+      const lineEl = $('heroSparkLine');
+      const fillEl = $('heroSparkFill');
+      if (lineEl) lineEl.setAttribute('d', linePath);
+      if (fillEl) fillEl.setAttribute('d', fillPath);
+      const xEl = $('heroSparkX');
+      if (xEl && dates.length >= 2) {
+        xEl.innerHTML = [dates[0], dates[Math.floor(dates.length/2)], dates[dates.length-1]]
+          .map(d => `<span>${d}</span>`).join('');
       }
     }
 
-    // Try reading from MERCHANT_DATA.kpi; keys may vary per pipeline version
-    if (k.exposure != null || k.visits != null || k.likes != null) {
-      setKpi('kpi-exposure', 'kpi-exposure-delta', k.exposure, k.exposure_delta, k.exposure_delta_up);
-      setKpi('kpi-visits',   'kpi-visits-delta',   k.visits,   k.visits_delta,   k.visits_delta_up);
-      setKpi('kpi-likes',    'kpi-likes-delta',     k.likes,    k.likes_delta,    k.likes_delta_up);
-      setKpi('kpi-shares',   'kpi-shares-delta',   k.shares,   k.shares_delta,   k.shares_delta_up);
-      setKpi('kpi-comments', 'kpi-comments-delta', k.comments, k.comments_delta, k.comments_delta_up);
-      setKpi('kpi-fans',     'kpi-fans-delta',     k.fans,     k.fans_delta,     k.fans_delta_up);
+    // Top note by hotness
+    const notes = D.notes || [];
+    const topNote = [...notes].sort((a, b) => (b.hotness || b.exposure || 0) - (a.hotness || a.exposure || 0))[0];
+    if (topNote) {
+      const thumbBox = $('heroTopNote');
+      if (thumbBox) {
+        const idx = notes.indexOf(topNote);
+        thumbBox.innerHTML = `
+          ${trendImg(idx < 0 ? 0 : idx, 64)}
+          <div>
+            <div class="work-title" id="latestWorkTitle">${esc(topNote.title || '—')}</div>
+            <div class="work-stats">
+              <div class="r"><span class="k">热度</span><span class="v">${fmt(topNote.hotness || topNote.exposure)}</span></div>
+              <div class="r"><span class="k">点赞</span><span class="v">${fmt(topNote.likes)}</span></div>
+            </div>
+          </div>`;
+      }
     }
 
-    // Latest work from notes[0]
-    const notes = D.notes || [];
-    if (notes.length) {
-      const n = notes[0];
-      const titleEl = $('latestWorkTitle');
-      const expEl   = $('latestExposure');
-      const lkEl    = $('latestLikes');
-      if (titleEl) titleEl.textContent = n.title || '—';
-      if (expEl)   expEl.textContent   = n.exposure != null ? fmt(n.exposure) : (n.hotness != null ? fmt(n.hotness) : '—');
-      if (lkEl)    lkEl.textContent    = fmt(n.likes);
+    // Overview style bars — top 6 notes by hotness
+    const barsEl = $('overviewStyleBars');
+    if (barsEl && notes.length) {
+      const top6 = [...notes].sort((a, b) => (b.hotness || b.exposure || 0) - (a.hotness || a.exposure || 0)).slice(0, 6);
+      const topVal = top6[0] ? (top6[0].hotness || top6[0].exposure || 1) : 1;
+      const mods = ['', 'p', '', 'g', 'p', ''];
+      barsEl.innerHTML = top6.map((n, i) => {
+        const val = n.hotness || n.exposure || 0;
+        const w = Math.round(val / topVal * 92);
+        const label = (n.title || '').slice(0, 10);
+        return `<div class="bar-row">
+          <div class="bar-label"><span class="bar-rank">${i+1}</span>${esc(label)}</div>
+          <div class="bar-track"><div class="bar-fill ${mods[i]}" style="width:${w}%"></div></div>
+          <div class="bar-val">${fmt(val)}</div>
+        </div>`;
+      }).join('');
+    }
+
+    // Mini demand signals for overview
+    const demandBarsEl = $('overviewDemandBars');
+    if (demandBarsEl) {
+      const signals = (D.demand && D.demand.signals) ? D.demand.signals : {};
+      const entries = Object.entries(signals).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      if (entries.length) {
+        const maxSig = entries[0][1] || 1;
+        const mods = ['', 'p', '', 'g', 'p', ''];
+        demandBarsEl.innerHTML = entries.map(([k, v], i) => `
+          <div class="bar-row">
+            <div class="bar-label">${esc(k)}</div>
+            <div class="bar-track"><div class="bar-fill ${mods[i]}" style="width:${(v/maxSig*92).toFixed(1)}%"></div></div>
+            <div class="bar-val">${fmt(v)}</div>
+          </div>`).join('');
+      } else {
+        demandBarsEl.innerHTML = '<div style="padding:16px;color:var(--ink-3);font-size:13px">暂无需求信号数据</div>';
+      }
+    }
+
+    // Overview style table — top 5 notes
+    const tblEl = $('overviewStyleTbl');
+    if (tblEl && notes.length) {
+      const top5 = [...notes].sort((a, b) => (b.hotness || b.exposure || 0) - (a.hotness || a.exposure || 0)).slice(0, 5);
+      tblEl.innerHTML = top5.map((n, i) => {
+        const rank = String(i + 1).padStart(2, '0');
+        const val  = n.hotness || n.exposure || 0;
+        const g    = n.growth_pct;
+        const b    = (n.status === '新出现') ? `<span class="badge new">${svgNw}NEW</span>`
+                   : (g != null && g >= 0)   ? `<span class="badge up">${svgUp}${pct(g)}</span>`
+                   : (g != null)             ? `<span class="badge down">${svgDn}${pct(g)}</span>`
+                   : `<span class="badge up">${svgUp}热门</span>`;
+        return `<tr>
+          <td class="rank-cell${i < 2 ? ' top' : ''}">${rank}</td>
+          <td><div class="cell-thumb">${trendImg(i)}<div><div class="cell-name">${esc((n.title||'').slice(0,14))}</div><div class="cell-tag">${esc(n.type||'')}</div></div></div></td>
+          <td class="num">${fmt(val)}</td>
+          <td class="num">${n.likes != null ? fmt(n.likes) : '—'}</td>
+          <td class="num">${n.total_comments != null ? fmt(n.total_comments) : (n.comments != null ? fmt(n.comments) : '—')}</td>
+          <td>${b}</td>
+        </tr>`;
+      }).join('');
     }
   }
 
@@ -631,7 +717,7 @@
       return `<tr>
         <td class="rank-cell${isTop ? ' top' : ''}">${rank}</td>
         <td><div class="cell-thumb">
-          <span class="thumb ${thumbCls(i)}">图</span>
+          ${trendImg(i)}
           <div><div class="cell-name">${esc(r.name)}</div><div class="cell-tag">${esc(r.type || '')}</div></div>
         </div></td>
         <td class="num">${pct(r.growth_pct)}</td>
@@ -815,7 +901,7 @@
         : esc(n.title);
       return `<tr>
         <td class="rank-cell${isTop ? ' top' : ''}">${rank}</td>
-        <td><div class="cell-name">${title}</div><div class="cell-tag">${esc(n.published_at || n.date || '')}</div></td>
+        <td><div class="cell-thumb">${trendImg(i)}<div><div class="cell-name">${title}</div><div class="cell-tag">${esc(n.published_at || n.date || '')}</div></div></div></td>
         <td><span class="tag">${esc(type)}</span></td>
         <td class="num">${fmt(n.exposure || n.hotness)}</td>
         <td class="num">${fmt(n.likes)}</td>
@@ -933,7 +1019,7 @@
         recGrid.innerHTML = rec.map((r, i) => `
           <div class="push-card">
             <span class="corner"><span class="badge up">${svgUp}主推</span></span>
-            <div class="push-thumb" style="background:#E7C9CC">${esc((r.name || '—').slice(0, 5))}</div>
+            <div class="push-thumb" style="padding:0;overflow:hidden">${trendImg(i, 80)}</div>
             <div class="push-name">${esc(r.name)}</div>
             <div class="push-stats">
               <div class="s"><div class="n" style="color:var(--up)">${((r.conversion || 0) * 100).toFixed(1)}%</div><div class="l">转化率</div></div>

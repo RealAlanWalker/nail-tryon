@@ -1214,19 +1214,24 @@
       return;
     }
 
+    // Show loading state while GLM generates (can take 20-30s)
+    const textEl = $('reportAiText');
+    const descEl = $('reportPageDesc');
+    if (textEl) textEl.textContent = 'AI 生成中，请稍候（约 20 秒）…';
+    if (descEl) descEl.textContent = today + ' · 生成中…';
+
     try {
-      const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), 6000);
-      const res = await fetch(REPORT_API, { signal: ctrl.signal });
-      clearTimeout(timer);
-      if (!res.ok) return;
+      const res = await fetch(REPORT_API);  // no timeout — let server's 30s GLM call finish
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const report = await res.json();
       localStorage.setItem('autoReportCache', JSON.stringify(report));
       localStorage.setItem('autoReportDate', today);
       renderReport(report);
-      const el = $('reportPageDesc');
-      if (el) el.textContent = today + ' · 已自动生成';
-    } catch (_) { /* 服务未启动，静默跳过 */ }
+      if (descEl) descEl.textContent = today + ' · 已自动生成';
+    } catch (e) {
+      if (textEl) textEl.textContent = '日报服务未响应，请检查本地服务是否启动（端口 4174）。';
+      if (descEl) descEl.textContent = today + ' · 生成失败';
+    }
   }
 
   /* -------------------- Report page desc -------------------- */

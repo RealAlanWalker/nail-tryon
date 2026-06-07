@@ -126,21 +126,45 @@ def build_report() -> dict:
             "rising_count":   len(rising),
         }
 
+    # ---- Build context strings ----
+    top_notes = sorted(notes, key=lambda n: n.get("hotness", 0), reverse=True)[:5]
+    top_notes_str = "、".join(
+        f"「{n.get('title','')[:10]}」热度{int(n.get('hotness',0)):,}" for n in top_notes
+    )
+    rec_list = catalog.get("recommend", [])[:3]
+    rec_str = "、".join(
+        f"「{r.get('名称') or r.get('name','?')}」转化率{r.get('转化率', r.get('conversion', 0))*100:.0f}%"
+        for r in rec_list
+    )
+    gaps_str = "、".join(
+        f"「{r.get('name','?')}」({r.get('suggest','')})"
+        for r in catalog.get("gaps", [])[:3]
+    )
+    slow_str = "、".join(
+        f"「{r.get('名称') or r.get('name','?')}」"
+        for r in catalog.get("slow_movers", [])[:2]
+    )
+    demand_top = list(demand.get("signals", {}).items())[:5]
+    demand_str = "、".join(f"{k}({v}次)" for k, v in demand_top)
+
     # ---- 拼 prompt ----
-    prompt = f"""你是美甲电商运营助手。根据以下数据生成今日运营日报，用中文，200字以内，格式紧凑。
+    prompt = f"""你是美甲店的运营合伙人AI，现在给商家写今天的运营日报。
 
-数据日期：{gen_at}
-KPI：笔记{kpi.get('total_notes',0)}篇，评论{kpi.get('total_comments',0)}条，平均热度{kpi.get('avg_hotness',0)}，上升趋势{kpi.get('rising_count',0)}项，需求信号{kpi.get('demand_signals',0)}条
+今日数据（{gen_at}）：
+- 采集笔记 {kpi.get('total_notes',0)} 篇，平均热度 {kpi.get('avg_hotness',0):,}，评论样本 {kpi.get('total_comments',0)} 条
+- 热度最高的笔记：{top_notes_str or '暂无'}
+- 主推款（按转化率排序）：{rec_str or '暂无'}
+- 待开发缺口：{gaps_str or '暂无'}
+- 滞销款：{slow_str or '暂无'}
+- 用户需求词：{demand_str or '暂无'}
 
-飙升TOP5：{json.dumps([r.get('name') or r.get('名称','—') for r in rising[:5]], ensure_ascii=False)}
+写作要求：
+1. 开头1句话说今天最重要的机会或风险（具体到款式名）
+2. 今天重点主推哪1-2款？转化率数据是佐证，不是结论
+3. 今天发什么内容更容易出圈？给出具体的笔记主题方向
+4. 如果有滞销款或缺口，1句话点出行动建议
 
-主推建议：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('recommend',[])[:3]], ensure_ascii=False)}
-选品缺口：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('gaps',[])[:3]], ensure_ascii=False)}
-滞销预警：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('slow_movers',[])[:2]], ensure_ascii=False)}
-
-需求信号TOP3：{json.dumps(list(demand.get('signals',{}).items())[:3], ensure_ascii=False)}
-
-要求：输出"今日概览/热门趋势/主推款/运营建议"4段，每段1-2句话。"""
+风格：像微信聊天，口语化，不用"综上所述"，不用markdown标题。总字数150字以内。"""
 
     summary = _glm_chat([{"role": "user", "content": prompt}])
 

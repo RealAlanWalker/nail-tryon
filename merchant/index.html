@@ -402,10 +402,10 @@
           </div>
           <p class="ai-text" id="reportAiText">点击「生成今日日报」获取 AI 分析摘要。</p>
           <div class="ai-metrics" id="reportAiMetrics" style="display:none">
-            <div class="ai-metric"><div class="n" id="reportMetric1" style="color:var(--up)">—</div><div class="l">曝光环比</div></div>
-            <div class="ai-metric"><div class="n" id="reportMetric2" style="color:var(--accent)">—</div><div class="l">今日曝光</div></div>
-            <div class="ai-metric"><div class="n" id="reportMetric3" style="color:var(--ink)">—</div><div class="l">待办建议</div></div>
-            <div class="ai-metric"><div class="n" id="reportMetric4" style="color:var(--new)">—</div><div class="l">风险预警</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric1" style="color:var(--up)">—</div><div class="l">采集笔记</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric2" style="color:var(--accent)">—</div><div class="l">平均热度</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric3" style="color:var(--ink)">—</div><div class="l">今日主推</div></div>
+            <div class="ai-metric"><div class="n" id="reportMetric4" style="color:var(--new)">—</div><div class="l">冷门预警</div></div>
           </div>
         </div>
 
@@ -917,18 +917,27 @@
   /* -------------------- 运营日报 -------------------- */
   $('genReportBtn')?.addEventListener('click', async () => {
     const btn = $('genReportBtn');
-    btn.textContent = '生成中…';
+    // Force fresh — always bypass cache on manual click
+    localStorage.removeItem('autoReportCache');
+    localStorage.removeItem('autoReportDate');
+    btn.textContent = '生成中（约20秒）…';
     btn.disabled = true;
+    const textEl = $('reportAiText');
+    const descEl = $('reportPageDesc');
+    if (textEl) textEl.textContent = 'AI 生成中，请稍候…';
     try {
       const res = await fetch(REPORT_API);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const report = await res.json();
+      const today = new Date().toISOString().slice(0, 10);
+      localStorage.setItem('autoReportCache', JSON.stringify(report));
+      localStorage.setItem('autoReportDate', today);
       renderReport(report);
+      if (descEl) descEl.textContent = today + ' · 已生成';
     } catch (e) {
-      $('reportAiText').textContent = '日报服务未启动，请先运行本地服务（merchant_service.daily_report）。';
-      $('reportBody').innerHTML = '';
+      if (textEl) textEl.textContent = '日报服务未响应（端口 4174），请确认服务已启动。';
     } finally {
-      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 4 5-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>生成今日日报';
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 4 5-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>重新生成';
       btn.disabled = false;
     }
   });
@@ -945,9 +954,9 @@
     if (metricsEl) {
       metricsEl.style.display = '';
       const kpi = report.kpi || {};
-      const m1 = $('reportMetric1'); if (m1) m1.textContent = kpi.exposure_delta || '—';
-      const m2 = $('reportMetric2'); if (m2) m2.textContent = fmt(kpi.exposure) || '—';
-      const m3 = $('reportMetric3'); if (m3) m3.textContent = (report.recommend || []).length + ' 项';
+      const m1 = $('reportMetric1'); if (m1) m1.textContent = kpi.total_notes != null ? kpi.total_notes + ' 篇' : '—';
+      const m2 = $('reportMetric2'); if (m2) m2.textContent = kpi.avg_hotness != null ? fmt(kpi.avg_hotness) : '—';
+      const m3 = $('reportMetric3'); if (m3) m3.textContent = (report.recommend || []).length + ' 款';
       const m4 = $('reportMetric4'); if (m4) m4.textContent = (report.cold_warning || []).length + ' 款';
     }
 
@@ -1213,8 +1222,10 @@
       try {
         const cached = JSON.parse(cachedStr);
         const sum = cached.ai_summary || '';
-        // Only use cache if it has real AI content (not an error or placeholder)
-        if (!cached.error && sum && !sum.startsWith('（')) {
+        const cachedKpi = cached.kpi || {};
+        const hasRealKpi = cachedKpi.total_notes > 0 || cachedKpi.avg_hotness > 0;
+        // Only use cache if it has real AI content AND real KPI data
+        if (!cached.error && sum && !sum.startsWith('（') && hasRealKpi) {
           renderReport(cached);
           const el = $('reportPageDesc');
           if (el) el.textContent = today + ' · 已自动生成（缓存）';

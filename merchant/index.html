@@ -528,9 +528,9 @@
   const ATTR_DIMS = {
     '甲型': ['椭圆形','方圆形','方形','圆形','尖形','杏仁形','短款','超长'],
     '颜色': ['白色','奶白','奶茶','裸色','粉色','玫粉','豆沙','红色','蓝色','紫色','绿色','黑色','橙色','米色','灰色','金色'],
-    '工艺': ['猫眼','法式','晕染','渐变','手绘','亮片','碎钻','镜面','玻璃','醋酸','克罗心','烫钻','贝壳'],
-    '风格': ['简约','极简','可爱','高级感','日系','甜酷','复古','温柔','奶油','ins风','小众','氛围感'],
-    '场景': ['通勤','上班','夏天','冬天','新年','婚礼','约会','日常','出游'],
+    '工艺': ['猫眼','法式','晕染','渐变','手绘','亮片','碎钻','镜面','玻璃','醋酸','克罗心','烫钻','贝壳','纯色','光疗'],
+    '风格': ['简约','极简','可爱','高级感','日系','甜酷','复古','温柔','奶油','ins风','小众','氛围感','暗黑','少女'],
+    '场景': ['通勤','上班','夏天','冬天','新年','婚礼','约会','日常','出游','圣诞'],
   };
 
   function buildAttrTrends(notes) {
@@ -540,7 +540,17 @@
 
     notes.forEach(note => {
       const h = note.hotness || 0;
-      const text = [note.title || '', note.desc || '', ...(note.tags || [])].join(' ');
+      // craft field uses "/" separator e.g. "猫眼/亮片" — split each part
+      const craftParts = (note.craft || '').split(/[/+,，、]/).map(s => s.trim()).filter(Boolean);
+      const text = [
+        note.title   || '',
+        note.desc    || '',
+        note.theme   || '',
+        note.keyword || '',
+        ...craftParts,
+        ...(Array.isArray(note.tags)      ? note.tags      : []),
+        ...(Array.isArray(note._keywords) ? note._keywords : []),
+      ].join(' ');
       const found = [];
 
       for (const [dim, attrs] of Object.entries(ATTR_DIMS)) {

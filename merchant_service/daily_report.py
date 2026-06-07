@@ -113,11 +113,11 @@ def build_report() -> dict:
 数据日期：{gen_at}
 KPI：笔记{kpi.get('total_notes',0)}篇，评论{kpi.get('total_comments',0)}条，平均热度{kpi.get('avg_hotness',0)}，上升趋势{kpi.get('rising_count',0)}项，需求信号{kpi.get('demand_signals',0)}条
 
-飙升TOP5：{json.dumps([r['name'] for r in rising[:5]], ensure_ascii=False)}
+飙升TOP5：{json.dumps([r.get('name') or r.get('名称','—') for r in rising[:5]], ensure_ascii=False)}
 
-主推建议：{json.dumps([r['name'] for r in catalog.get('recommend',[])[:3]], ensure_ascii=False)}
-选品缺口：{json.dumps([r['name'] for r in catalog.get('gaps',[])[:3]], ensure_ascii=False)}
-滞销预警：{json.dumps([r['name'] for r in catalog.get('slow_movers',[])[:2]], ensure_ascii=False)}
+主推建议：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('recommend',[])[:3]], ensure_ascii=False)}
+选品缺口：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('gaps',[])[:3]], ensure_ascii=False)}
+滞销预警：{json.dumps([r.get('name') or r.get('名称','—') for r in catalog.get('slow_movers',[])[:2]], ensure_ascii=False)}
 
 需求信号TOP3：{json.dumps(list(demand.get('signals',{}).items())[:3], ensure_ascii=False)}
 
@@ -128,7 +128,7 @@ KPI：笔记{kpi.get('total_notes',0)}篇，评论{kpi.get('total_comments',0)}�
     # ---- 冷门预警（热度连续低于均值）----
     avg_h = kpi.get("avg_hotness", 0)
     cold_warning = [
-        {"name": r["name"], "curr_hotness": r["curr_hotness"], "growth_pct": r.get("growth_pct")}
+        {"name": r.get("name") or r.get("名称", "—"), "curr_hotness": r.get("curr_hotness"), "growth_pct": r.get("growth_pct")}
         for r in rising
         if r.get("status") == "下降" and r.get("curr_hotness", 9999) < avg_h * 0.5
     ]
